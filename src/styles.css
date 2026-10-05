@@ -121,7 +121,8 @@
 }
 
 /* ZAAD Classic — ONLY section 07 / Command Center */
-#command.command-section.light-section .feature-copy h2 {
+#command.command-section.light-section .feature-copy h2,
+#command.command-section.light-section .feature-copy h2 * {
   color: #0b1b2b !important;
   -webkit-text-fill-color: #0b1b2b !important;
   opacity: 1 !important;
@@ -136,12 +137,25 @@
 #command.command-section.light-section .feature-copy h2 span {
   color: #2f7df6 !important;
   -webkit-text-fill-color: #2f7df6 !important;
+}
+
+/* Fallback: target the 7th major section by position, without touching other sections. */
+.zaad-site > section:nth-of-type(7) .feature-copy h2,
+.zaad-site > section:nth-of-type(7) .feature-copy h2 * {
+  color: #0b1b2b !important;
+  -webkit-text-fill-color: #0b1b2b !important;
   opacity: 1 !important;
-  background: transparent !important;
+  background: none !important;
   background-image: none !important;
   -webkit-background-clip: initial !important;
   background-clip: initial !important;
   text-shadow: none !important;
+  filter: none !important;
+}
+
+.zaad-site > section:nth-of-type(7) .feature-copy h2 span {
+  color: #2f7df6 !important;
+  -webkit-text-fill-color: #2f7df6 !important;
 }
 
 #command.command-section.light-section .feature-copy p { color: #6f86a3 !important; opacity: 1 !important; }
