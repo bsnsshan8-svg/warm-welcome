@@ -77,7 +77,6 @@
   --sidebar-primary: oklch(0.208 0.042 265.755);
   --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
   --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
 }
@@ -117,55 +116,35 @@
 }
 
 @layer base {
-  * {
-    border-color: var(--color-border);
-  }
-
-  body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-  }
+  * { border-color: var(--color-border); }
+  body { background-color: var(--color-background); color: var(--color-foreground); }
 }
 
-/* ZAAD Classic — Command Center only */
-.zaad-site #command.command-section.light-section .feature-copy h2 {
+/* ZAAD Classic — ONLY section 07 / Command Center */
+#command.command-section.light-section .feature-copy h2 {
   color: #0b1b2b !important;
-  opacity: 1 !important;
   -webkit-text-fill-color: #0b1b2b !important;
-  text-shadow: none !important;
-  background: none !important;
+  opacity: 1 !important;
+  background: transparent !important;
   background-image: none !important;
-  -webkit-background-clip: border-box !important;
-  background-clip: border-box !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  text-shadow: none !important;
+  filter: none !important;
 }
 
-.zaad-site #command.command-section.light-section .feature-copy h2 span {
+#command.command-section.light-section .feature-copy h2 span {
   color: #2f7df6 !important;
-  opacity: 1 !important;
   -webkit-text-fill-color: #2f7df6 !important;
-  text-shadow: none !important;
-  background: none !important;
+  opacity: 1 !important;
+  background: transparent !important;
   background-image: none !important;
-  -webkit-background-clip: border-box !important;
-  background-clip: border-box !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  text-shadow: none !important;
 }
 
-.zaad-site #command.command-section.light-section .feature-copy p {
-  color: #6f86a3 !important;
-  opacity: 1 !important;
-}
-
-.zaad-site #command.command-section.light-section .feature-copy .kicker {
-  color: #6c87ad !important;
-  opacity: 1 !important;
-}
-
-.zaad-site #command.command-section.light-section .mobile-list span {
-  color: #18324f !important;
-  opacity: 1 !important;
-}
-
-.zaad-site #command.command-section.light-section .mobile-list svg {
-  color: #2f7df6 !important;
-  opacity: 1 !important;
-}
+#command.command-section.light-section .feature-copy p { color: #6f86a3 !important; opacity: 1 !important; }
+#command.command-section.light-section .feature-copy .kicker { color: #6c87ad !important; opacity: 1 !important; }
+#command.command-section.light-section .mobile-list span { color: #18324f !important; opacity: 1 !important; }
+#command.command-section.light-section .mobile-list svg { color: #2f7df6 !important; opacity: 1 !important; }
