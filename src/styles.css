@@ -4,20 +4,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
- */
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -141,4 +127,29 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
+}
+
+/* ZAAD Classic — Command Center contrast fix */
+.command-section.light-section .feature-copy h2 {
+  color: #0b1b2b !important;
+}
+
+.command-section.light-section .feature-copy h2 span {
+  color: #2f7df6 !important;
+}
+
+.command-section.light-section .feature-copy p {
+  color: #6f86a3 !important;
+}
+
+.command-section.light-section .feature-copy .kicker {
+  color: #6c87ad !important;
+}
+
+.command-section.light-section .mobile-list span {
+  color: #18324f !important;
+}
+
+.command-section.light-section .mobile-list svg {
+  color: #2f7df6 !important;
 }
