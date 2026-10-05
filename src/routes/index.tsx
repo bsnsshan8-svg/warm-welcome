@@ -61,6 +61,7 @@ function Index() {
     return () => observer.disconnect();
   }, []);
 
+  const activeCap = capabilities[activeCapability] ?? capabilities[0]!;
   const reveal = (id: string) => visible[id] ? "reveal reveal-on" : "reveal";
 
   return (
@@ -114,7 +115,7 @@ function Index() {
           <div className="section-heading reveal reveal-on" data-reveal id="system-head"><span className="kicker">01 / THE ENGINE</span><h2>THE ZAAD <span>SYSTEM</span></h2><p>Everything you need to bring in patients and keep them coming back.</p></div>
           <div className="capability-layout">
             <div className="capability-list">{capabilities.map((c, i) => { const Icon = c.icon; return <button key={c.n} className={`capability ${activeCapability === i ? "active" : ""}`} onMouseEnter={() => setActiveCapability(i)} onClick={() => setActiveCapability(i)}><span>{c.n}</span><Icon size={20} /><div><b>{c.title}</b><p>{c.text}</p></div><ArrowRight size={17} /></button>; })}</div>
-            <div className="capability-demo"><div className="demo-label">INTERACTIVE SYSTEM PREVIEW <CircleDot size={11} /></div><div className="demo-main"><div className="demo-icon">{(() => { const Icon = capabilities[activeCapability].icon; return <Icon />; })()}</div><span className="demo-number">{capabilities[activeCapability].n}</span><h3>{capabilities[activeCapability].title}</h3><p>{capabilities[activeCapability].demo}</p><div className="demo-path"><span /><i /><span /><i /><span /></div></div><div className="demo-footer"><span>ZAAD / MODULE {capabilities[activeCapability].n}</span><span>ACTIVE <i /></span></div></div>
+            <div className="capability-demo"><div className="demo-label">INTERACTIVE SYSTEM PREVIEW <CircleDot size={11} /></div><div className="demo-main"><div className="demo-icon">{(() => { const Icon = activeCap.icon; return <Icon />; })()}</div><span className="demo-number">{activeCap.n}</span><h3>{activeCap.title}</h3><p>{activeCap.demo}</p><div className="demo-path"><span /><i /><span /><i /><span /></div></div><div className="demo-footer"><span>ZAAD / MODULE {activeCap.n}</span><span>ACTIVE <i /></span></div></div>
           </div>
         </div>
       </section>
@@ -129,7 +130,7 @@ function Index() {
 
       <section id="flow" className="journey-section light-section">
         <div className="shell"><div className="section-heading centered reveal reveal-on" data-reveal id="journey-head"><span className="kicker">03 / THE JOURNEY</span><h2>FROM FIRST CLICK <span>TO PATIENT.</span></h2><p>Every handoff is designed to move one thing forward: the patient.</p></div>
-          <div className="journey-track">{journey.map(([n,title,text], i) => { const JIcon = [Search, MessageSquare, Bot, CalendarCheck, Users, Star][i]; return <div className="journey-card" key={n}><div className="journey-top"><span>{n}</span>{i < journey.length - 1 && <ArrowRight size={15} />}</div><div className="journey-icon"><JIcon size={22} /></div><h3>{title}</h3><p>{text}</p></div>; })}</div>
+          <div className="journey-track">{journey.map(([n,title,text], i) => { const JIcon = [Search, MessageSquare, Bot, CalendarCheck, Users, Star][i] ?? Star; return <div className="journey-card" key={n}><div className="journey-top"><span>{n}</span>{i < journey.length - 1 && <ArrowRight size={15} />}</div><div className="journey-icon"><JIcon size={22} /></div><h3>{title}</h3><p>{text}</p></div>; })}</div>
         </div>
       </section>
 
