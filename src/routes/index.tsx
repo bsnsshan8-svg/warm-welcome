@@ -129,7 +129,7 @@ function Index() {
 
       <section id="flow" className="journey-section light-section">
         <div className="shell"><div className="section-heading centered reveal reveal-on" data-reveal id="journey-head"><span className="kicker">03 / THE JOURNEY</span><h2>FROM FIRST CLICK <span>TO PATIENT.</span></h2><p>Every handoff is designed to move one thing forward: the patient.</p></div>
-          <div className="journey-track">{journey.map(([n,title,text], i) => <div className="journey-card" key={n}><div className="journey-top"><span>{n}</span>{i < journey.length - 1 && <ArrowRight size={15} />}</div><div className="journey-icon">{[Search, MessageSquare, Bot, CalendarCheck, Users, Star][i]({ size: 22 })}</div><h3>{title}</h3><p>{text}</p></div>)}</div>
+          <div className="journey-track">{journey.map(([n,title,text], i) => { const JIcon = [Search, MessageSquare, Bot, CalendarCheck, Users, Star][i]; return <div className="journey-card" key={n}><div className="journey-top"><span>{n}</span>{i < journey.length - 1 && <ArrowRight size={15} />}</div><div className="journey-icon"><JIcon size={22} /></div><h3>{title}</h3><p>{text}</p></div>; })}</div>
         </div>
       </section>
 
