@@ -41,14 +41,14 @@ function Hero() {
     </g>
     <g className="core-front">
       <g className="core-hover core-search">
-        <rect x="27" y="162" width="217" height="52" rx="8" className="f-card s-edge" strokeWidth="2" />
-        <circle cx="53" cy="187" r="8" className="s-cyan" strokeWidth="3" fill="none" /><path d="M59 193 l6 6" className="s-cyan" strokeWidth="3" />
-        <text x="79" y="194" fontSize="18" className="t-light">A patient searches</text>
+        <rect x="27" y="228" width="217" height="52" rx="8" className="f-card s-edge" strokeWidth="2" />
+        <circle cx="53" cy="253" r="8" className="s-cyan" strokeWidth="3" fill="none" /><path d="M59 259 l6 6" className="s-cyan" strokeWidth="3" />
+        <text x="79" y="260" fontSize="18" className="t-light">A patient searches</text>
       </g>
       <g className="core-hover core-chat">
-        <rect x="180" y="248" width="196" height="52" rx="8" className="f-card s-edge" strokeWidth="2" />
-        <path d="M196 265 h22 v15 h-13 l-6 5 v-5 h-3Z" className="s-coral" strokeWidth="2" fill="none" />
-        <text x="230" y="280" fontSize="18" className="t-light">Follow up</text>
+        <rect x="180" y="290" width="196" height="52" rx="8" className="f-card s-edge" strokeWidth="2" />
+        <path d="M196 307 h22 v15 h-13 l-6 5 v-5 h-3Z" className="s-coral" strokeWidth="2" fill="none" />
+        <text x="230" y="322" fontSize="18" className="t-light">Follow up</text>
       </g>
       <g className="core-hover core-booking">
         <rect x="153" y="117" width="103" height="107" rx="8" className="f-card s-edge" strokeWidth="2" />
