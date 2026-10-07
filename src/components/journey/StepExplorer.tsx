@@ -95,7 +95,7 @@ export function StepExplorer() {
             <span className="px-step">Step {num(active)}</span>
             <h3>{s.t}</h3><p>{s.d}</p>
             <small>Includes</small>
-            <ul>{s.p.map((x, k) => <li key={x} style={{ animationDelay: `${80 + k * 70}ms` }}><Check size={18} aria-hidden="true" />{x}</li>)}</ul>
+            <ul>{s.p.map((x, k) => <li key={x}><Check size={18} aria-hidden="true" />{x}</li>)}</ul>
           </div>
           <Mockup i={active} />
         </div>
