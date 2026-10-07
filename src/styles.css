@@ -894,3 +894,4 @@ body:has(.journey-page){background:var(--navy);}
 @media(max-width:900px){.es-grid,.pr-grid,.pr-extra,.fit-grid{grid-template-columns:1fr;}}
 @media(prefers-reduced-motion:reduce){.ch-av{animation:none!important;opacity:1!important;transform:none!important;}.ch-switch i,.ch-half,.vx-card,.vx-mock-wrap>.px-mock{transition:none;}}
 .ch-actions{align-items:center;}.ch-actions>*{min-height:48px!important;height:auto!important;padding:14px 24px!important;margin:0!important;line-height:1.2!important;}
+.ch-actions>a{height:48px!important;min-height:48px!important;}
