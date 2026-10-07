@@ -1,5 +1,5 @@
 # Cinematic ZAAD patient journey
-- [ ] Restore a pronounced scroll-driven zoom and independent graphic-layer movement in the hero only; verify readability, containment and reduced motion.
+- [x] Restore hero-only scroll-driven zoom, rotating segments and independent foreground travel; verified reverse scrolling, 12px SVG text, no overflow at 360/375/414/768/1440px, reduced motion, hero link and passing tests/build.
 - [x] Restore floating scroll hero using the selected dynamic journey core; enrich scene artwork with colourful segments without changing other sections.
 - [x] Verify scroll motion, reduced motion, #system link, rendered SVG text minimum and containment at 360/375/414/768/1440px; journey/navigation tests and build pass.
 - [x] Build eight numbered pinned chapters with existing wording, logo and persistent header call button.
