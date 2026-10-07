@@ -14,3 +14,4 @@
 - Keep chapter content server-rendered and the R3F scene lazy-loaded after WebGL and motion checks, so fallback content and SEO never depend on graphics availability.
 - One shared scroll progress ref drives camera travel and chapter fades without per-frame React updates; CSS sticky sections pin chapters in document flow.
 - Build the patient-world objects procedurally as explicitly requested; cap mobile pixel ratio and cull distant stations instead of loading models or external scene assets.
+- Prebundle lazy 3D dependencies with React and reject outdated optimizer requests so open previews cannot mix React module generations during dependency discovery.
