@@ -21,22 +21,41 @@ function Frame({ children, label }: { children: ReactNode; label: string }) {
   </svg>;
 }
 
-const applePts = Array.from({ length: 30 }, (_, i) => {
-  const t = (i / 30) * Math.PI * 2;
-  const x = Math.sin(t);
-  let y = -Math.cos(t);
-  y += 0.22 * Math.pow(Math.cos(t), 8) * (Math.cos(t) > 0 ? 1 : 0); // top dimple
-  y -= 0.08 * Math.pow(Math.cos(t), 8) * (Math.cos(t) < 0 ? 1 : 0); // bottom notch
-  const sx = 1 + 0.12 * Math.cos(t) * Math.cos(t);
-  return { x: 200 + x * 120 * sx, y: 218 + y * 125, dx: Math.round(Math.sin(i * 7.3) * 160), dy: Math.round(Math.cos(i * 4.1) * 160) };
-});
-
 function Hero() {
-  return <Frame label="An apple shape made of patient avatars">
-    <g className="float">
-      <path d="M200 92 C 198 70 206 58 216 50" className="s-light" strokeWidth="5" fill="none" strokeLinecap="round" />
-      <ellipse cx="236" cy="66" rx="26" ry="12" transform="rotate(-25 236 66)" className="f-blue gather" style={v({ "--dx": "0px", "--dy": "-80px", "--i": 30 })} />
-      {applePts.map((pt, i) => <g key={i} className="gather" style={v({ "--dx": `${pt.dx}px`, "--dy": `${pt.dy}px`, "--i": i })}><Avatar x={pt.x} y={pt.y} r={12} className={i % 5 === 0 ? "lit" : ""} /></g>)}
+  return <Frame label="A floating apple-shaped patient journey from search to conversation, booking and review">
+    <g className="core-depth">
+      <path d="M200 92 C170 70 118 80 92 119 C59 166 84 248 126 300 C151 332 178 337 200 325 C226 340 251 329 275 300 C321 249 342 173 313 123 C289 81 238 75 200 92Z" className="core-outline" />
+      <path d="M205 66 C212 37 237 27 257 33 C247 57 229 69 205 66Z" className="f-cyan core-leaf" />
+      <path d="M199 90 Q193 65 202 48" className="s-light" strokeWidth="5" fill="none" strokeLinecap="round" />
+      <g className="core-segments" fill="none" strokeWidth="9" strokeLinecap="round">
+        <path d="M198 97 C153 73 111 95 94 140" className="segment-blue" />
+        <path d="M86 163 C79 202 95 243 117 270" className="segment-cyan" />
+        <path d="M132 290 C158 325 182 330 200 317" className="segment-gold" />
+        <path d="M216 323 C248 327 275 294 292 260" className="segment-green" />
+        <path d="M304 239 C324 191 326 154 309 125" className="segment-coral" />
+        <path d="M295 105 C269 78 238 80 219 92" className="segment-blue" />
+      </g>
+      <g className="core-node core-node-one"><Avatar x={118} y={108} r={24} className="lit" /></g>
+      <g className="core-node core-node-two"><Avatar x={313} y={216} r={21} className="mint-avatar" /></g>
+      <g className="core-node core-node-three"><Avatar x={192} y={325} r={25} className="coral-avatar" /></g>
+    </g>
+    <g className="core-front">
+      <g className="core-hover core-search">
+        <rect x="27" y="162" width="217" height="52" rx="8" className="f-card s-edge" strokeWidth="2" />
+        <circle cx="53" cy="187" r="8" className="s-cyan" strokeWidth="3" fill="none" /><path d="M59 193 l6 6" className="s-cyan" strokeWidth="3" />
+        <text x="79" y="194" fontSize="18" className="t-light">A patient searches</text>
+      </g>
+      <g className="core-hover core-chat">
+        <rect x="180" y="248" width="196" height="52" rx="8" className="f-card s-edge" strokeWidth="2" />
+        <path d="M196 265 h22 v15 h-13 l-6 5 v-5 h-3Z" className="s-coral" strokeWidth="2" fill="none" />
+        <text x="230" y="280" fontSize="18" className="t-light">Follow up</text>
+      </g>
+      <g className="core-hover core-booking">
+        <rect x="153" y="117" width="103" height="107" rx="8" className="f-card s-edge" strokeWidth="2" />
+        <path d="M153 145 h103" className="s-green" strokeWidth="3" /><path d="M178 110 v17 M231 110 v17" className="s-light" strokeWidth="4" strokeLinecap="round" />
+        <path d="M188 174 l10 10 l21 -23" className="s-green" strokeWidth="5" fill="none" strokeLinecap="round" />
+        <text x="205" y="208" fontSize="18" textAnchor="middle" className="t-light">Booked</text>
+      </g>
     </g>
   </Frame>;
 }
@@ -131,5 +150,5 @@ const scenes = [Hero, Map, FollowUp, Missed, Reviews, PastPatients, Glance, Cont
 
 export function SceneArt({ index }: { index: number }) {
   const S = scenes[index] ?? Hero;
-  return <div className="scene-art" aria-hidden={index === 0 ? undefined : undefined}><S /></div>;
+  return <div className={`scene-art scene-art-${index}`}><div className="scene-float"><S /></div></div>;
 }
