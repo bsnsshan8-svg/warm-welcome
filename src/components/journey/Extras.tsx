@@ -9,9 +9,11 @@ export function useInView<T extends HTMLElement>(threshold = 0.25) {
     const el = ref.current;
     if (!el) return;
     if (typeof IntersectionObserver === "undefined") { setInView(true); return; }
-    const io = new IntersectionObserver(([e]) => { if (e?.isIntersecting) { setInView(true); io.disconnect(); } }, { threshold });
+    const io = new IntersectionObserver(([e]) => { if (e?.isIntersecting) { setInView(true); io.disconnect(); } }, { threshold, rootMargin: "0px 0px -5% 0px" });
     io.observe(el);
-    return () => io.disconnect();
+    // Safety net: never leave content invisible if the observer misfires.
+    const fallback = setTimeout(() => setInView(true), 1600);
+    return () => { io.disconnect(); clearTimeout(fallback); };
   }, [threshold]);
   return [ref, inView] as const;
 }
