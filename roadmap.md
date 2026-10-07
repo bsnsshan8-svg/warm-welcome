@@ -8,5 +8,5 @@
 - [x] Check live and static layouts at 360px, 375px, 414px and desktop widths; mobile-only rules remain inactive at 1024px and above.
 - [x] Enforce the rendered 12px HTML text minimum and UniBox name/preview hierarchy without changing copy, colors or section layout; retain existing contact labels and channel metadata rather than inventing patient names or timestamps.
 - [x] Verify 273 HTML text elements, no scaled DOM text or horizontal overflow, and UniBox selection/filter/truncation at 360, 375, 414, 768 and 1440px; routing/journey tests pass and the live scene loads without page errors.
-- [ ] Remove preview and journey-card blank space with content-sized stable modules and 1/2/3-column equal-height card rows.
-- [ ] Verify all existing module switches remain height-stable and card layouts fit mobile, tablet and desktop.
+- [x] Remove preview and journey-card blank space with content-sized stable modules and 1/2/3-column equal-height card rows.
+- [x] Verify all five existing module switches remain height-stable and the five existing acquisition cards fit 375, 768 and 1440px; preserve current copy/content rather than invent a sixth item. Tests and page checks pass.
