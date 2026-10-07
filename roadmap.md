@@ -1,4 +1,5 @@
-# Landing-page fixes
-- [x] Fix mobile overflow, typography, UniBox, empty space, contrast, reputation order and tap targets without changing copy or overall design.
-- [x] Correct final link and page metadata.
-- [x] Verify at 375px, 768px and 1440px and run routing tests.
+# Cinematic ZAAD patient journey
+- [ ] Build eight numbered pinned chapters with existing wording, logo and persistent header call button.
+- [ ] Build procedural 3D patient journey, scroll-driven camera and layered parallax.
+- [ ] Add simplified mobile rendering and static reduced-motion/WebGL fallback.
+- [ ] Verify scene progression, links, fallback, readability and overflow at 375px, 768px and 1440px; run routing tests.
