@@ -1,6 +1,21 @@
 import { useState } from "react";
 import { ArrowRight, CalendarCheck, Check, Globe, Inbox, MessageSquare, PhoneCall, PhoneMissed, Quote, RefreshCw, Search, Send, Star, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CountUp, useInView } from "./Extras";
+import clinician from "@/assets/clinician-patient.jpg";
+
+function Chat({ items, className = "" }: { items: (readonly [string, string])[]; className?: string }) {
+  const [ref, inView] = useInView<HTMLDivElement>(0.35);
+  return <div ref={ref} className={`chat-seq ${className}`} data-inview={inView} style={{ ["--n" as string]: items.length }}>
+    {items.map(([who, text], k) => <div key={k} className={`bubble ${who}`} style={{ ["--i" as string]: k }}>{text}</div>)}
+    <div className="bubble agent typing" aria-hidden="true"><i /><i /><i /></div>
+  </div>;
+}
+
+function Stars({ className = "" }: { className?: string }) {
+  const [ref, inView] = useInView<HTMLSpanElement>(0.5);
+  return <span ref={ref} className={`star-seq ${className}`} data-inview={inView} aria-label="5 stars">{Array.from({ length: 5 }, (_, n) => <Star key={n} size={18} fill="currentColor" style={{ ["--i" as string]: n }} />)}</span>;
+}
 
 function Head({ kicker, title, accent, text }: { kicker: string; title: string; accent: string; text?: string }) {
   return <div className="sx-head"><span className="sx-kicker"><i />{kicker}</span><h2>{title} <em>{accent}</em></h2>{text && <p>{text}</p>}</div>;
@@ -39,17 +54,8 @@ const engine = [
 ];
 
 export function SystemModules() {
-  const [active, setActive] = useState(0);
-  return <section id="modules" className="sx sx-light" aria-labelledby="modules-title">
+  return <section className="sx sx-light engine-only" aria-labelledby="engine-title">
     <div className="sx-shell">
-      <div className="sx-head" id="modules-title"><span className="sx-kicker"><i />What ZAAD does for your practice</span><h2>Everything that happens <em>between a first search and a booked visit.</em></h2></div>
-      <div className="mod-tabs" role="tablist" aria-label="What ZAAD does">{modules.map((m, i) => <Button key={m.key} variant="unstyled" size="unstyled" role="tab" id={`tab-${i}`} aria-selected={active === i} aria-controls="mod-panel" className="mod-tab" onClick={() => setActive(i)}>{m.key}</Button>)}</div>
-      <div className="mod-stack" id="mod-panel" role="tabpanel" aria-labelledby={`tab-${active}`}>
-        {modules.map((mod, index) => { const Icon = mod.icon; return <div key={mod.key} className="mod-panel" data-active={active === index} aria-hidden={active !== index} inert={active !== index}>
-        <div className="mod-copy"><span className="mod-icon"><Icon size={22} /></span><span className="mod-key">{mod.key}</span><h3>{mod.title}</h3><ul>{mod.points.map(p => <li key={p}><Check size={16} />{p}</li>)}</ul></div>
-        <div className="mod-ui"><div className="ui-bar"><span>Riverside Dental</span></div><div className="mod-flow">{mod.flow.map((f, i) => <div key={f} className={i === mod.flow.length - 1 ? "done" : ""}><span>{i + 1}</span><b>{f}</b>{i < mod.flow.length - 1 && <ArrowRight size={16} />}</div>)}</div></div>
-        </div>; })}
-      </div>
       <div id="engine" className="engine" aria-labelledby="engine-title">
         <div className="engine-head"><span className="sx-kicker"><i />A patient's path</span><h3 id="engine-title">From first search to a booked visit.</h3></div>
         <ol className="engine-track">{engine.map(({ step, label, icon: E }, i) => <li key={step} className={i === 3 ? "booked" : ""}><span className="engine-icon"><E size={20} /></span><b>{step}</b><small>{label}</small></li>)}</ol>
@@ -66,9 +72,7 @@ export function MissedCallSection() {
       <div className="sx-phone" aria-label="Missed call text conversation example">
         <div className="phone-top"><PhoneCall size={16} /> Riverside Dental</div>
         <div className="mc-call"><PhoneMissed size={18} /><div><small>Missed call, 12:40 PM</small><b>James Carter</b></div></div>
-        <div className="bubble agent">Hi James, sorry we missed your call at Riverside Dental. How can we help?</div>
-        <div className="bubble patient">I'd like to book a check-up.</div>
-        <div className="bubble agent">Of course. Would Monday at 9:00 AM suit you?</div>
+        <Chat items={[["agent", "Hi James, sorry we missed your call at Riverside Dental. How can we help?"], ["patient", "I'd like to book a check-up."], ["agent", "Of course. Would Monday at 9:00 AM suit you?"]]} />
         <div className="booked-pill"><CalendarCheck size={18} /><span>Check-up, Monday 9:00 AM</span><Check size={16} /></div>
       </div>
     </div>
@@ -85,7 +89,7 @@ export function GrowthSection() {
       <div className="growth-grid">
         <article className="growth-card"><span className="mod-key"><Star size={16} /> More 5-star reviews</span><h3>Turn good visits into reviews.</h3>
           <ol className="g-flow">{["Sarah's visit", "How did it go?", "5★ review"].map((s, i) => <li key={s} className={i === 2 ? "done" : ""}>{s}</li>)}</ol>
-          <div className="g-ui"><Send size={16} /><div><b>Review invitation sent to Sarah</b><small>After her cleaning on Tuesday</small></div><span className="g-stars" aria-label="5 stars">★★★★★</span></div></article>
+          <div className="g-ui"><Send size={16} /><div><b>Review invitation sent to Sarah</b><small>After her cleaning on Tuesday</small></div><Stars className="g-stars" /></div></article>
         <article className="growth-card"><span className="mod-key"><RefreshCw size={16} /> Bring past patients back</span><h3>Your past patients already trust you. Invite them back.</h3>
           <ol className="g-flow">{["Past patient", "Friendly invite", "Reply", "New appointment"].map((s, i) => <li key={s} className={i === 3 ? "done" : ""}>{s}</li>)}</ol>
           <div className="seg-chips" role="group" aria-label="Which past patients">{segments.map(s => <Button key={s} variant="unstyled" size="unstyled" aria-pressed={segment === s} className="seg-chip" onClick={() => setSegment(s)}>{s}</Button>)}</div>
@@ -96,14 +100,17 @@ export function GrowthSection() {
 }
 
 export function CommandCenterSection() {
-  const rows: [string, typeof Users][] = [["12 new patients this week", Users], ["8 appointments today", CalendarCheck], ["3 missed calls recovered", PhoneCall], ["4 new reviews", Star], ["5 messages waiting in UniBox", Inbox]];
+  const rows: [number, string, typeof Users][] = [[12, "new patients this week", Users], [8, "appointments today", CalendarCheck], [3, "missed calls recovered", PhoneCall], [4, "new reviews", Star], [5, "messages waiting in UniBox", Inbox]];
+  const [ref, inView] = useInView<HTMLDivElement>(0.3);
   return <section id="command" className="sx sx-dark" aria-labelledby="command-title">
     <div className="sx-shell sx-split">
-      <div className="sx-head"><span className="sx-kicker"><i />On your phone</span><h2 id="command-title">Your practice, <em>at a glance.</em></h2><p>See what's happening without managing every conversation yourself: new patients, today's bookings, and messages that need you.</p></div>
-      <div className="sx-phone dash" aria-label="Practice summary on a phone, example">
+      <div className="sx-head"><span className="sx-kicker"><i />On your phone</span><h2 id="command-title">Your practice, <em>at a glance.</em></h2><p>See what's happening without managing every conversation yourself: new patients, today's bookings, and messages that need you.</p>
+        {/* PLACEHOLDER photo: replace with a real photo of your team. */}
+        <figure className="human-photo"><img src={clinician} alt="A clinician talking with a patient in a consultation room" loading="lazy" width={1200} height={912} /></figure></div>
+      <div ref={ref} data-inview={inView} className="sx-phone dash row-seq" aria-label="Practice summary on a phone, example">
         <div className="phone-top">Riverside Dental</div>
         <p className="dash-hello">Good morning, Dr. Patel<br /><b>Here's your week so far.</b></p>
-        {rows.map(([label, Ic]) => <div className="dash-row" key={label}><Ic size={18} /><b>{label}</b></div>)}
+        {rows.map(([n, label, Ic], i) => <div className="dash-row" key={label} style={{ ["--i" as string]: i }}><Ic size={18} /><b><CountUp value={n} start={inView} /> {label}</b></div>)}
       </div>
     </div>
   </section>;
@@ -129,7 +136,7 @@ export function UniBoxSection() {
       <div className="ub">
         <ul className="ub-list" aria-label="Messages">{list.map(t => { const I = t.icon; return <li key={t.name}><Button variant="unstyled" size="unstyled" aria-pressed={openIdx === t.i} className="ub-row" onClick={() => setOpenIdx(t.i)}><span className="ub-ic"><I size={18} /></span><span className="ub-text"><b>{t.name}</b><span className="ub-prev" title={t.preview}>{t.preview}</span></span><small className="ub-meta">{t.channel}</small></Button></li>; })}</ul>
         <div className="ub-convo" aria-live="polite"><div className="ui-bar"><span>{open.name} · {open.channel}</span></div>
-          <div className="ub-msgs">{open.messages.map(([who, text], k) => <div key={k} className={`bubble ${who}`}>{text}</div>)}</div>
+          <Chat key={open.name} className="ub-msgs" items={open.messages as unknown as (readonly [string, string])[]} />
           <div className="ub-next"><CalendarCheck size={18} /> Next step: confirm the appointment</div></div>
       </div>
     </div>
