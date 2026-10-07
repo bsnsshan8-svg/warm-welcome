@@ -704,3 +704,4 @@ body:has(.journey-page){background:var(--journey-bg);}
 }
 @media(min-width:1024px) and (max-height:680px){.px-journey{display:none;}}
 @media(prefers-reduced-motion:reduce){.px-detail,.px-detail li,.px-mock-card{animation:none;}.px-progress i,.px-tile,.px-bars i{transition:none;}}
+.px-head h2 em{font-style:normal;background:var(--journey-blue-on-light);color:#fff;padding:0 .18em;}
