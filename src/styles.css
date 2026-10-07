@@ -908,7 +908,7 @@ body:has(.journey-page){background:var(--navy);}
 .vx-mobile-mock{display:none!important;}
 .vx-journey{margin-top:48px;}
 .vx-journey .px-journey{display:grid!important;}
-@media(max-width:1023px){.vx-cols{grid-template-columns:1fr;}.vx-left{position:static;}.vx-mock-wrap{display:none;}.vx-mobile-mock{display:block!important;margin-top:24px;}.vx-card{opacity:1;}.vx-right{padding-left:20px;}}
+@media(max-width:1023px){.vx-cols{grid-template-columns:1fr;}.vx-left{position:static;}.vx-mock-wrap{display:none;}.vx-mobile-mock{display:block!important;margin-top:24px;}.vx-card :is(h3,p,ul){opacity:1;}.vx-right{padding-left:20px;}}
 
 /* ===== Estimator ===== */
 .es-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;margin-top:40px;}
@@ -946,3 +946,10 @@ body:has(.journey-page){background:var(--navy);}
 @media(prefers-reduced-motion:reduce){.ch-av{animation:none!important;opacity:1!important;transform:none!important;}.ch-switch i,.ch-half,.vx-card,.vx-mock-wrap>.px-mock{transition:none;}}
 .ch-actions{align-items:center;}.ch-actions>*{min-height:48px!important;height:auto!important;padding:14px 24px!important;margin:0!important;line-height:1.2!important;}
 .ch-actions>a{height:48px!important;min-height:48px!important;}
+
+/* ===== Final "Ready to bring more patients in?" section: normal flow ===== */
+.journey-chapter--plain{height:auto!important;min-height:0!important;}
+.journey-chapter--plain .chapter-pin{position:static!important;top:auto!important;height:auto!important;min-height:0!important;padding:clamp(64px,9vh,110px) 6%!important;grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"text" "art" "cap"!important;grid-template-rows:auto!important;align-content:initial!important;row-gap:28px!important;overflow:visible!important;}
+.journey-chapter--plain .chapter-content{max-width:660px!important;}
+.journey-chapter--plain .scene-art{height:clamp(220px,32vw,340px)!important;max-height:none!important;}
+.journey-chapter--plain .scene-caption{margin-top:4px!important;}
