@@ -71,8 +71,8 @@ function FollowUp() {
 function Missed() {
   return <Frame label="A missed call turning into a text conversation and a booking">
     <g className="ring"><circle cx="200" cy="105" r="52" className="f-card s-edge" strokeWidth="2" /><path d="M182 88 c-4 18 14 40 34 36 l6 -10 l-12 -8 l-6 5 c-8 -4 -12 -10 -14 -16 l5 -6 l-8 -12z" className="f-light" /></g>
-    <g className="out" style={v({ "--s": .62 })}><rect x="232" y="56" width="112" height="32" rx="16" className="f-alert" /><text x="288" y="77" fontSize="14" textAnchor="middle" className="t-light t-bold">Missed call</text></g>
-    <g className="in pop" style={v({ "--s": .62 })}><rect x="232" y="56" width="112" height="32" rx="16" className="f-green" /><text x="288" y="77" fontSize="14" textAnchor="middle" className="t-dark t-bold">Booked ✓</text></g>
+    <g className="out" style={v({ "--s": .62 })}><rect x="232" y="56" width="112" height="32" rx="16" className="f-alert" /><text x="290" y="77" fontSize="14" textAnchor="middle" className="t-light t-bold">Missed call</text></g>
+    <g className="in pop" style={v({ "--s": .62 })}><rect x="232" y="56" width="112" height="32" rx="16" className="f-green" /><text x="290" y="77" fontSize="14" textAnchor="middle" className="t-dark t-bold">Booked ✓</text></g>
     <g className="in" style={v({ "--s": .18 })}><rect x="60" y="190" width="230" height="52" rx="16" className="f-blue" /><text x="76" y="212" fontSize="14" className="t-light">Sorry we missed your call.</text><text x="76" y="230" fontSize="14" className="t-light">How can we help?</text></g>
     <g className="in" style={v({ "--s": .38 })}><rect x="140" y="256" width="200" height="36" rx="16" className="f-edge" /><text x="156" y="279" fontSize="14" className="t-light">I'd like a check-up.</text></g>
     <g className="in" style={v({ "--s": .5 })}><rect x="60" y="306" width="210" height="36" rx="16" className="f-blue" /><text x="76" y="329" fontSize="14" className="t-light">Monday 9:00 AM?</text></g>
@@ -106,14 +106,14 @@ function PastPatients() {
 function Glance() {
   const rows: [string[], string][] = [[["0", "6", "12"], "new patients"], [["0", "4", "8"], "appointments today"], [["0", "1", "3"], "calls recovered"], [["0", "2", "4"], "new reviews"]];
   return <Frame label="An upright phone showing today's practice summary">
-    <rect x="100" y="16" width="200" height="368" rx="32" className="f-card s-edge" strokeWidth="2" />
+    <rect x="80" y="16" width="240" height="368" rx="32" className="f-card s-edge" strokeWidth="2" />
     <rect x="170" y="30" width="60" height="8" rx="4" className="f-block" />
-    <text x="120" y="76" fontSize="14" className="t-muted">Good morning</text>
-    <text x="120" y="98" fontSize="17" className="t-light t-bold">Your week so far</text>
+    <text x="100" y="76" fontSize="14" className="t-muted">Good morning</text>
+    <text x="100" y="98" fontSize="17" className="t-light t-bold">Your week so far</text>
     {rows.map(([vals, label], i) => { const y = 120 + i * 62; const s = .08 + i * .14; return <g key={label} className="in slide" style={v({ "--s": s })}>
-      <rect x="116" y={y} width="168" height="50" rx="12" className={i === 1 ? "f-green-soft" : "f-edge"} />
-      <Tick values={vals} x={132} y={y + 33} s={s} w={.05} size={24} className="t-light t-cond" />
-      <text x="170" y={y + 31} fontSize="13" className="t-light">{label}</text>
+      <rect x="96" y={y} width="208" height="50" rx="12" className={i === 1 ? "f-green-soft" : "f-edge"} />
+      <Tick values={vals} x={112} y={y + 33} s={s} w={.05} size={24} className="t-light t-cond" />
+      <text x="150" y={y + 31} fontSize="13" className="t-light">{label}</text>
     </g>; })}
   </Frame>;
 }
