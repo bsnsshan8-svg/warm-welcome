@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, Menu, MessageSquare, Star, X } from "lucide-react";
 import { CommandCenterSection, GrowthSection, MissedCallSection, SystemModules, UniBoxSection } from "@/components/journey/SystemSections";
-import { ProblemGrid, ProcessSteps, ResultsStrip, StatsBand } from "@/components/journey/Extras";
+import { StepExplorer } from "@/components/journey/StepExplorer";
+import { ProblemGrid, ResultsStrip, StatsBand } from "@/components/journey/Extras";
 import { Button } from "@/components/ui/button";
 import { SceneArt } from "@/components/journey/SceneArt";
 import { chapters, chapterProgress } from "@/lib/zaad-journey";
@@ -107,7 +108,7 @@ function Index() {
         <div className="chapter-bottom"><a href={i===7?"#top":`#${chapters[i+1]?.id??"top"}`} aria-label={i===7?"Back to top":"Next section"}>{i===7?"Back to top":""}<ArrowDown size={18}/></a></div>
       </div>
     </section>;
-      return <>{renderChapter(chapters[0],0)}<ResultsStrip/><ProblemGrid/>{chapters.slice(1,7).map((c,k)=>renderChapter(c,k+1))}<ProcessSteps/><SystemModules/><MissedCallSection/><GrowthSection/><CommandCenterSection/><UniBoxSection/><StatsBand/>{renderChapter(chapters[7],7)}</>;})()}
+      return <>{renderChapter(chapters[0],0)}<ResultsStrip/><ProblemGrid/>{chapters.slice(1,7).map((c,k)=>renderChapter(c,k+1))}<StepExplorer/><SystemModules/><MissedCallSection/><GrowthSection/><CommandCenterSection/><UniBoxSection/><StatsBand/>{renderChapter(chapters[7],7)}</>;})()}
     <footer className="journey-footer"><a href="#top" aria-label="ZAAD home"><img src={zaadLogo.url} alt="ZAAD — Zero Apples A Day"/></a><span>A steady flow of new patients for healthcare practices.</span><small>© 2026 ZAAD. Built for healthcare practices.</small></footer>
   </main>;
 }

@@ -83,7 +83,7 @@ export function ProblemGrid() {
   </section>;
 }
 
-const steps = [
+export const steps = [
   { t: "Get found", d: "People searching for a clinic like yours find you, and get in touch.", p: ["Show up when locals look for care nearby", "A clear page that makes booking easy", "Offers that give people a reason to visit", "More new patients asking to book"] },
   { t: "Reply to every enquiry", d: "Every patient enquiry gets a quick reply, day or night.", p: ["A reply within moments, day or night", "The right questions before booking", "Every patient message in one inbox", "One clear next step"] },
   { t: "Follow up until they book", d: "Friendly follow-up and an easy way to book, until the visit is in your calendar.", p: ["Friendly follow-up if they go quiet", "An easy way to book", "The appointment booked in your calendar", "A reminder so they turn up"] },
