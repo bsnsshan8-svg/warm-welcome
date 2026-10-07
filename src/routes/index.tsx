@@ -98,7 +98,7 @@ function Index() {
       <Button variant="unstyled" size="unstyled" className="journey-menu" aria-label="Toggle menu" aria-expanded={menuOpen} onClick={()=>setMenuOpen(o=>!o)}>{menuOpen?<X size={22}/>:<Menu size={22}/>}</Button>
     </header>
     <nav className="chapter-nav" aria-label="Scenes">{chapters.slice(1,7).map((chapter,k)=>{const i=k+1;return <a key={chapter.id} href={`#${chapter.id}`} aria-label={`Scene ${i}: ${chapter.label}`} aria-current={active===i?"step":undefined}><span className="cn-label">{chapter.label}</span><i/></a>;})}</nav>
-        {(()=>{const renderChapter=(chapter:(typeof chapters)[number],i:number)=><section className="journey-chapter" id={chapter.id} key={chapter.id} aria-labelledby={`title-${i}`}>
+        {(()=>{const renderChapter=(chapter:(typeof chapters)[number],i:number)=><section className={`journey-chapter${i===7?" journey-chapter--plain":""}`} id={chapter.id} key={chapter.id} aria-labelledby={`title-${i}`}>
       <div className="chapter-pin">
         <div className={`chapter-content ${i===0?"chapter-hero":""}`}>
           <div className="chapter-eyebrow"><i/>{chapter.label}</div>
