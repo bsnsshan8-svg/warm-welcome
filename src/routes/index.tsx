@@ -57,7 +57,14 @@ function Index() {
       progress.current=travel;
       setActive(index);
       const vh=window.innerHeight;
-      sections.forEach((section)=>{const r=section.getBoundingClientRect();const p=mode==="3d"?Math.max(0,Math.min(1,(vh*.85-r.top)/Math.max(1,r.height*.55))):1;section.style.setProperty("--p",p.toFixed(3));});
+       sections.forEach((section)=>{
+         const r=section.getBoundingClientRect();
+         const p=mode==="3d"?Math.max(0,Math.min(1,(vh*.85-r.top)/Math.max(1,r.height*.55))):1;
+         const drift=mode==="3d"?Math.max(0,Math.min(1,-r.top/Math.max(1,r.height-vh))):0;
+         section.style.setProperty("--p",p.toFixed(3));
+         section.style.setProperty("--scene-drift",drift.toFixed(3));
+         section.setAttribute("data-visible",String(r.top<vh&&r.bottom>0));
+       });
       sections.forEach((section,i)=>{
         const content=section.querySelector<HTMLElement>(".chapter-content");
         if(!content) return;

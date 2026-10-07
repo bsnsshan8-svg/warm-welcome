@@ -13,4 +13,4 @@
 - Landing-page responsive and readability rules live in the global stylesheet; semantic journey color tokens also supply procedural scene materials.
 - One shared scroll progress ref drives camera travel and chapter fades without per-frame React updates; CSS sticky sections pin chapters in document flow.
 - Render module panels in a shared CSS grid cell with inactive panels hidden and inert so the tallest content determines stable tab height without hard-coded sizing or browser measurements.
-- Each pinned scene renders its own inline SVG illustration driven by a per-section --p scroll variable (opacity/transform only), so scenes need no WebGL and reduced motion just shows final states.
+- Each pinned scene renders inline SVG art with --p for reveal and --scene-drift for layered scroll travel; idle float pauses offscreen, and reduced motion shows final static states without WebGL.
