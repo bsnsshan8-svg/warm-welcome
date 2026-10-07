@@ -7,6 +7,14 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
+  vite: {
+    optimizeDeps: {
+      // Prebundle the lazy scene with React before first paint. Late discovery
+      // can otherwise leave an open preview with mixed React module generations.
+      include: ["three", "@react-three/fiber", "@react-three/drei"],
+      ignoreOutdatedRequests: false,
+    },
+  },
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this

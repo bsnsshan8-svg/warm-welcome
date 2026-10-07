@@ -10,4 +10,8 @@
 <!-- LOVABLE:END -->
 
 - Landing-page controls use the shared Button's unstyled variant and size with existing page classes, preserving the brand design while sharing control semantics.
-- Landing-page responsive and readability rules live in the global stylesheet; mockup footers remain in normal flow so content determines phone height.
+- Landing-page responsive and readability rules live in the global stylesheet; semantic journey color tokens also supply procedural scene materials.
+- Keep chapter content server-rendered and the R3F scene lazy-loaded after WebGL and motion checks, so fallback content and SEO never depend on graphics availability.
+- One shared scroll progress ref drives camera travel and chapter fades without per-frame React updates; CSS sticky sections pin chapters in document flow.
+- Build the patient-world objects procedurally as explicitly requested; cap mobile pixel ratio and cull distant stations instead of loading models or external scene assets.
+- Prebundle lazy 3D dependencies with React and reject outdated optimizer requests so open previews cannot mix React module generations during dependency discovery.
