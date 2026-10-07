@@ -793,6 +793,3 @@ body:has(.journey-page){background:var(--navy);}
 .scene-art .t-dark{fill:var(--ink);}
 .scene-art .f-blue{fill:var(--blue-fill);}
 .scene-art .f-green{fill:var(--green);}
-@media(min-width:1024px){
-  .journey-chapter .chapter-content{max-width:46%!important;}
-}
