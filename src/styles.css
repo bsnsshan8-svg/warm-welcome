@@ -573,7 +573,7 @@ body:has(.journey-page){background:var(--journey-bg);}
 .scene-art .faded{opacity:.35}
 .scene-art .s-blue{stroke:var(--journey-blue)}.scene-art .s-light{stroke:var(--journey-light)}.scene-art .s-edge{stroke:var(--journey-edge)}.scene-art .s-green{stroke:var(--journey-booked)}.scene-art .s-dark{stroke:var(--journey-bg)}
 .scene-art text{font-family:"Poppins",Arial,sans-serif;font-weight:500}
-.scene-art .t-light{fill:var(--journey-light)}.scene-art .t-dark{fill:var(--journey-bg)}.scene-art .t-muted{fill:var(--journey-muted)}
+.scene-art .t-light{fill:var(--journey-light)}.scene-art .t-dark{fill:var(--journey-bg)}.scene-art .t-muted{fill:var(--journey-muted)}.scene-art .t-star{fill:var(--yellow)}.scene-art .t-green{fill:var(--green)}
 .scene-art .t-bold{font-weight:600}.scene-art .t-cond{font-family:"Barlow Condensed",sans-serif;font-weight:700}
 
 /* Scroll-driven states (--p comes from the scene section) */
