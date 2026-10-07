@@ -101,24 +101,60 @@ function Missed() {
 const starPath = (cx: number, cy: number, r: number) => Array.from({ length: 10 }, (_, i) => { const a = -Math.PI / 2 + i * Math.PI / 5; const rr = i % 2 ? r * .45 : r; return `${i ? "L" : "M"}${(cx + Math.cos(a) * rr).toFixed(1)} ${(cy + Math.sin(a) * rr).toFixed(1)}`; }).join(" ") + "Z";
 
 function Reviews() {
-  return <Frame label="Five stars filling in with review cards stacking up">
-    {[0, 1, 2].map(i => <g key={i} className="in" style={v({ "--s": .05 + i * .12 })}><rect x={70 + i * 10} y={250 - i * 34} width={260 - i * 20} height="80" rx="16" className={i === 2 ? "f-light" : "f-card s-edge"} strokeWidth="2" />{i === 2 && <><rect x="110" y="200" width="120" height="10" rx="5" className="f-block" /><rect x="110" y="220" width="170" height="10" rx="5" className="f-blue-soft" /></>}</g>)}
-    {[0, 1, 2, 3, 4].map(i => <g key={i}><path d={starPath(96 + i * 52, 120, 22)} className="f-block" /><path d={starPath(96 + i * 52, 120, 22)} className="f-star in pop" style={v({ "--s": .3 + i * .08 })} /></g>)}
-    <Tick values={["1.0", "2.0", "3.0", "4.0", "5.0"]} x={200} y={74} s={.3} w={.08} size={40} anchor="middle" className="t-light t-cond" />
+  return <Frame label="A review request turning into a five-star review card">
+    {/* layered background cards for depth */}
+    <rect x="80" y="216" width="240" height="120" rx="16" className="f-card s-edge" strokeWidth="2" opacity=".4" transform="translate(0,14) scale(.94)" style={{ transformOrigin: "200px 276px" }} />
+    <rect x="80" y="196" width="240" height="120" rx="16" className="f-card s-edge" strokeWidth="2" opacity=".65" transform="translate(0,7) scale(.97)" style={{ transformOrigin: "200px 256px" }} />
+    {/* main review card */}
+    <g className="in pop" style={v({ "--s": .12 })}>
+      <rect x="80" y="170" width="240" height="130" rx="16" className="f-light" />
+      <rect x="100" y="192" width="120" height="10" rx="5" className="f-block" />
+      <rect x="100" y="212" width="180" height="8" rx="4" className="f-blue-soft" />
+      <rect x="100" y="227" width="140" height="8" rx="4" className="f-blue-soft" />
+      {[0, 1, 2, 3, 4].map(i => <g key={i}><path d={starPath(112 + i * 26, 262, 11)} className="f-block" /><path d={starPath(112 + i * 26, 262, 11)} className="f-star in pop" style={v({ "--s": .3 + i * .07 })} /></g>)}
+      <text x="300" y="268" textAnchor="end" fontSize="12" className="t-dark" opacity=".45">Just now</text>
+    </g>
+    {/* floating rating badge */}
+    <g className="in pop" style={v({ "--s": .5 })}>
+      <circle cx="290" cy="118" r="42" className="f-card s-blue" strokeWidth="2" />
+      <text x="290" y="126" textAnchor="middle" fontSize="26" className="t-light t-bold">5.0</text>
+      <text x="290" y="146" textAnchor="middle" fontSize="12" className="t-star t-bold">RATING</text>
+    </g>
+    {/* request-sent pill */}
+    <g className="in slide" style={v({ "--s": .38 })}>
+      <rect x="44" y="84" width="128" height="40" rx="20" className="f-blue" />
+      <path d="M100 124 l0 10 l10 -10 Z" className="f-blue" />
+      <text x="108" y="109" textAnchor="middle" fontSize="13" className="t-light t-bold">Request sent!</text>
+    </g>
   </Frame>;
 }
 
 function PastPatients() {
-  const ring = Array.from({ length: 8 }, (_, i) => { const a = -Math.PI / 2 + i * Math.PI / 4; return { x: 200 + Math.cos(a) * 140, y: 200 + Math.sin(a) * 140 }; });
-  return <Frame label="Past patients lighting up as invitations reach them">
-    <circle cx="200" cy="200" r="140" className="s-edge" fill="none" strokeWidth="2" strokeDasharray="4 8" />
-    <rect x="160" y="160" width="80" height="80" rx="20" className="f-blue" />
-    <path d="M190 200 h20 M200 190 v20" className="s-light" strokeWidth="6" strokeLinecap="round" />
-    {ring.map((pt, i) => { const s = .08 + i * .1; return <g key={i}>
-      <g className="faded"><Avatar x={pt.x} y={pt.y} r={22} /></g>
-      <g className="in" style={v({ "--s": s + .1 })}><Avatar x={pt.x} y={pt.y} r={22} className="lit" /></g>
-      <g className="fly" style={v({ "--s": s, "--tx": pt.x - 200, "--ty": pt.y - 200 })}><rect x="186" y="190" width="28" height="20" rx="4" className="f-light" /><path d="M187 192 l13 10 l13 -10" className="s-blue" strokeWidth="2" fill="none" /></g>
-    </g>; })}
+  const nodes = [
+    { x: 200, y: 60, label: "Inactive", booked: false, s: .18 },
+    { x: 330, y: 130, label: "Booked", booked: true, s: .42 },
+    { x: 70, y: 130, label: "", booked: false, s: .3 },
+  ];
+  return <Frame label="Past patients reconnecting with the clinic and booking again">
+    <circle cx="200" cy="200" r="150" className="s-edge" fill="none" strokeWidth="1.5" strokeDasharray="4 8" opacity=".35" />
+    {/* rays from hub to each patient, drawn in with scroll progress */}
+    {nodes.map((n, i) => <line key={i} x1="200" y1="200" x2={n.x} y2={n.y} className="s-blue in" strokeWidth="2" strokeDasharray="5 6" opacity=".5" style={v({ "--s": n.s - .08 })} />)}
+    {/* central clinic hub */}
+    <g className="in pop" style={v({ "--s": .05 })}>
+      <rect x="162" y="162" width="76" height="76" rx="20" className="f-blue" />
+      <path d="M188 200 h24 M200 188 v24" className="s-light" strokeWidth="5" strokeLinecap="round" />
+    </g>
+    {nodes.map((n, i) => <g key={i}>
+      <g className="faded"><Avatar x={n.x} y={n.y} r={24} /></g>
+      <g className="in pop" style={v({ "--s": n.s })}>
+        {n.booked
+          ? <><circle cx={n.x} cy={n.y} r="24" className="f-green" /><path d={`M${n.x - 7} ${n.y} l5 5 l9 -10`} className="s-dark" strokeWidth="3.5" fill="none" strokeLinecap="round" /></>
+          : <Avatar x={n.x} y={n.y} r={24} className="lit" />}
+        {n.label && <text x={n.x} y={n.y + 44} textAnchor="middle" fontSize="12" className={n.booked ? "t-green t-bold" : "t-muted"}>{n.label}</text>}
+      </g>
+      {/* invitation flying from hub to patient */}
+      <g className="fly" style={v({ "--s": n.s - .1, "--tx": n.x - 200, "--ty": n.y - 200 })}><rect x="186" y="190" width="28" height="20" rx="4" className="f-light" /><path d="M187 192 l13 10 l13 -10" className="s-blue" strokeWidth="2" fill="none" /></g>
+    </g>)}
   </Frame>;
 }
 
