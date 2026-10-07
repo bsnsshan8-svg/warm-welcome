@@ -395,7 +395,7 @@ body:has(.journey-page){background:var(--journey-bg);}
 }
 
 /* Plain-language pass: sentence case, softer background texture, trust line, testimonial placeholders */
-.journey-page :where(.chapter-eyebrow,.sx-kicker,.engine-track small,.g-flow li,.ub-meta,.mod-key,.mod-tab,.scene-caption span,.chapter-bottom,.chapter-booked){text-transform:none;letter-spacing:.01em;}
+.journey-page :where(.chapter-eyebrow,.sx-kicker,.g-flow li,.ub-meta,.mod-key,.mod-tab,.scene-caption span,.chapter-bottom,.chapter-booked){text-transform:none;letter-spacing:.01em;}
 .chapter-bottom{grid-template-columns:1fr;justify-items:center;border-top-color:transparent;}
 .foreground-frame{opacity:.35;}
 .static-world :where(.static-floor){opacity:.4;}
@@ -406,3 +406,11 @@ body:has(.journey-page){background:var(--journey-bg);}
 .testimonial-placeholder blockquote{margin:0;font-size:16px;line-height:1.6;}
 .testimonial-placeholder figcaption{font-size:14px;color:var(--journey-muted);}
 @media(max-width:900px){.testimonial-grid{grid-template-columns:1fr;}}
+
+/* Hero chapter on phones: caption flows below the link, phone graphic stays dim behind the text */
+@media(max-width:767px){
+  .journey-chapter:has(.chapter-hero)::before{content:"";position:absolute;inset:0;background:var(--journey-bg);opacity:.45;z-index:-1;pointer-events:none;}
+  .journey-chapter:has(.chapter-hero) .chapter-pin{height:auto;min-height:100svh;padding-bottom:140px;}
+  .journey-chapter:has(.chapter-hero) .scene-caption{position:static;margin-top:32px;}
+  .journey-chapter:has(.chapter-hero) .scene-caption p{max-width:420px;}
+}
