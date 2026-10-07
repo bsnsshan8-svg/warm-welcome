@@ -40,15 +40,15 @@ const engine = [
 
 export function SystemModules() {
   const [active, setActive] = useState(0);
-  const mod = modules[active] ?? modules[0]!;
-  const Icon = mod.icon;
   return <section id="modules" className="sx sx-light" aria-labelledby="modules-title">
     <div className="sx-shell">
       <div className="sx-head" id="modules-title"><span className="sx-kicker"><i />What ZAAD does after the lead</span><h2>One system. <em>Every patient touchpoint.</em></h2></div>
       <div className="mod-tabs" role="tablist" aria-label="ZAAD modules">{modules.map((m, i) => <Button key={m.key} variant="unstyled" size="unstyled" role="tab" id={`tab-${i}`} aria-selected={active === i} aria-controls="mod-panel" className="mod-tab" onClick={() => setActive(i)}>{m.key}</Button>)}</div>
-      <div className="mod-panel" id="mod-panel" role="tabpanel" aria-labelledby={`tab-${active}`}>
+      <div className="mod-stack" id="mod-panel" role="tabpanel" aria-labelledby={`tab-${active}`}>
+        {modules.map((mod, index) => { const Icon = mod.icon; return <div key={mod.key} className="mod-panel" data-active={active === index} aria-hidden={active !== index} inert={active !== index}>
         <div className="mod-copy"><span className="mod-icon"><Icon size={22} /></span><span className="mod-key">{mod.key}</span><h3>{mod.title}</h3><ul>{mod.points.map(p => <li key={p}><Check size={16} />{p}</li>)}</ul></div>
         <div className="mod-ui"><div className="ui-bar"><span>ZAAD / {mod.key}</span><span className="ui-live"><i />Active</span></div><div className="mod-flow">{mod.flow.map((f, i) => <div key={f} className={i === mod.flow.length - 1 ? "done" : ""}><span>{String(i + 1).padStart(2, "0")}</span><b>{f}</b>{i < mod.flow.length - 1 && <ArrowRight size={16} />}</div>)}</div></div>
+        </div>; })}
       </div>
       <div id="engine" className="engine" aria-labelledby="engine-title">
         <div className="engine-head"><span className="sx-kicker"><i />Patient acquisition engine</span><h3 id="engine-title">From first click to booked patient.</h3></div>
