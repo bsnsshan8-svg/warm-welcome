@@ -6,3 +6,5 @@
 - [x] Prevent mixed React dependency generations and verify a fresh, reloaded and navigated preview remains crash-free.- [x] Merge restored ZAAD content (problem, module tabs, acquisition engine, missed call, growth, command center, UniBox) into the 3D design
 - [x] Add mobile hero containment and legacy reputation order/badge rules without changing desktop styling; the current cinematic page has no numerical rating badge.
 - [x] Check live and static layouts at 360px, 375px, 414px and desktop widths; mobile-only rules remain inactive at 1024px and above.
+- [x] Enforce the rendered 12px HTML text minimum and UniBox name/preview hierarchy without changing copy, colors or section layout; retain existing contact labels and channel metadata rather than inventing patient names or timestamps.
+- [x] Verify 273 HTML text elements, no scaled DOM text or horizontal overflow, and UniBox selection/filter/truncation at 360, 375, 414, 768 and 1440px; routing/journey tests pass and the live scene loads without page errors.
