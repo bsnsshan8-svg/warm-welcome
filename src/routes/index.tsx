@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Component, Suspense, lazy, useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, Menu, MessageSquare, Star, X } from "lucide-react";
 import { CommandCenterSection, GrowthSection, MissedCallSection, SystemModules, UniBoxSection } from "@/components/journey/SystemSections";
 import { ProblemGrid, ProcessSteps, ResultsStrip, StatsBand } from "@/components/journey/Extras";
 import { Button } from "@/components/ui/button";
 import { SceneArt } from "@/components/journey/SceneArt";
-import { chapters, chapterProgress, type JourneyPalette } from "@/lib/zaad-journey";
+import { chapters, chapterProgress } from "@/lib/zaad-journey";
 import zaadLogo from "@/assets/zaad-logo.png.asset.json";
 
 
@@ -29,40 +29,19 @@ export const Route = createFileRoute("/")({
 });
 
 
-class SceneBoundary extends Component<{ children: ReactNode; onFailure: () => void }, { failed: boolean }> {
-  override state = { failed: false };
-  static getDerivedStateFromError() { return { failed: true }; }
-  override componentDidCatch() { this.props.onFailure(); }
-  override render() { return this.state.failed ? null : this.props.children; }
-}
-
 function Index() {
   const [mode, setMode] = useState<"static" | "3d">("static");
-  const [mobile, setMobile] = useState(false);
-  const [palette, setPalette] = useState<JourneyPalette | null>(null);
   const [active, setActive] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const progress = useRef(0);
   const pageRef = useRef<HTMLElement>(null);
-  const useStatic = useCallback(() => setMode("static"), []);
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const narrow = window.matchMedia("(max-width: 700px)");
-    const style = getComputedStyle(document.documentElement);
-    const token = (name: string) => style.getPropertyValue(name).trim();
-    setPalette({background:token("--journey-bg"),surface:token("--journey-surface"),edge:token("--journey-edge"),accent:token("--journey-blue"),light:token("--journey-light"),muted:token("--journey-muted"),booked:token("--journey-booked")});
-    let supported = false;
-    try {
-      const canvas = document.createElement("canvas");
-      const gl = canvas.getContext("webgl2") || canvas.getContext("webgl");
-      supported = Boolean(gl);
-      gl?.getExtension("WEBGL_lose_context")?.loseContext();
-    } catch { supported = false; }
-    const update = () => { setMobile(narrow.matches); setMode(!reduced.matches && supported ? "3d" : "static"); };
+    const update = () => setMode(reduced.matches ? "static" : "3d");
     update();
-    reduced.addEventListener("change",update); narrow.addEventListener("change",update);
-    return () => { reduced.removeEventListener("change",update); narrow.removeEventListener("change",update); };
+    reduced.addEventListener("change",update);
+    return () => reduced.removeEventListener("change",update);
   }, []);
 
   useEffect(() => {
