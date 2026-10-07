@@ -4,11 +4,10 @@ import { ArrowDown, ArrowRight, ArrowUpRight, Check, Menu, MessageSquare, Star, 
 import { CommandCenterSection, GrowthSection, MissedCallSection, SystemModules, UniBoxSection } from "@/components/journey/SystemSections";
 import { ProblemGrid, ProcessSteps, ResultsStrip, StatsBand } from "@/components/journey/Extras";
 import { Button } from "@/components/ui/button";
-import { StaticWorld } from "@/components/journey/StaticWorld";
+import { SceneArt } from "@/components/journey/SceneArt";
 import { chapters, chapterProgress, type JourneyPalette } from "@/lib/zaad-journey";
 import zaadLogo from "@/assets/zaad-logo.png.asset.json";
 
-const JourneyWorld = lazy(() => import("@/components/journey/JourneyWorld"));
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -78,6 +77,8 @@ function Index() {
       const {index,local,travel}=chapterProgress(window.scrollY,sections.map(s=>s.offsetTop),first.offsetHeight);
       progress.current=travel;
       setActive(index);
+      const vh=window.innerHeight;
+      sections.forEach((section)=>{const r=section.getBoundingClientRect();const p=mode==="3d"?Math.max(0,Math.min(1,(vh*.85-r.top)/Math.max(1,r.height*.55))):1;section.style.setProperty("--p",p.toFixed(3));});
       sections.forEach((section,i)=>{
         const content=section.querySelector<HTMLElement>(".chapter-content");
         if(!content) return;
@@ -94,19 +95,13 @@ function Index() {
   },[mode]);
 
   return <main ref={pageRef} className={`journey-page ${mode==="static"?"journey-static":"journey-live"}`} data-mode={mode}>
-    <div className="world-layer" aria-hidden="true">
-      {mode==="3d"&&palette&&<SceneBoundary onFailure={useStatic}><Suspense fallback={<StaticWorld index={active}/>}><JourneyWorld progress={progress} mobile={mobile} palette={palette} onFailure={useStatic}/></Suspense></SceneBoundary>}
-      {mode==="static"&&<StaticWorld index={active}/>}
-    </div>
-    <div className="world-scrim" aria-hidden="true"/>
-    <div className="foreground-frame" aria-hidden="true"><i/><i/></div>
     <header className="journey-header">
       <a href="#top" aria-label="ZAAD home" className="journey-logo"><img src={zaadLogo.url} alt="ZAAD — Zero Apples A Day"/></a>
       <nav aria-label="Main navigation" className={menuOpen?"open":""} onClick={()=>setMenuOpen(false)}><a href="#system">The system</a><a href="#engine">Patient flow</a><a href="#command">Command center</a><a href="#unibox">UniBox</a></nav>
       <Button asChild variant="unstyled" size="unstyled" className="journey-call"><a href="#contact">Book a strategy call <ArrowUpRight size={18}/></a></Button>
       <Button variant="unstyled" size="unstyled" className="journey-menu" aria-label="Toggle menu" aria-expanded={menuOpen} onClick={()=>setMenuOpen(o=>!o)}>{menuOpen?<X size={22}/>:<Menu size={22}/>}</Button>
     </header>
-    <nav className="chapter-nav" aria-label="Chapters">{chapters.map((chapter,i)=><Button key={chapter.id} asChild variant="unstyled" size="unstyled"><a href={`#${chapter.id}`} aria-label={`Chapter ${i+1}: ${chapter.label}`} aria-current={active===i?"step":undefined}><i/></a></Button>)}</nav>
+    <nav className="chapter-nav" aria-label="Scenes">{chapters.slice(1,7).map((chapter,k)=>{const i=k+1;return <a key={chapter.id} href={`#${chapter.id}`} aria-label={`Scene ${i}: ${chapter.label}`} aria-current={active===i?"step":undefined}><span className="cn-label">{chapter.label}</span><i/></a>;})}</nav>
         {(()=>{const renderChapter=(chapter:(typeof chapters)[number],i:number)=><section className="journey-chapter" id={chapter.id} key={chapter.id} aria-labelledby={`title-${i}`}>
       <div className="chapter-pin">
         <div className={`chapter-content ${i===0?"chapter-hero":""}`}>
@@ -121,6 +116,7 @@ function Index() {
           {i===6&&<div className="chapter-tools"><span>Your practice at a glance</span><span><MessageSquare size={16}/> UniBox</span></div>}
           {i===7&&<div className="chapter-actions"><Button asChild variant="unstyled" size="unstyled" className="journey-primary"><a href="mailto:hello@zaad.health">Book a strategy call <ArrowUpRight size={20}/></a></Button><Button asChild variant="unstyled" size="unstyled" className="journey-text-link"><a href="#system">See how ZAAD works <ArrowRight size={18}/></a></Button></div>}
         </div>
+        <SceneArt index={i}/>
         <div className="scene-caption"><span className="caption-marker"/><div><span>{chapter.scene}</span><p>{chapter.detail}</p></div></div>
         <div className="chapter-bottom"><a href={i===7?"#top":`#${chapters[i+1]?.id??"top"}`} aria-label={i===7?"Back to top":"Next section"}>{i===7?"Back to top":""}<ArrowDown size={18}/></a></div>
       </div>
