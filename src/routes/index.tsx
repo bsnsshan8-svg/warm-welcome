@@ -13,10 +13,13 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "ZAAD | Patient Acquisition for Healthcare Practices" },
-      { name: "description", content: "ZAAD builds the patient acquisition system that brings patients in, follows up automatically, and books appointments." },
-      { property: "og:title", content: "ZAAD | Patient Acquisition for Healthcare Practices" },
-      { property: "og:description", content: "ZAAD builds the patient acquisition system that brings patients in, follows up automatically, and books appointments." },
+      { title: "ZAAD — Patient Acquisition System for Healthcare Practices" },
+      { name: "description", content: "ZAAD builds the patient acquisition system that brings the right people in, follows up automatically, books appointments, and keeps your pipeline moving." },
+      { property: "og:title", content: "ZAAD — Patient Acquisition System for Healthcare Practices" },
+      { property: "og:description", content: "ZAAD builds the patient acquisition system that brings the right people in, follows up automatically, books appointments, and keeps your pipeline moving." },
+      { name: "twitter:title", content: "ZAAD — Patient Acquisition System for Healthcare Practices" },
+      { name: "twitter:description", content: "ZAAD builds the patient acquisition system that brings the right people in, follows up automatically, books appointments, and keeps your pipeline moving." },
+      { name: "author", content: "ZAAD" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://hello-hub-host.lovable.app/" },
       { name: "twitter:card", content: "summary_large_image" },
