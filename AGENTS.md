@@ -14,3 +14,4 @@
 - One shared scroll progress ref drives camera travel and chapter fades without per-frame React updates; CSS sticky sections pin chapters in document flow.
 - Render module panels in a shared CSS grid cell with inactive panels hidden and inert so the tallest content determines stable tab height without hard-coded sizing or browser measurements.
 - Each pinned scene renders inline SVG art with --p for reveal and --scene-drift for layered scroll travel; idle float pauses offscreen, and reduced motion shows final static states without WebGL.
+- Hero camera and layer transforms read a dedicated normalized --hero-travel value from the shared scroll handler, independent of reveal timing, so zoom reverses naturally without changing other scenes.

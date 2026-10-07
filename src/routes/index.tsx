@@ -64,6 +64,14 @@ function Index() {
          const drift=mode==="3d"?Math.max(0,Math.min(1,-r.top/Math.max(1,r.height-vh))):0;
          section.style.setProperty("--p",p.toFixed(3));
          section.style.setProperty("--scene-drift",drift.toFixed(3));
+          if(section===first){
+            const art=section.querySelector<HTMLElement>(".scene-art");
+            const artRect=art?.getBoundingClientRect();
+            const heroTravel=mode!=="3d"?0:window.innerWidth>=768
+              ?Math.max(0,Math.min(1,(window.scrollY-first.offsetTop)/Math.max(1,first.offsetHeight-vh)))
+              :Math.max(0,Math.min(1,(vh-(artRect?.top??vh))/Math.max(1,vh*.85)));
+            section.style.setProperty("--hero-travel",heroTravel.toFixed(3));
+          }
          section.setAttribute("data-visible",String(r.top<vh&&r.bottom>0));
        });
       sections.forEach((section,i)=>{
