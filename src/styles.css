@@ -949,7 +949,7 @@ body:has(.journey-page){background:var(--navy);}
 
 /* ===== Final "Ready to bring more patients in?" section: normal flow ===== */
 .journey-chapter--plain{height:auto!important;min-height:0!important;}
-.journey-chapter--plain .chapter-pin{position:static!important;top:auto!important;height:auto!important;min-height:0!important;padding:clamp(64px,9vh,110px) 6%!important;grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"text" "art" "cap"!important;grid-template-rows:auto!important;align-content:initial!important;row-gap:28px!important;overflow:visible!important;}
-.journey-chapter--plain .chapter-content{max-width:660px!important;}
-.journey-chapter--plain .scene-art{height:clamp(220px,32vw,340px)!important;max-height:none!important;}
+.journey-chapter--plain .chapter-pin{position:static!important;top:auto!important;height:auto!important;min-height:0!important;padding:clamp(64px,9vh,110px) 6%!important;align-content:center!important;row-gap:24px!important;overflow:visible!important;}
+.journey-chapter--plain .chapter-content{max-width:560px!important;}
+.journey-chapter--plain .scene-art{height:auto!important;max-height:none!important;min-height:240px!important;}
 .journey-chapter--plain .scene-caption{margin-top:4px!important;}
