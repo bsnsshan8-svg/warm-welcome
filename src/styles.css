@@ -341,3 +341,35 @@ body:has(.journey-page){background:var(--journey-bg);}
 @media(max-width:700px){.sx{padding:80px 0;}.sx-shell{width:calc(100% - 40px);}.mod-panel,.growth-card{padding:20px;}.leak-list li{padding:20px;}.journey-header{grid-template-columns:minmax(0,1fr) auto auto;}.journey-call{max-width:170px;}.chapter-points li{font-size:12px;}}
 @media(max-width:380px){.journey-logo img{height:36px;}.journey-call{font-size:12px;padding:8px 10px;max-width:150px;}}
 .chapter-nav,.journey-side-label{z-index:3;}
+
+/* Mobile containment: shrink the actual tracks and children, not the page. */
+@media (max-width:1023px) {
+  .hero-inner { grid-template-columns:minmax(0,1fr); }
+  .hero-inner > *, .hero-copy, .hero-product,
+  .chapter-pin > *, .chapter-hero { min-width:0; max-width:100%; }
+  .hero-product, .hero-product .product-window { width:100%; max-width:100%; }
+  .hero h1 { font-size:clamp(2rem,9vw,78px); white-space:normal; overflow-wrap:break-word; }
+  .hero-copy > p, .chapter-hero > p { max-width:100%; white-space:normal; overflow-wrap:break-word; }
+  .hero-product .window-bar { min-width:0; height:auto; flex-wrap:wrap; }
+  .hero-product .flow-node { min-width:0; flex:1; }
+  .hero-product .flow-node small { overflow-wrap:anywhere; }
+  .hero-product .mini-stats { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .hero-product .mini-stats > div { min-width:0; }
+  .hero-product .float-card { position:relative; inset:auto; max-width:100%; margin-top:12px; }
+  .hero-product .float-review { margin-left:auto; }
+  .review-section .split-feature { grid-template-columns:minmax(0,1fr); }
+  .review-section .feature-copy { order:-1; min-width:0; }
+  .review-visual, .review-window { min-width:0; max-width:100%; }
+  .review-visual .counter-float { position:relative; inset:auto; width:fit-content; max-width:100%; margin:18px 0 0 auto; flex-wrap:wrap; }
+  #reputation .chapter-content { order:-1; }
+}
+@media (min-width:640px) and (max-width:1023px) {
+  .hero-actions { display:flex; flex-direction:row; }
+  .hero-actions .btn { width:auto; }
+}
+@media (max-width:639px) {
+  .chapter-hero h1 { font-size:clamp(2rem,9vw,36px); white-space:normal; overflow-wrap:break-word; }
+  .hero-actions, .chapter-hero .chapter-actions { display:grid; grid-template-columns:minmax(0,1fr); width:100%; }
+  .hero-actions .btn, .chapter-hero .chapter-actions > * { width:100%; min-width:0; justify-content:center; }
+  .chapter-hero > .journey-text-link { max-width:100%; }
+}
