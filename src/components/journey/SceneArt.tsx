@@ -56,11 +56,11 @@ function Map() {
 
 function FollowUp() {
   return <Frame label="A phone conversation ending with a booked appointment">
-    <rect x="95" y="20" width="210" height="360" rx="30" className="f-card s-edge" strokeWidth="2" />
+    <rect x="70" y="20" width="260" height="360" rx="30" className="f-card s-edge" strokeWidth="2" />
     <rect x="170" y="34" width="60" height="8" rx="4" className="f-block" />
-    <g className="in" style={v({ "--s": .05 })}><rect x="112" y="64" width="150" height="48" rx="14" className="f-edge" /><text x="124" y="85" fontSize="14" className="t-light">Do you have anything</text><text x="124" y="102" fontSize="14" className="t-light">this week?</text></g>
-    <g className="in" style={v({ "--s": .2 })}><rect x="138" y="124" width="150" height="48" rx="14" className="f-blue" /><text x="150" y="145" fontSize="14" className="t-light">Yes! Would Thursday</text><text x="150" y="162" fontSize="14" className="t-light">at 3:30 PM work?</text></g>
-    <g className="in" style={v({ "--s": .35 })}><rect x="112" y="184" width="130" height="34" rx="14" className="f-edge" /><text x="124" y="206" fontSize="14" className="t-light">Perfect, thanks</text></g>
+    <g className="in" style={v({ "--s": .05 })}><rect x="86" y="64" width="186" height="48" rx="14" className="f-edge" /><text x="98" y="85" fontSize="14" className="t-light">Do you have anything</text><text x="98" y="102" fontSize="14" className="t-light">this week?</text></g>
+    <g className="in" style={v({ "--s": .2 })}><rect x="128" y="124" width="186" height="48" rx="14" className="f-blue" /><text x="140" y="145" fontSize="14" className="t-light">Yes! Would Thursday</text><text x="140" y="162" fontSize="14" className="t-light">at 3:30 PM work?</text></g>
+    <g className="in" style={v({ "--s": .35 })}><rect x="86" y="184" width="150" height="34" rx="14" className="f-edge" /><text x="98" y="206" fontSize="14" className="t-light">Perfect, thanks</text></g>
     <g className="in" style={v({ "--s": .5 })}>
       <g className="out flip" style={v({ "--s": .68 })}><rect x="118" y="240" width="164" height="110" rx="16" className="f-light" /><rect x="118" y="240" width="164" height="30" rx="16" className="f-blue" /><text x="200" y="261" fontSize="14" textAnchor="middle" className="t-light">Calendar</text><text x="200" y="314" fontSize="22" textAnchor="middle" className="t-dark t-bold">Thursday</text></g>
       <g className="in flip" style={v({ "--s": .68 })}><rect x="118" y="240" width="164" height="110" rx="16" className="f-light" /><rect x="118" y="240" width="164" height="30" rx="16" className="f-green" /><text x="200" y="261" fontSize="14" textAnchor="middle" className="t-dark">Booked</text><text x="200" y="302" fontSize="18" textAnchor="middle" className="t-dark t-bold">Thursday 3:30 PM</text><circle cx="200" cy="328" r="12" className="f-green" /><path d="M194 328 l4 4 l8 -8" className="s-dark" strokeWidth="3" fill="none" strokeLinecap="round" /></g>
@@ -71,11 +71,11 @@ function FollowUp() {
 function Missed() {
   return <Frame label="A missed call turning into a text conversation and a booking">
     <g className="ring"><circle cx="200" cy="105" r="52" className="f-card s-edge" strokeWidth="2" /><path d="M182 88 c-4 18 14 40 34 36 l6 -10 l-12 -8 l-6 5 c-8 -4 -12 -10 -14 -16 l5 -6 l-8 -12z" className="f-light" /></g>
-    <g className="out" style={v({ "--s": .62 })}><rect x="232" y="56" width="112" height="32" rx="16" className="f-alert" /><text x="290" y="77" fontSize="14" textAnchor="middle" className="t-light t-bold">Missed call</text></g>
-    <g className="in pop" style={v({ "--s": .62 })}><rect x="232" y="56" width="112" height="32" rx="16" className="f-green" /><text x="290" y="77" fontSize="14" textAnchor="middle" className="t-dark t-bold">Booked ✓</text></g>
-    <g className="in" style={v({ "--s": .18 })}><rect x="60" y="190" width="230" height="52" rx="16" className="f-blue" /><text x="76" y="212" fontSize="14" className="t-light">Sorry we missed your call.</text><text x="76" y="230" fontSize="14" className="t-light">How can we help?</text></g>
-    <g className="in" style={v({ "--s": .38 })}><rect x="140" y="256" width="200" height="36" rx="16" className="f-edge" /><text x="156" y="279" fontSize="14" className="t-light">I'd like a check-up.</text></g>
-    <g className="in" style={v({ "--s": .5 })}><rect x="60" y="306" width="210" height="36" rx="16" className="f-blue" /><text x="76" y="329" fontSize="14" className="t-light">Monday 9:00 AM?</text></g>
+    <g className="out" style={v({ "--s": .62 })}><rect x="226" y="56" width="128" height="32" rx="16" className="f-alert" /><text x="290" y="77" fontSize="14" textAnchor="middle" className="t-light t-bold">Missed call</text></g>
+    <g className="in pop" style={v({ "--s": .62 })}><rect x="226" y="56" width="128" height="32" rx="16" className="f-green" /><text x="290" y="77" fontSize="14" textAnchor="middle" className="t-dark t-bold">Booked ✓</text></g>
+    <g className="in" style={v({ "--s": .18 })}><rect x="40" y="190" width="250" height="52" rx="16" className="f-blue" /><text x="56" y="212" fontSize="14" className="t-light">Sorry we missed your call.</text><text x="56" y="230" fontSize="14" className="t-light">How can we help?</text></g>
+    <g className="in" style={v({ "--s": .38 })}><rect x="150" y="256" width="210" height="36" rx="16" className="f-edge" /><text x="166" y="279" fontSize="14" className="t-light">I'd like a check-up.</text></g>
+    <g className="in" style={v({ "--s": .5 })}><rect x="40" y="306" width="190" height="36" rx="16" className="f-blue" /><text x="56" y="329" fontSize="14" className="t-light">Monday 9:00 AM?</text></g>
   </Frame>;
 }
 
