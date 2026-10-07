@@ -843,6 +843,44 @@ body:has(.journey-page){background:var(--navy);}
 .sp-pill{min-height:44px;padding:10px 20px;border-radius:999px;border:1px solid var(--ink);background:#fff;color:var(--ink);font-size:14px;font-weight:800;cursor:pointer;}
 .sp-pill[aria-pressed=true]{background:var(--navy);color:#fff;box-shadow:var(--hard-sm);}
 .journey-page .sp-text{margin-top:28px;max-width:720px;font-size:20px!important;color:var(--ink)!important;animation:spfade .15s ease;}
+.sp-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:48px;align-items:center;margin-top:40px;}
+.sp-grid .sp-pills{margin-top:0;}
+.sp-stage{position:relative;border:1px solid var(--ink);border-radius:22px;background:#fff;box-shadow:var(--hard-y);padding:28px;animation:spfade .25s ease;}
+.sp-stage-label{position:absolute;top:14px;left:18px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--journey-muted,#475569);}
+.sp-art{display:block;width:100%;height:auto;max-height:300px;}
+.sp-line-soft{fill:var(--mist,#EEF0F4);}
+.sp-bone{fill:var(--blue,#1677FF);opacity:.9;animation:spalign 2.6s ease-in-out infinite;animation-delay:calc(var(--i,0)*.15s);transform-origin:center;}
+@keyframes spalign{0%,100%{transform:translateX(0) rotate(0)}50%{transform:translateX(6px) rotate(2deg)}}
+.sp-dot{fill:var(--yellow,#FFC531);}
+.sp-d1{animation:spfloat 3s ease-in-out infinite;}
+.sp-d2{animation:spfloat 3.6s ease-in-out infinite reverse;}
+@keyframes spfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.sp-cell{fill:var(--blue,#1677FF);opacity:.16;animation:sppulse 3s ease-in-out infinite;transform-origin:center;transform-box:fill-box;}
+.sp-c2{animation-delay:.5s;}.sp-c3{animation-delay:1s;}
+.sp-cell-core{fill:var(--blue,#1677FF);}
+.sp-ring{fill:none;stroke:var(--blue,#1677FF);stroke-width:2;opacity:.5;animation:sppulse 3s ease-in-out infinite;transform-origin:center;transform-box:fill-box;}
+@keyframes sppulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.sp-path{stroke:var(--ink,#0B1428);stroke-width:2;stroke-dasharray:5 7;opacity:.35;}
+.sp-mover{fill:var(--blue,#1677FF);}
+.sp-node{fill:var(--ink,#0B1428);}
+.sp-node-g{fill:var(--green,#1FA97A);}
+.sp-spark{stroke:var(--yellow,#FFC531);stroke-width:4;stroke-linecap:round;animation:sppulse 2s ease-in-out infinite;transform-origin:center;transform-box:fill-box;}
+.sp-tooth{fill:#fff;stroke:var(--ink,#0B1428);stroke-width:3;animation:spfloat 4s ease-in-out infinite;}
+.sp-shine{fill:var(--yellow,#FFC531);transform-origin:center;transform-box:fill-box;}
+.sp-s1{animation:sppulse 2.2s ease-in-out infinite;}
+.sp-s2{animation:sppulse 2.2s ease-in-out infinite .7s;}
+.sp-petal{fill:var(--blue,#1677FF);opacity:.22;transform:rotate(var(--r,0deg));transform-origin:160px 150px;animation:sppulse 3.4s ease-in-out infinite;animation-delay:calc(var(--i,0)*.2s);}
+.sp-eye{fill:#fff;stroke:var(--ink,#0B1428);stroke-width:3;}
+.sp-iris{fill:var(--blue,#1677FF);animation:sppulse 3.8s ease-in-out infinite;transform-origin:center;transform-box:fill-box;}
+.sp-pupil{fill:var(--ink,#0B1428);}
+.sp-scan{stroke:var(--yellow,#FFC531);stroke-width:3;stroke-linecap:round;animation:spscan 2.8s ease-in-out infinite;}
+@keyframes spscan{0%,100%{transform:translateY(-34px);opacity:0}20%,80%{opacity:1}50%{transform:translateY(34px)}}
+.sp-pulse{stroke:var(--green,#1FA97A);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:420;stroke-dashoffset:420;animation:spdraw 3s linear infinite;}
+@keyframes spdraw{0%{stroke-dashoffset:420}60%{stroke-dashoffset:0}100%{stroke-dashoffset:-420}}
+.sp-cross-bg{fill:var(--navy,#081126);}
+.sp-cross{stroke:#fff;stroke-width:6;stroke-linecap:round;}
+@media(max-width:900px){.sp-grid{grid-template-columns:minmax(0,1fr);gap:28px;}.sp-stage{order:-1;}}
+@media(prefers-reduced-motion:reduce){.sp-bone,.sp-dot,.sp-cell,.sp-ring,.sp-mover,.sp-spark,.sp-tooth,.sp-shine,.sp-petal,.sp-iris,.sp-scan,.sp-pulse{animation:none!important;}.sp-pulse{stroke-dashoffset:0;}}
 @keyframes spfade{from{opacity:0}to{opacity:1}}
 
 /* ===== Vertical step explorer ===== */
