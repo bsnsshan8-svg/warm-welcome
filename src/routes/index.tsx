@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, Menu, MessageSquare, Star, X } from "lucide-react";
-import { CommandCenterSection, GrowthSection, MissedCallSection, SystemModules, UniBoxSection } from "@/components/journey/SystemSections";
+import { UniBoxSection } from "@/components/journey/SystemSections";
 import { StepExplorer } from "@/components/journey/StepExplorer";
-import { ProblemGrid, ResultsStrip, StatsBand } from "@/components/journey/Extras";
+import { ProblemGrid } from "@/components/journey/Extras";
 import { Button } from "@/components/ui/button";
 import { SceneArt } from "@/components/journey/SceneArt";
 import { chapters, chapterProgress } from "@/lib/zaad-journey";
@@ -92,7 +92,7 @@ function Index() {
   return <main ref={pageRef} className={`journey-page ${mode==="static"?"journey-static":"journey-live"}`} data-mode={mode}>
     <header className="journey-header">
       <a href="#top" aria-label="ZAAD home" className="journey-logo"><img src={zaadLogo.url} alt="ZAAD — Zero Apples A Day"/></a>
-      <nav aria-label="Main navigation" className={menuOpen?"open":""} onClick={()=>setMenuOpen(false)}><a href="#system">The system</a><a href="#engine">Patient flow</a><a href="#command">Command center</a><a href="#unibox">UniBox</a></nav>
+      <nav aria-label="Main navigation" className={menuOpen?"open":""} onClick={()=>setMenuOpen(false)}><a href="#problem">Who we help</a><a href="#modules">How it works</a><a href="#unibox">UniBox</a><a href="#contact">Pricing</a></nav>
       <Button asChild variant="unstyled" size="unstyled" className="journey-call"><a href="#contact">Book a strategy call <ArrowUpRight size={18}/></a></Button>
       <Button variant="unstyled" size="unstyled" className="journey-menu" aria-label="Toggle menu" aria-expanded={menuOpen} onClick={()=>setMenuOpen(o=>!o)}>{menuOpen?<X size={22}/>:<Menu size={22}/>}</Button>
     </header>
@@ -116,7 +116,7 @@ function Index() {
         <div className="chapter-bottom"><a href={i===7?"#top":`#${chapters[i+1]?.id??"top"}`} aria-label={i===7?"Back to top":"Next section"}>{i===7?"Back to top":""}<ArrowDown size={18}/></a></div>
       </div>
     </section>;
-      return <>{renderChapter(chapters[0],0)}<ResultsStrip/><ProblemGrid/>{chapters.slice(1,7).map((c,k)=>renderChapter(c,k+1))}<StepExplorer/><SystemModules/><MissedCallSection/><GrowthSection/><CommandCenterSection/><UniBoxSection/><StatsBand/>{renderChapter(chapters[7],7)}</>;})()}
+      return <>{renderChapter(chapters[0],0)}<ProblemGrid/>{chapters.slice(1,7).map((c,k)=>renderChapter(c,k+1))}<StepExplorer/><UniBoxSection/>{renderChapter(chapters[7],7)}</>;})()}
     <footer className="journey-footer"><a href="#top" aria-label="ZAAD home"><img src={zaadLogo.url} alt="ZAAD — Zero Apples A Day"/></a><span>A steady flow of new patients for healthcare practices.</span><small>© 2026 ZAAD. Built for healthcare practices.</small></footer>
   </main>;
 }

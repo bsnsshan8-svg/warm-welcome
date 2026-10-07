@@ -129,7 +129,7 @@ export function UniBoxSection() {
   const [openIdx, setOpenIdx] = useState(0);
   const list = threads.map((t, i) => ({ ...t, i })).filter(t => filter === "All messages" || t.channel === filter);
   const open = threads[openIdx] ?? threads[0];
-  return <section id="unibox" className="sx sx-light" aria-labelledby="unibox-title">
+  return <section id="unibox" className="sx sx-light sx-mist" aria-labelledby="unibox-title">
     <div className="sx-shell">
       <div className="sx-head" id="unibox-title"><span className="sx-kicker"><i />UniBox, one inbox for every patient message</span><h2>Every patient conversation. <em>One place.</em></h2><p>Website, texts and calls together, with one clear next step.</p></div>
       <div className="ub-filters" role="group" aria-label="Message filter">{filters.map(f => <Button key={f} variant="unstyled" size="unstyled" aria-pressed={filter === f} className="seg-chip" onClick={() => { setFilter(f); const first = threads.findIndex(t => f === "All messages" || t.channel === f); if (first >= 0) setOpenIdx(first); }}>{f}</Button>)}</div>

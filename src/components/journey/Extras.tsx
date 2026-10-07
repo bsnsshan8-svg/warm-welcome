@@ -75,7 +75,7 @@ const problems = [
 ];
 
 export function ProblemGrid() {
-  return <section id="problem" className="sx sx-dark" aria-labelledby="problem-title">
+  return <section id="problem" className="sx sx-light" aria-labelledby="problem-title">
     <div className="sx-shell">
       <div className="sx-head"><span className="sx-kicker"><i />Where patients slip away</span><h2 id="problem-title">Most clinics don't have an enquiry problem. They have a <em>follow-up problem.</em></h2></div>
       <Reveal as="ul" className="problem-grid-x">{problems.map(({ icon: I, t, d }, i) => <li key={t} style={{ ["--i" as string]: i }}><span className="pg-icon"><I size={24} strokeWidth={1.75} /></span><b>{t}</b><p>{d}</p></li>)}</Reveal>
