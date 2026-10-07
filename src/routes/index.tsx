@@ -24,6 +24,7 @@ import {
   X,
   Zap,
 } from "lucide-react";
+import zaadLogo from "@/assets/zaad-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({ component: Index });
 
@@ -68,7 +69,7 @@ function Index() {
     <main className="zaad-site">
       <header className="nav-wrap">
         <nav className="nav shell">
-          <a className="brand" href="#top" aria-label="ZAAD home"><span>ZAAD</span><i /></a>
+          <a className="brand" href="#top" aria-label="ZAAD home"><img className="brand-logo" src={zaadLogo.url} alt="ZAAD — Zero Apples A Day" /></a>
           <div className={`nav-links ${menuOpen ? "open" : ""}`}>
             <a href="#system" onClick={() => setMenuOpen(false)}>System</a>
             <a href="#flow" onClick={() => setMenuOpen(false)}>Patient Flow</a>
@@ -152,7 +153,7 @@ function Index() {
 
       <section id="contact" className="final-cta dark-section"><div className="cta-grid" /><div className="shell cta-content"><span className="kicker blue">10 / READY?</span><h2>READY TO BRING<br /><span>MORE PATIENTS IN?</span></h2><p>Let's build a patient acquisition system around your practice.</p><div className="hero-actions"><a className="btn primary" href="mailto:hello@zaad.health">BOOK A STRATEGY CALL <ArrowRight size={17} /></a><a className="btn ghost" href="#top">SEE HOW ZAAD WORKS <ChevronDown size={15} /></a></div><div className="cta-flow"><span>TRAFFIC</span><i /><span>LEAD</span><i /><span>NURTURE</span><i /><span>APPOINTMENT</span><i /><span>PATIENT</span></div></div></section>
 
-      <footer className="footer"><div className="shell footer-inner"><a className="brand" href="#top">ZAAD<i /></a><span>Patient Acquisition Machine for Healthcare Practices.</span><div><a href="#system">System</a><a href="#flow">Flow</a><a href="#unibox">UniBox</a></div><small>© 2026 ZAAD. Built for patient growth.</small></div></footer>
+      <footer className="footer"><div className="shell footer-inner"><a className="brand" href="#top" aria-label="ZAAD home"><img className="brand-logo" src={zaadLogo.url} alt="ZAAD — Zero Apples A Day" /></a><span>Patient Acquisition Machine for Healthcare Practices.</span><div><a href="#system">System</a><a href="#flow">Flow</a><a href="#unibox">UniBox</a></div><small>© 2026 ZAAD. Built for patient growth.</small></div></footer>
     </main>
   );
 }
