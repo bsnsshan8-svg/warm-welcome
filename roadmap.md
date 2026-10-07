@@ -3,4 +3,4 @@
 - [x] Build procedural 3D patient journey, scroll-driven camera and layered parallax.
 - [x] Add simplified mobile rendering and static reduced-motion/WebGL fallback.
 - [x] Verify scene progression, links, fallback, readability and overflow at 375px, 768px and 1440px; run routing tests.
-- [ ] Prevent mixed React dependency generations and verify a fresh, reloaded and navigated preview remains crash-free.
+- [x] Prevent mixed React dependency generations and verify a fresh, reloaded and navigated preview remains crash-free.
