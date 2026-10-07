@@ -37,24 +37,24 @@ function screenTexture(kind: PanelKind, p: JourneyPalette, abstract = false) {
     text("Sponsored",55,410,64,p.muted);text("Patient discovers",55,525,64);text("the clinic.",55,610,64);
     box(45,710,678,138,p.accent);text("NEW ENQUIRY",72,800,66);
   } else if(kind==="calendar") {
-    text("APPOINTMENT",50,245,66);text("Tomorrow",50,340,65,p.muted);
+    text("Consultation",50,245,66);text("Thursday",50,340,65,p.muted);
     for(let i=0;i<12;i++){const x=55+(i%4)*168,y=410+Math.floor(i/4)*140;box(x,y,135,110,i===6?p.booked:p.edge);}
     text("3:30 PM",55,930,74,p.booked);
   } else if(kind==="review") {
     text("Google Review",50,250,65,p.muted);text("5.0",180,560,210);text("★★★★★",60,730,106,p.accent);
   } else if(kind==="database") {
-    text("PATIENTS",50,250,74);
-    ["Alex Stone","Maya Jones","Ryan Khan"].forEach((s,i)=>{box(45,330+i*170,678,135);text(s,75,418+i*170,67);});
-    text("REBOOKED",50,955,72,p.booked);
+    text("Past patients",50,250,70);
+    ["Maria Lopez","Tom Hughes","Priya Shah"].forEach((s,i)=>{box(45,330+i*170,678,135);text(s,75,418+i*170,67);});
+    text("Booked again",50,955,72,p.booked);
   } else if(kind==="dashboard") {
-    text("PATIENT FLOW",50,250,66);
-    ["128","64","42","4.9"].forEach((s,i)=>{const x=45+(i%2)*346,y=330+Math.floor(i/2)*228;box(x,y,324,200);text(s,x+30,y+138,100,i===1?p.booked:p.light);});
+    text("This week",50,250,66);
+    ["12","8","3","4"].forEach((s,i)=>{const x=45+(i%2)*346,y=330+Math.floor(i/2)*228;box(x,y,324,200);text(s,x+30,y+138,100,i===1?p.booked:p.light);});
     text("UniBox",50,910,82,p.accent);
   } else {
-    text(kind==="recovery"?"MISSED CALL":"ZAAD AGENT",50,240,68,kind==="recovery"?p.muted:p.light);
+    text(kind==="recovery"?"Missed call":"Riverside Dental",50,240,68,kind==="recovery"?p.muted:p.light);
     box(45,315,595,170);text("How can we",70,388,64);text("help?",70,460,64);
     box(145,535,578,172,p.accent);text("I'd like to book",168,612,64);text("an appointment.",168,680,64);
-    box(45,770,678,150);text("BOOKED",75,867,74,p.booked);
+    box(45,770,678,150);text("Booked",75,867,74,p.booked);
   }
   const texture=new THREE.CanvasTexture(canvas);texture.colorSpace=THREE.SRGBColorSpace;
   return texture;
