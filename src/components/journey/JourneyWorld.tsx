@@ -99,8 +99,8 @@ function CameraTravel({ progress,mobile,onFailure }: Pick<WorldProps,"progress"|
     camera.position.lerp(target,1-Math.exp(-7*Math.min(delta,.05)));
     look.set(mobile?0:.15,mobile?1.1:1.35,camera.position.z-9);
     camera.lookAt(look);
-    gl.domElement.dataset.cameraZ=camera.position.z.toFixed(2);
-    gl.domElement.dataset.drawCalls=String(gl.info.render.calls);
+    gl.domElement.dataset["cameraZ"]=camera.position.z.toFixed(2);
+    gl.domElement.dataset["drawCalls"]=String(gl.info.render.calls);
   });
   return null;
 }
