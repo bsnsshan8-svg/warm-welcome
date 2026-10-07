@@ -793,3 +793,6 @@ body:has(.journey-page){background:var(--navy);}
 .scene-art .t-dark{fill:var(--ink);}
 .scene-art .f-blue{fill:var(--blue-fill);}
 .scene-art .f-green{fill:var(--green);}
+.sx-light :is(.px-journey,.ub-convo,.mod-ui) :is(h3,b,p,li){color:#fff;}
+.sx-light .px-journey :is(span,small){color:var(--on-navy);}
+.journey-page .chapter-content>p{max-width:520px;}
