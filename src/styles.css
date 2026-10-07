@@ -151,3 +151,5 @@ a{text-decoration:none;color:inherit}button{font:inherit} .shell{width:min(1180p
   .section-heading h2, .feature-copy h2, .problem-copy h2, .final-cta h2 { overflow-wrap:anywhere; }
   .flow-node small { font-size:12px; letter-spacing:0; }
 }
+:root { --muted-on-dark:#8ba0b5; }
+.light-section .demo-main p { color:var(--muted-on-dark); }
