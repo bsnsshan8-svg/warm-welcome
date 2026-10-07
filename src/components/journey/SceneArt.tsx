@@ -40,22 +40,22 @@ function Hero() {
       <g className="core-node core-node-three"><Avatar x={192} y={325} r={25} className="coral-avatar" /></g>
     </g>
     <g className="core-front">
-      <g className="core-hover core-search">
+       <g className="hero-layer hero-layer-search"><g className="core-hover core-search">
         <rect x="27" y="228" width="217" height="52" rx="8" className="f-card s-edge" strokeWidth="2" />
         <circle cx="53" cy="253" r="8" className="s-cyan" strokeWidth="3" fill="none" /><path d="M59 259 l6 6" className="s-cyan" strokeWidth="3" />
         <text x="79" y="260" fontSize="18" className="t-light">A patient searches</text>
-      </g>
-      <g className="core-hover core-chat">
+       </g></g>
+       <g className="hero-layer hero-layer-chat"><g className="core-hover core-chat">
         <rect x="180" y="290" width="196" height="52" rx="8" className="f-card s-edge" strokeWidth="2" />
         <path d="M196 307 h22 v15 h-13 l-6 5 v-5 h-3Z" className="s-coral" strokeWidth="2" fill="none" />
         <text x="230" y="322" fontSize="18" className="t-light">Follow up</text>
-      </g>
-      <g className="core-hover core-booking">
+       </g></g>
+       <g className="hero-layer hero-layer-booking"><g className="core-hover core-booking">
         <rect x="153" y="117" width="103" height="107" rx="8" className="f-card s-edge" strokeWidth="2" />
         <path d="M153 145 h103" className="s-green" strokeWidth="3" /><path d="M178 110 v17 M231 110 v17" className="s-light" strokeWidth="4" strokeLinecap="round" />
         <path d="M188 174 l10 10 l21 -23" className="s-green" strokeWidth="5" fill="none" strokeLinecap="round" />
         <text x="205" y="208" fontSize="18" textAnchor="middle" className="t-light">Booked</text>
-      </g>
+       </g></g>
     </g>
   </Frame>;
 }
