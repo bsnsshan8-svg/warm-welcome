@@ -36,13 +36,73 @@ const specialties: [string, string][] = [
   ["Surgeons", "We help patients researching a procedure reach you, get their questions answered, and book a consultation with your team."],
 ];
 
+/** Animated flat-art scene for each specialty. Pure SVG + CSS, theme colours only. */
+function SpecialtyArt({ i }: { i: number }) {
+  const common = { viewBox: "0 0 320 240", className: "sp-art", "aria-hidden": true as const };
+  switch (i) {
+    case 0: // Chiropractors — spine segments aligning
+      return <svg {...common}>
+        <rect x="140" y="30" width="40" height="180" rx="20" className="sp-line-soft" />
+        {[0, 1, 2, 3, 4].map(n => <rect key={n} x="128" y={42 + n * 34} width="64" height="22" rx="11" className="sp-bone" style={{ ["--i" as string]: n }} />)}
+        <circle cx="240" cy="70" r="6" className="sp-dot sp-d1" /><circle cx="70" cy="170" r="5" className="sp-dot sp-d2" />
+      </svg>;
+    case 1: // Regenerative Medicine — cells renewing
+      return <svg {...common}>
+        <circle cx="160" cy="120" r="46" className="sp-cell sp-c1" />
+        <circle cx="160" cy="120" r="20" className="sp-cell-core" />
+        <circle cx="95" cy="70" r="18" className="sp-cell sp-c2" /><circle cx="230" cy="80" r="14" className="sp-cell sp-c3" />
+        <circle cx="105" cy="180" r="12" className="sp-cell sp-c3" /><circle cx="225" cy="175" r="20" className="sp-cell sp-c2" />
+        <circle cx="160" cy="120" r="60" className="sp-ring" />
+      </svg>;
+    case 2: // Physical Therapy — movement along a path
+      return <svg {...common}>
+        <path d="M40 190 C 110 90, 210 230, 280 110" fill="none" className="sp-path" />
+        <circle r="10" className="sp-mover"><animateMotion dur="3.2s" repeatCount="indefinite" path="M40 190 C 110 90, 210 230, 280 110" /></circle>
+        <circle cx="40" cy="190" r="7" className="sp-node" /><circle cx="280" cy="110" r="7" className="sp-node sp-node-g" />
+        <path d="M150 60 l14 14 M164 60 l-14 14" className="sp-spark" />
+      </svg>;
+    case 3: // Dental — tooth with sparkle
+      return <svg {...common}>
+        <path d="M160 55 c-40 0-62 24-62 58 0 40 22 82 34 82 10 0 8-34 28-34 s18 34 28 34 c12 0 34-42 34-82 0-34-22-58-62-58z" className="sp-tooth" />
+        <path d="M235 45 l6 14 14 6-14 6-6 14-6-14-14-6 14-6z" className="sp-shine sp-s1" />
+        <path d="M85 165 l4 10 10 4-10 4-4 10-4-10-10-4 10-4z" className="sp-shine sp-s2" />
+      </svg>;
+    case 4: // Med Spas — lotus / glow
+      return <svg {...common}>
+        {[0, 1, 2, 3, 4].map(n => <ellipse key={n} cx="160" cy="150" rx="22" ry="62" className="sp-petal" style={{ ["--r" as string]: `${(n - 2) * 36}deg`, ["--i" as string]: n }} />)}
+        <circle cx="160" cy="120" r="14" className="sp-cell-core" />
+        <circle cx="70" cy="60" r="5" className="sp-dot sp-d1" /><circle cx="255" cy="70" r="6" className="sp-dot sp-d2" />
+      </svg>;
+    case 5: // Eye Clinics — eye with scan line
+      return <svg {...common}>
+        <path d="M45 120 C 95 60, 225 60, 275 120 C 225 180, 95 180, 45 120z" className="sp-eye" />
+        <circle cx="160" cy="120" r="34" className="sp-iris" /><circle cx="160" cy="120" r="14" className="sp-pupil" />
+        <line x1="45" y1="120" x2="275" y2="120" className="sp-scan" />
+      </svg>;
+    default: // Surgeons — steady pulse into a cross
+      return <svg {...common}>
+        <path d="M30 130 h70 l16-38 22 76 18-50 12 12 h122" fill="none" className="sp-pulse" />
+        <circle cx="160" cy="70" r="30" className="sp-cross-bg" />
+        <path d="M160 55 v30 M145 70 h30" className="sp-cross" />
+      </svg>;
+  }
+}
+
 export function SpecialtyPicker() {
   const [a, setA] = useState(0);
   return <section id="who" className="sx sx-light" aria-labelledby="who-title">
     <div className="sx-shell">
       <div className="sx-head"><span className="sx-kicker">Who we help</span><h2 id="who-title">Built around how your practice <em>grows.</em></h2></div>
-      <div className="sp-pills">{specialties.map(([n], i) => <button type="button" key={n} className="sp-pill" aria-pressed={i === a} onClick={() => setA(i)}>{n}</button>)}</div>
-      <p className="sp-text" aria-live="polite" key={a}>{specialties[a]![1]}</p>
+      <div className="sp-grid">
+        <div>
+          <div className="sp-pills">{specialties.map(([n], i) => <button type="button" key={n} className="sp-pill" aria-pressed={i === a} onClick={() => setA(i)}>{n}</button>)}</div>
+          <p className="sp-text" aria-live="polite" key={a}>{specialties[a]![1]}</p>
+        </div>
+        <div className="sp-stage" key={a} aria-hidden="true">
+          <span className="sp-stage-label">{specialties[a]![0]}</span>
+          <SpecialtyArt i={a} />
+        </div>
+      </div>
     </div>
   </section>;
 }
