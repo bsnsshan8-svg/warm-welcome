@@ -340,3 +340,4 @@ body:has(.journey-page){background:var(--journey-bg);}
 .journey-header nav.open{display:flex;flex-direction:column;gap:4px;position:absolute;top:100%;inset-inline:0;background:var(--journey-bg);border-bottom:1px solid var(--journey-border);padding:12px 18px 18px;}.journey-header nav.open a{min-height:44px;font-size:15px;color:var(--journey-light);}}
 @media(max-width:700px){.sx{padding:80px 0;}.sx-shell{width:calc(100% - 40px);}.mod-panel,.growth-card{padding:20px;}.leak-list li{padding:20px;}.journey-header{grid-template-columns:minmax(0,1fr) auto auto;}.journey-call{max-width:170px;}.chapter-points li{font-size:12px;}}
 @media(max-width:380px){.journey-logo img{height:36px;}.journey-call{font-size:12px;padding:8px 10px;max-width:150px;}}
+.chapter-nav,.journey-side-label{z-index:3;}
