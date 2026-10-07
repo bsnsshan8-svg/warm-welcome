@@ -725,3 +725,74 @@ body:has(.journey-page){background:var(--journey-bg);}
   .scene-art-0{--hero-depth:0;}
   .scene-art-0 svg,.scene-art-0 .hero-layer,.scene-art-0 .core-segments,.scene-art-0 .core-leaf{transform:none!important;}
 }
+
+/* ===== Theme reskin: paper / navy / blue / yellow (overrides earlier styling) ===== */
+:root{
+  --navy:#081126;--navy2:#101B34;--paper:#F5F3ED;--mist:#EEF0F4;--ink:#0B1428;--body:#3D4660;--on-navy:#D9DFEB;
+  --blue:#1677FF;--blue-fill:#0F62E6;--yellow:#FFD94A;--green:#1FA463;--line:#D9DCE3;
+  --journey-bg:var(--navy);--journey-surface:var(--navy2);--journey-edge:#2A3A5C;--journey-blue:var(--blue);
+  --journey-light:#FFFFFF;--journey-muted:var(--on-navy);--journey-booked:var(--green);
+  --journey-paper:var(--paper);--journey-card:#FFFFFF;--journey-ink:var(--ink);--journey-ink-muted:var(--body);
+  --journey-line:var(--line);--journey-blue-on-light:var(--blue-fill);--journey-booked-on-light:#137A47;
+  --journey-border:rgba(255,255,255,.14);
+  --hard:10px 10px 0 var(--blue);--hard-sm:4px 4px 0 var(--blue);--hard-y:6px 6px 0 var(--yellow);
+}
+body:has(.journey-page){background:var(--navy);}
+.journey-page,.journey-page :is(p,li,small,label,button,a,input,span,b,div){font-family:Inter,ui-sans-serif,system-ui,sans-serif;}
+.journey-page p{font-size:17px;line-height:1.6;font-weight:400;}
+@media(min-width:1024px){.journey-page :is(.sx-head,.px-head,.chapter-content)>p{font-size:18px;}}
+.journey-page :is(h1,h2,h3,.hero-wordmark,.result-num,.stat-tile b,.count){font-family:Inter,ui-sans-serif,system-ui,sans-serif!important;font-weight:900!important;text-transform:uppercase;letter-spacing:-.055em!important;line-height:.92!important;}
+.journey-page .chapter-content h1{font-size:clamp(2.75rem,6vw,5rem)!important;}
+.journey-page :is(.chapter-content h2,.sx-head h2,.px-head h2){font-size:clamp(2rem,4.2vw,3.5rem)!important;}
+.journey-page h3{letter-spacing:-.03em!important;line-height:1.05!important;}
+/* Headline accent: blue text; yellow block only */
+.journey-page :is(.chapter-content,.sx-head,.px-head) :is(h1,h2) em{font-style:normal;background:none!important;color:var(--blue)!important;padding:0!important;border-radius:0!important;}
+.sx-light :is(.sx-head,.px-head) h2 em{color:var(--blue-fill)!important;}
+.journey-page .px-head h2 em{background:var(--yellow)!important;color:var(--ink)!important;padding:0 .14em!important;border-radius:0!important;}
+/* Section labels: outlined pill */
+.journey-page :is(.sx-kicker,.chapter-eyebrow){display:inline-flex!important;align-items:center;gap:0!important;width:fit-content;font-size:12px!important;font-weight:800!important;text-transform:uppercase!important;letter-spacing:.11em!important;padding:6px 12px!important;border-radius:999px;border:1px solid #fff;color:#fff!important;}
+.journey-page :is(.sx-kicker,.chapter-eyebrow) i{display:none!important;}
+.sx-light .sx-kicker,.px .sx-kicker{border-color:var(--ink)!important;color:var(--ink)!important;}
+/* Buttons */
+.journey-page :is(.journey-primary,.journey-call){border-radius:999px!important;font-size:14px!important;font-weight:800!important;text-transform:uppercase;letter-spacing:.02em;padding:14px 24px!important;min-height:44px;background:var(--blue-fill)!important;color:#fff!important;border:0!important;gap:10px!important;}
+.journey-page .journey-call{padding:10px 20px!important;}
+.journey-page .journey-text-link{border-radius:999px;font-size:14px;font-weight:800;text-transform:uppercase;padding:14px 24px;min-height:44px;background:#fff;color:var(--ink)!important;display:inline-flex;align-items:center;gap:10px;width:fit-content;text-decoration:none;}
+/* Header */
+.journey-header{background:rgba(8,17,38,.96)!important;border-bottom:1px solid rgba(255,255,255,.1)!important;min-height:72px!important;padding-block:10px!important;}
+/* Section backgrounds */
+.journey-chapter,.sx-dark{background:var(--navy);}
+.sx-light,.px{background:var(--paper)!important;color:var(--ink);}
+.sx-light.sx-mist{background:var(--mist)!important;}
+.sx-light :is(p,li){color:var(--body);}
+.sx-light :is(h2,h3,b){color:var(--ink);}
+.sx-dark p,.journey-chapter p{color:var(--on-navy);}
+/* Problem grid on paper: white cards */
+.sx-light .problem-grid-x li{background:#fff!important;border:1px solid var(--line)!important;border-radius:18px!important;box-shadow:0 10px 30px rgba(8,17,38,.06)!important;padding:30px!important;color:var(--ink);}
+.sx-light .problem-grid-x li:first-child{box-shadow:var(--hard-y)!important;border-color:var(--ink)!important;}
+.sx-light .pg-icon{color:var(--blue-fill)!important;background:color-mix(in srgb,var(--blue) 10%,#fff)!important;}
+/* Cards & panels */
+.sx-light :is(.mod-panel,.ub-list){background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 30px rgba(8,17,38,.06);}
+.journey-page :is(.mod-ui,.ub-convo,.px-journey,.px-mock,.px-panel){box-shadow:var(--hard)!important;border-radius:18px;}
+.journey-page .ub-convo{background:var(--navy);}
+.journey-page :is(.mod-tab,.seg-chip){border-radius:999px;font-weight:800;}
+.journey-page :is(.mod-tab[aria-selected=true],.seg-chip[aria-pressed=true]){background:var(--blue-fill)!important;border-color:var(--blue-fill)!important;color:#fff!important;box-shadow:var(--hard-sm);}
+.journey-page .ub-row[aria-pressed=true]{background:color-mix(in srgb,var(--blue) 9%,#fff);box-shadow:inset 3px 0 0 var(--blue);}
+.journey-page :is(.chapter-booked,.chapter-tools span){border-radius:999px;box-shadow:var(--hard-sm);}
+.journey-page .chapter-stars{color:var(--yellow);}
+.journey-page .ub-meta{color:var(--blue-fill)!important;}
+/* Scroll scenes: flat graphics, no glow/wireframe */
+.scene-art svg>circle[fill^="url"],.world-scrim,.foreground-frame,.journey-world{display:none!important;}
+.scene-art text{font-family:Inter,ui-sans-serif,sans-serif!important;font-weight:600;}
+.scene-art .t-cond{font-family:Inter,sans-serif!important;font-weight:900;letter-spacing:-.04em;}
+.scene-art .f-card{fill:var(--navy2);filter:drop-shadow(8px 8px 0 var(--blue));}
+.scene-art .f-light{fill:#fff;}
+.scene-art .f-block{fill:#2A3A5C;opacity:1;}
+.scene-art .f-edge{fill:#22325A;}
+.scene-art .s-edge{stroke:#33466F;}
+.scene-art .f-star{fill:var(--yellow);}
+.scene-art .t-dark{fill:var(--ink);}
+.scene-art .f-blue{fill:var(--blue-fill);}
+.scene-art .f-green{fill:var(--green);}
+@media(min-width:1024px){
+  .journey-chapter .chapter-content{max-width:46%!important;}
+}
