@@ -513,3 +513,7 @@ body:has(.journey-page){background:var(--journey-bg);}
   .chapter-stars svg{animation:none;}
   .result-card,.process-card{transition:none;}
 }
+.process-card{opacity:1;}
+.process-card:not([data-active="true"]) .step-badge{background:var(--journey-edge);}
+.sx-light .process-card h3,.sx-light .process-card ul li{color:var(--journey-light);}
+.sx-light .process-card>p{color:var(--journey-muted);}
