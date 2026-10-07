@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Component, Suspense, lazy, useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, Menu, MessageSquare, Star, X } from "lucide-react";
-import { CommandCenterSection, GrowthSection, MissedCallSection, ProblemSection, SystemModules, TestimonialsPlaceholder, UniBoxSection } from "@/components/journey/SystemSections";
+import { CommandCenterSection, GrowthSection, MissedCallSection, ProblemSection, SystemModules, UniBoxSection } from "@/components/journey/SystemSections";
 import { Button } from "@/components/ui/button";
 import { StaticWorld } from "@/components/journey/StaticWorld";
 import { chapters, chapterProgress, type JourneyPalette } from "@/lib/zaad-journey";
@@ -13,11 +13,11 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "ZAAD — Patient Acquisition System for Healthcare Practices" },
+      { title: "ZAAD — More New Patients for Healthcare Practices" },
       { name: "description", content: "ZAAD brings new patients to your practice, replies to every enquiry, books the appointment, and brings past patients back." },
-      { property: "og:title", content: "ZAAD — Patient Acquisition System for Healthcare Practices" },
+      { property: "og:title", content: "ZAAD — More New Patients for Healthcare Practices" },
       { property: "og:description", content: "ZAAD brings new patients to your practice, replies to every enquiry, books the appointment, and brings past patients back." },
-      { name: "twitter:title", content: "ZAAD — Patient Acquisition System for Healthcare Practices" },
+      { name: "twitter:title", content: "ZAAD — More New Patients for Healthcare Practices" },
       { name: "twitter:description", content: "ZAAD brings new patients to your practice, replies to every enquiry, books the appointment, and brings past patients back." },
       { name: "author", content: "ZAAD" },
       { property: "og:type", content: "website" },
@@ -124,7 +124,7 @@ function Index() {
         <div className="chapter-bottom"><a href={i===7?"#top":`#${chapters[i+1]?.id??"top"}`} aria-label={i===7?"Back to top":"Next section"}>{i===7?"Back to top":""}<ArrowDown size={18}/></a></div>
       </div>
     </section>;
-      return <>{renderChapter(chapters[0],0)}<ProblemSection/>{chapters.slice(1,7).map((c,k)=>renderChapter(c,k+1))}<SystemModules/><MissedCallSection/><GrowthSection/><CommandCenterSection/><UniBoxSection/><TestimonialsPlaceholder/>{renderChapter(chapters[7],7)}</>;})()}
+      return <>{renderChapter(chapters[0],0)}<ProblemSection/>{chapters.slice(1,7).map((c,k)=>renderChapter(c,k+1))}<SystemModules/><MissedCallSection/><GrowthSection/><CommandCenterSection/><UniBoxSection/>{renderChapter(chapters[7],7)}</>;})()}
     <footer className="journey-footer"><a href="#top" aria-label="ZAAD home"><img src={zaadLogo.url} alt="ZAAD — Zero Apples A Day"/></a><span>A steady flow of new patients for healthcare practices.</span><small>© 2026 ZAAD. Built for healthcare practices.</small></footer>
   </main>;
 }
