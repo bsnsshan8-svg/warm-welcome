@@ -10,3 +10,5 @@
 - [x] Verify 273 HTML text elements, no scaled DOM text or horizontal overflow, and UniBox selection/filter/truncation at 360, 375, 414, 768 and 1440px; routing/journey tests pass and the live scene loads without page errors.
 - [x] Remove preview and journey-card blank space with content-sized stable modules and 1/2/3-column equal-height card rows.
 - [x] Verify all five existing module switches remain height-stable and the five existing acquisition cards fit 375, 768 and 1440px; preserve current copy/content rather than invent a sixth item. Tests and page checks pass.
+- [x] Verify light-section text contrast, opaque navy header and final #system navigation; set requested ZAAD title, social descriptions and author in the page head (this app has no index.html).
+- [x] Check contrast with no failures, header and heading offset at 375/768/1440px, route/journey tests and page build; metadata awaits the next publish to reach the live site.
