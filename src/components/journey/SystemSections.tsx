@@ -61,7 +61,7 @@ export function SystemModules() {
 export function MissedCallSection() {
   return <section id="missed" className="sx sx-dark" aria-labelledby="missed-title">
     <div className="sx-shell sx-split">
-      <div className="sx-head"><span className="sx-kicker"><i />Missed calls</span><h2 id="missed-title">They called.<br />You missed it.<br /><em>They still get a reply.</em></h2><p>When your team can't answer, an assistant that replies when your team can't texts the caller back and helps them book.</p>
+      <div className="sx-head"><span className="sx-kicker"><i />Missed calls</span><h2 id="missed-title">They called.<br />You missed it.<br /><em>They still get a reply.</em></h2><p>Calls during busy moments are covered by an assistant that replies when your team can't. The caller gets a text and an easy way to book.</p>
         <ol className="mc-steps">{["James calls", "Nobody can answer", "He gets a text back", "He replies", "Appointment booked"].map((s, i) => <li key={s} className={i === 4 ? "booked" : ""}><span>{i + 1}</span>{s}</li>)}</ol></div>
       <div className="sx-phone" aria-label="Missed call text conversation example">
         <div className="phone-top"><PhoneCall size={16} /> Riverside Dental</div>

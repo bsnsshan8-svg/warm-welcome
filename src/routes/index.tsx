@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Component, Suspense, lazy, useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, Menu, MessageSquare, Star, X } from "lucide-react";
-import { CommandCenterSection, GrowthSection, MissedCallSection, ProblemSection, SystemModules, UniBoxSection } from "@/components/journey/SystemSections";
+import { CommandCenterSection, GrowthSection, MissedCallSection, ProblemSection, SystemModules, TestimonialsPlaceholder, UniBoxSection } from "@/components/journey/SystemSections";
 import { Button } from "@/components/ui/button";
 import { StaticWorld } from "@/components/journey/StaticWorld";
 import { chapters, chapterProgress, type JourneyPalette } from "@/lib/zaad-journey";
@@ -14,11 +14,11 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "ZAAD — Patient Acquisition System for Healthcare Practices" },
-      { name: "description", content: "ZAAD builds the patient acquisition system that brings the right people in, follows up automatically, books appointments, and keeps your pipeline moving." },
+      { name: "description", content: "ZAAD brings new patients to your practice, replies to every enquiry, books the appointment, and brings past patients back." },
       { property: "og:title", content: "ZAAD — Patient Acquisition System for Healthcare Practices" },
-      { property: "og:description", content: "ZAAD builds the patient acquisition system that brings the right people in, follows up automatically, books appointments, and keeps your pipeline moving." },
+      { property: "og:description", content: "ZAAD brings new patients to your practice, replies to every enquiry, books the appointment, and brings past patients back." },
       { name: "twitter:title", content: "ZAAD — Patient Acquisition System for Healthcare Practices" },
-      { name: "twitter:description", content: "ZAAD builds the patient acquisition system that brings the right people in, follows up automatically, books appointments, and keeps your pipeline moving." },
+      { name: "twitter:description", content: "ZAAD brings new patients to your practice, replies to every enquiry, books the appointment, and brings past patients back." },
       { name: "author", content: "ZAAD" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://hello-hub-host.lovable.app/" },
@@ -105,26 +105,26 @@ function Index() {
       <Button asChild variant="unstyled" size="unstyled" className="journey-call"><a href="#contact">Book a strategy call <ArrowUpRight size={18}/></a></Button>
       <Button variant="unstyled" size="unstyled" className="journey-menu" aria-label="Toggle menu" aria-expanded={menuOpen} onClick={()=>setMenuOpen(o=>!o)}>{menuOpen?<X size={22}/>:<Menu size={22}/>}</Button>
     </header>
-    <nav className="chapter-nav" aria-label="Chapters">{chapters.map((chapter,i)=><Button key={chapter.id} asChild variant="unstyled" size="unstyled"><a href={`#${chapter.id}`} aria-label={`Chapter ${i+1}: ${chapter.label}`} aria-current={active===i?"step":undefined}><span>{String(i+1).padStart(2,"0")}</span><i/></a></Button>)}</nav>
-    <div className="journey-side-label" aria-hidden="true">PATIENT ACQUISITION SYSTEM</div>
-    {(()=>{const renderChapter=(chapter:(typeof chapters)[number],i:number)=><section className="journey-chapter" id={chapter.id} key={chapter.id} aria-labelledby={`title-${i}`}>
+    <nav className="chapter-nav" aria-label="Chapters">{chapters.map((chapter,i)=><Button key={chapter.id} asChild variant="unstyled" size="unstyled"><a href={`#${chapter.id}`} aria-label={`Chapter ${i+1}: ${chapter.label}`} aria-current={active===i?"step":undefined}><i/></a></Button>)}</nav>
+        {(()=>{const renderChapter=(chapter:(typeof chapters)[number],i:number)=><section className="journey-chapter" id={chapter.id} key={chapter.id} aria-labelledby={`title-${i}`}>
       <div className="chapter-pin">
         <div className={`chapter-content ${i===0?"chapter-hero":""}`}>
-          <div className="chapter-eyebrow"><span>{String(i+1).padStart(2,"0")} / 08</span><i/>{chapter.label}</div>
+          <div className="chapter-eyebrow"><i/>{chapter.label}</div>
           {i===0 ? <><div className="hero-wordmark">ZAAD<span>®</span></div><h1 id={`title-${i}`}>{chapter.title} <em>{chapter.accent}</em></h1></> : <h2 id={`title-${i}`}>{chapter.title}<br/><em>{chapter.accent}</em></h2>}
           <p>{chapter.text}</p>
+          {i===0&&<p className="hero-trust">Built for healthcare practices. Your team stays in control of every patient conversation.</p>}
           {chapter.points.length>0&&<ul className="chapter-points">{chapter.points.map(pt=><li key={pt}>{pt}</li>)}</ul>}
           {i===0&&<Button asChild variant="unstyled" size="unstyled" className="journey-text-link"><a href="#system">See how ZAAD works <ArrowDown size={18}/></a></Button>}
-          {i===2&&<div className="chapter-booked"><Check size={16}/> APPOINTMENT CONFIRMED</div>}
+          {i===2&&<div className="chapter-booked"><Check size={16}/> Appointment booked</div>}
           {i===4&&<div className="chapter-stars" aria-label="5-star rating">{Array.from({length:5},(_,n)=><Star key={n} size={18} fill="currentColor"/>)}</div>}
-          {i===6&&<div className="chapter-tools"><span>Command center</span><span><MessageSquare size={16}/> UniBox</span></div>}
+          {i===6&&<div className="chapter-tools"><span>Your practice at a glance</span><span><MessageSquare size={16}/> UniBox</span></div>}
           {i===7&&<div className="chapter-actions"><Button asChild variant="unstyled" size="unstyled" className="journey-primary"><a href="mailto:hello@zaad.health">Book a strategy call <ArrowUpRight size={20}/></a></Button><Button asChild variant="unstyled" size="unstyled" className="journey-text-link"><a href="#system">See how ZAAD works <ArrowRight size={18}/></a></Button></div>}
         </div>
         <div className="scene-caption"><span className="caption-marker"/><div><span>{chapter.scene}</span><p>{chapter.detail}</p></div></div>
-        <div className="chapter-bottom"><span>ZAAD / PATIENT FLOW</span><a href={i===7?"#top":`#${chapters[i+1]?.id??"top"}`} aria-label={i===7?"Back to top":"Next chapter"}>{i===7?"BACK TO TOP":"SCROLL TO EXPLORE"}<ArrowDown size={16}/></a><span>{String(i+1).padStart(2,"0")} — 08</span></div>
+        <div className="chapter-bottom"><a href={i===7?"#top":`#${chapters[i+1]?.id??"top"}`} aria-label={i===7?"Back to top":"Next section"}>{i===7?"Back to top":""}<ArrowDown size={18}/></a></div>
       </div>
     </section>;
-      return <>{renderChapter(chapters[0],0)}<ProblemSection/>{chapters.slice(1,7).map((c,k)=>renderChapter(c,k+1))}<SystemModules/><MissedCallSection/><GrowthSection/><CommandCenterSection/><UniBoxSection/>{renderChapter(chapters[7],7)}</>;})()}
-    <footer className="journey-footer"><a href="#top" aria-label="ZAAD home"><img src={zaadLogo.url} alt="ZAAD — Zero Apples A Day"/></a><span>Patient Acquisition Machine for Healthcare Practices.</span><small>© 2026 ZAAD. Built for patient growth.</small></footer>
+      return <>{renderChapter(chapters[0],0)}<ProblemSection/>{chapters.slice(1,7).map((c,k)=>renderChapter(c,k+1))}<SystemModules/><MissedCallSection/><GrowthSection/><CommandCenterSection/><UniBoxSection/><TestimonialsPlaceholder/>{renderChapter(chapters[7],7)}</>;})()}
+    <footer className="journey-footer"><a href="#top" aria-label="ZAAD home"><img src={zaadLogo.url} alt="ZAAD — Zero Apples A Day"/></a><span>A steady flow of new patients for healthcare practices.</span><small>© 2026 ZAAD. Built for healthcare practices.</small></footer>
   </main>;
 }
