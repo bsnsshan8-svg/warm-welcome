@@ -598,3 +598,4 @@ body:has(.journey-page){background:var(--journey-bg);}
 @media(prefers-reduced-motion:reduce){
   .scene-art .gather,.scene-art .float,.scene-art .pulse,.scene-art .ring{animation:none!important;}
 }
+.journey-page .chapter-content h2 em{margin-left:.22em;}
