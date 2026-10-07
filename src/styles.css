@@ -410,7 +410,7 @@ body:has(.journey-page){background:var(--journey-bg);}
 /* Hero chapter on phones: caption flows below the link, phone graphic stays dim behind the text */
 @media(max-width:767px){
   .journey-chapter:has(.chapter-hero)::before{content:"";position:absolute;inset:0;background:var(--journey-bg);opacity:.45;z-index:-1;pointer-events:none;}
-  .journey-chapter:has(.chapter-hero) .chapter-pin{height:auto;min-height:100svh;padding-bottom:140px;}
+  .journey-chapter:has(.chapter-hero) .chapter-pin{height:auto;min-height:100svh;padding-bottom:140px;flex-direction:column;align-items:stretch;}
   .journey-chapter:has(.chapter-hero) .scene-caption{position:static;margin-top:32px;}
   .journey-chapter:has(.chapter-hero) .scene-caption p{max-width:420px;}
 }
