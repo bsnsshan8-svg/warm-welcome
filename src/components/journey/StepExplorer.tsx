@@ -14,9 +14,9 @@ const screens = [
 const states = ["Searching", "Asking", "Deciding", "Calling back", "Sharing", "Returning"];
 const num = (i: number) => String(i + 1).padStart(2, "0");
 
-function Mockup({ i }: { i: number }) {
+function Mockup({ i, className = "" }: { i: number; className?: string }) {
   const [title, status] = screens[i]!;
-  return <div className="px-mock" aria-label={`Example: ${title}`}>
+  return <div className={`px-mock ${className}`} aria-label={`Example: ${title}`}>
     <div className="px-mock-bar"><span aria-hidden="true"><i /><i /><i /></span>Riverside Dental</div>
     <div className="px-mock-body"><div className="px-mock-card" key={i}>
       <small>Step {num(i)} · {pills[i]}</small>
@@ -26,10 +26,10 @@ function Mockup({ i }: { i: number }) {
   </div>;
 }
 
-function Journey({ active, onPick }: { active: number; onPick?: (i: number) => void }) {
+function Journey({ active }: { active: number }) {
   return <div className="px-journey">
     <div><h3>One connected patient journey</h3>
-      <div className="px-tiles">{pills.map((p, i) => <button type="button" key={p} className="px-tile" data-state={i === active ? "active" : i < active ? "done" : "next"} onClick={() => onPick?.(i)} aria-current={i === active ? "step" : undefined}><span>{num(i)}</span>{p}</button>)}</div>
+      <div className="px-tiles">{pills.map((p, i) => <span key={p} className="px-tile" data-state={i === active ? "active" : i < active ? "done" : "next"}><span>{num(i)}</span>{p}</span>)}</div>
     </div>
     <div className="px-chart" aria-label={`Patient is ${states[active]}`}>
       <div className="px-bars" aria-hidden="true">{states.map((s, i) => <i key={s} style={{ height: `${30 + i * 12}%` }} data-on={i <= active} />)}</div>
@@ -39,30 +39,21 @@ function Journey({ active, onPick }: { active: number; onPick?: (i: number) => v
 }
 
 export function StepExplorer() {
-  const wrapRef = useRef<HTMLDivElement>(null);
-  const pillRow = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLOListElement>(null);
   const [active, setActive] = useState(0);
-  const [prog, setProg] = useState(0);
-  const [mFill, setMFill] = useState(0);
+  const [fill, setFill] = useState(0);
 
   useEffect(() => {
     let raf = 0;
     const update = () => {
       raf = 0;
-      const w = wrapRef.current;
-      if (w && w.offsetParent !== null) {
-        const r = w.getBoundingClientRect();
-        const total = Math.max(1, r.height - (window.innerHeight - 92));
-        const p = Math.max(0, Math.min(1, -r.top / total));
-        setProg(p);
-        setActive(Math.min(5, Math.floor(p * 6)));
-      }
-      const l = listRef.current;
-      if (l && l.offsetParent !== null) {
-        const r = l.getBoundingClientRect(), mark = window.innerHeight * 0.6;
-        setMFill(Math.max(0, Math.min(1, (mark - r.top) / Math.max(1, r.height))));
-      }
+      const l = listRef.current; if (!l) return;
+      const mid = window.innerHeight / 2;
+      const r = l.getBoundingClientRect();
+      setFill(Math.max(0, Math.min(1, (mid - r.top) / Math.max(1, r.height))));
+      let best = 0, bd = Infinity;
+      Array.from(l.children).forEach((c, i) => { const b = c.getBoundingClientRect(); const d = Math.abs(b.top + b.height / 2 - mid); if (d < bd) { bd = d; best = i; } });
+      setActive(best);
     };
     const req = () => { if (!raf) raf = requestAnimationFrame(update); };
     update();
@@ -70,50 +61,23 @@ export function StepExplorer() {
     return () => { cancelAnimationFrame(raf); window.removeEventListener("scroll", req); window.removeEventListener("resize", req); };
   }, []);
 
-  useEffect(() => {
-    const row = pillRow.current, pill = row?.children[active] as HTMLElement | undefined;
-    if (row && pill) row.scrollTo({ left: pill.offsetLeft - row.clientWidth / 2 + pill.offsetWidth / 2, behavior: "smooth" });
-  }, [active]);
-
-  const pick = (i: number) => {
-    const w = wrapRef.current; if (!w) return;
-    const total = w.offsetHeight - (window.innerHeight - 92);
-    const top = w.getBoundingClientRect().top + window.scrollY + total * ((i + 0.5) / 6);
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    window.scrollTo({ top, behavior: reduce ? "auto" : "smooth" });
-  };
-
-  const s = steps[active]!;
-  return <section id="modules" className="sx-light px" aria-labelledby="modules-title">
-    <div className="px-wrap" ref={wrapRef}>
-      <div className="px-pin"><div className="px-shell">
-        <div className="px-head"><span className="sx-kicker"><i />What ZAAD does for your practice</span><h2 id="modules-title">How we turn attention into <em>booked patients</em></h2><p>Six steps, from the first search to a patient in your chair, and back again for their next visit.</p></div>
-        <div className="px-pills" ref={pillRow} role="tablist" aria-label="Steps">{pills.map((p, i) => <button type="button" role="tab" aria-selected={i === active} key={p} className="px-pill" onClick={() => pick(i)}><span>{num(i)}</span>{p}</button>)}</div>
-        <div className="px-progress" aria-hidden="true"><i style={{ transform: `scaleX(${Math.max(prog, (active + 1) / 6 * 0.999)})` }} /></div>
-        <div className="px-cols">
-          <div className="px-detail" key={active}>
-            <span className="px-step">Step {num(active)}</span>
-            <h3>{s.t}</h3><p>{s.d}</p>
-            <small>Includes</small>
-            <ul>{s.p.map((x, k) => <li key={x}><Check size={18} aria-hidden="true" />{x}</li>)}</ul>
-          </div>
-          <Mockup i={active} />
+  return <section id="modules" className="sx sx-light px vx" aria-labelledby="modules-title">
+    <div className="sx-shell">
+      <div className="vx-cols">
+        <div className="vx-left">
+          <div className="px-head"><span className="sx-kicker"><i />What ZAAD does for your practice</span><h2 id="modules-title">How we turn attention into <em>booked patients</em></h2><p>Six steps, from the first search to a patient in your chair, and back again for their next visit.</p></div>
+          <div className="vx-mock-wrap">{screens.map((_, i) => <Mockup key={i} i={i} className={i === active ? "vx-on" : "vx-off"} />)}</div>
         </div>
-        <Journey active={active} onPick={pick} />
-      </div></div>
-    </div>
-
-    <div className="px-mobile sx-shell">
-      <div className="px-head"><span className="sx-kicker"><i />What ZAAD does for your practice</span><h2>How we turn attention into <em>booked patients</em></h2><p>Six steps, from the first search to a patient in your chair, and back again for their next visit.</p></div>
-      <div className="px-mtrack">
-        <span className="px-mline" aria-hidden="true"><i style={{ transform: `scaleY(${mFill})` }} /></span>
-        <ol ref={listRef}>{steps.map((st, i) => <li key={st.t} className="px-mcard">
-          <span className="px-step">Step {num(i)}</span><h3>{st.t}</h3><p>{st.d}</p>
-          <ul>{st.p.map(x => <li key={x}><Check size={18} aria-hidden="true" />{x}</li>)}</ul>
-          <Mockup i={i} />
-        </li>)}</ol>
+        <div className="vx-right">
+          <span className="vx-line" aria-hidden="true"><i style={{ transform: `scaleY(${fill})` }} /></span>
+          <ol ref={listRef} className="vx-list">{steps.map((st, i) => <li key={st.t} className="vx-card" data-active={i === active}>
+            <span className="px-step">Step {num(i)}</span><h3>{st.t}</h3><p>{st.d}</p>
+            <ul>{st.p.map(x => <li key={x}><Check size={18} aria-hidden="true" />{x}</li>)}</ul>
+            <Mockup i={i} className="vx-mobile-mock" />
+          </li>)}</ol>
+        </div>
       </div>
-      <Journey active={5} />
+      <div className="vx-journey"><Journey active={active} /></div>
     </div>
   </section>;
 }
