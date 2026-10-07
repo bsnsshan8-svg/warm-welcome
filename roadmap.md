@@ -1,4 +1,6 @@
 # Cinematic ZAAD patient journey
+- [ ] Restore floating scroll hero using the selected dynamic journey core; enrich scene artwork with colourful segments without changing other sections.
+- [ ] Verify scroll motion, reduced motion, text readability and mobile containment.
 - [x] Build eight numbered pinned chapters with existing wording, logo and persistent header call button.
 - [x] Build procedural 3D patient journey, scroll-driven camera and layered parallax.
 - [x] Add simplified mobile rendering and static reduced-motion/WebGL fallback.
