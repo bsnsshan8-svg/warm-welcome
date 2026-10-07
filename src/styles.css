@@ -307,7 +307,7 @@ body:has(.journey-page){background:var(--journey-bg);}
 .engine-track li{position:relative;background:var(--journey-card);border:1px solid var(--journey-line);border-radius:14px;padding:24px;display:grid;align-content:start;gap:6px;height:auto;min-height:0;aspect-ratio:auto;}
 .engine-track li:not(:last-child)::after{content:"";position:absolute;top:50%;right:-12px;width:12px;height:2px;background:var(--journey-blue);}
 .engine-track li:nth-child(3n)::after{display:none;}
-.engine-icon{color:var(--journey-blue);}.engine-track b{font-size:17px;font-weight:600;}.engine-track small{font-size:13px;color:var(--journey-ink-muted);text-transform:uppercase;letter-spacing:.06em;}
+.engine-icon{color:var(--journey-blue);}.engine-track b{font-size:17px;font-weight:600;}.engine-track small{font-size:14px;color:var(--journey-ink-muted);text-transform:none;letter-spacing:normal;}
 .engine-track .booked{border-color:var(--journey-booked);}.engine-track .booked .engine-icon{color:var(--journey-booked);}
 .mc-steps{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:10px;}
 .mc-steps li{display:flex;align-items:center;gap:12px;font-size:16px;color:var(--journey-light);}
