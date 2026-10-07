@@ -118,6 +118,32 @@ function Index() {
       </div>
     </section>;
       return <><CentredHero/><SpecialtyPicker/><ProblemGrid/>{chapters.slice(1,7).map((c,k)=>renderChapter(c,k+1))}<StepExplorer/><UniBoxSection/><GrowthEstimator/><Pricing/><FitCheck/>{renderChapter(chapters[7],7)}</>;})()}
-    <footer className="journey-footer"><a href="#top" aria-label="ZAAD home"><img src={zaadLogo.url} alt="ZAAD — Zero Apples A Day"/></a><span>A steady flow of new patients for healthcare practices.</span><small>© 2026 ZAAD. Built for healthcare practices.</small></footer>
+    <footer className="journey-footer">
+      <div className="footer-top">
+        <div className="footer-brand">
+          <a href="#top" aria-label="ZAAD home"><img src={zaadLogo.url} alt="ZAAD — Zero Apples A Day"/></a>
+          <span>A steady flow of new patients for healthcare practices.</span>
+        </div>
+        <div className="footer-col">
+          <span className="footer-label">Explore</span>
+          <nav aria-label="Footer navigation" className="footer-nav">
+            <a href="#who">Who we help</a>
+            <a href="#modules">How it works</a>
+            <a href="#unibox">UniBox</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#contact">Book a strategy call</a>
+          </nav>
+        </div>
+        <div className="footer-col">
+          <span className="footer-label">Contact</span>
+          <div className="footer-contact">
+            <a href="mailto:Info@zeroapplesaday.com">Info@zeroapplesaday.com</a>
+            <a href="tel:+14089423358">+1 408 942 3358</a>
+            <address>1001 S Main St, Ste 500<br/>Kalispell MT 59901, United States</address>
+          </div>
+        </div>
+      </div>
+      <div className="footer-bottom"><small>© 2026 ZAAD — Zero Apples A Day. Built for healthcare practices.</small></div>
+    </footer>
   </main>;
 }
