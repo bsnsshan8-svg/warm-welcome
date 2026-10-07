@@ -62,7 +62,7 @@ function Index() {
         const content=section.querySelector<HTMLElement>(".chapter-content");
         if(!content) return;
         const opacity=i===index ? (local>.60?Math.max(.04,1-(local-.60)/.40):1) : 1;
-        content.style.opacity=mode==="3d"?String(opacity):"1";
+        content.style.opacity=mode==="3d"?String(opacity):"1";section.querySelectorAll<HTMLElement>(".scene-art,.scene-caption").forEach(el=>{el.style.opacity=mode==="3d"&&window.innerWidth>=768?String(opacity):"1";});
         content.style.transform=mode==="3d"?`translateY(${i===index?Math.max(0,local-.42)*-35:0}px)`:"none";
       });
       root.style.setProperty("--journey-progress",`${(index+local)/7*100}%`);
