@@ -248,3 +248,11 @@ body:has(.journey-page){background:var(--journey-bg);}
 }
 @media(max-height:760px) and (min-width:701px){.chapter-pin{padding-top:105px;padding-bottom:90px;}.chapter-content h2{font-size:48px;}.hero-wordmark{font-size:70px;margin-bottom:18px;}.chapter-eyebrow{margin-bottom:20px;}.chapter-content p{margin-top:18px;}}
 @media(prefers-reduced-motion:reduce){.journey-page *,html{scroll-behavior:auto;}.chapter-content{will-change:auto;}}
+
+@media(max-width:700px){
+ .world-scrim{background:linear-gradient(180deg,var(--journey-bg) 0%,color-mix(in srgb,var(--journey-bg) 97%,transparent) 52%,transparent 74%,var(--journey-bg) 93%);}
+ .static-device{top:66%;width:130px;height:175px;left:calc(50% - 65px);padding:25px 12px;gap:12px;}
+ .static-door{top:64%;width:170px;height:210px;left:calc(50% - 85px);}
+ .static-device .static-message{padding:10px;}.static-device>svg{width:20px;height:20px;}.static-device strong{font-size:40px;}
+ .static-stars{gap:4px;}.static-stars svg{width:14px;}
+}

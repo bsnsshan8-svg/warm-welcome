@@ -67,6 +67,8 @@ function Doorway({ palette:p, small=false }: { palette:JourneyPalette;small?:boo
 }
 
 function Station({ index, progress, mobile, palette:p }: { index:number;progress:RefObject<number>;mobile:boolean;palette:JourneyPalette }) {
+  const { size }=useThree();
+  const compact=!mobile && size.width<1000;
   const root=useRef<THREE.Group>(null);
   const item=useRef<THREE.Group>(null);
   useFrame(({clock})=>{
@@ -76,7 +78,7 @@ function Station({ index, progress, mobile, palette:p }: { index:number;progress
     if(item.current){item.current.position.y=Math.sin(clock.elapsedTime*.45+index)*.07+(index===4?Math.max(0,progress.current-3.8)*.24:0);item.current.rotation.y=Math.sin(clock.elapsedTime*.2+index)*.035;}
   });
   const kinds:PanelKind[]=["search","search","calendar","recovery","review","database","dashboard","review"];
-  return <group ref={root} position={[mobile?0:2.3,mobile?-1.15:.1,-index*12]}>
+  return <group ref={root} position={[mobile?0:compact?1.7:2.3,mobile?-.9:.1,-index*12]} scale={mobile?.4:compact?.65:1}>
     <group ref={item}>
       {index===0 || index===7 ? <><group position={[0,-.9,-1.4]}><Doorway palette={p} small={mobile}/></group><group position={[index===0?.25:0,1.1,1]} rotation={[.06,index===0?-.18:.12,-.06]}><Device kind={index===0?"search":"review"} palette={p} scale={index===0?.78:.65}/></group></> : index===4 ? <><group position={[0,-1,-1]}><Doorway palette={p} small={mobile}/></group><group position={[0,1.7,.8]} rotation={[0,-.12,.025]}><Device kind="review" palette={p} scale={.78}/></group></> : <><group position={[0,.95,0]} rotation={[.04,-.18,.045]}><Device kind={kinds[index]??"search"} palette={p}/></group>{index===2&&!mobile&&<group position={[-1.9,.4,1]} rotation={[0,.22,-.07]}><Device kind="messages" palette={p} scale={.53}/></group>}{index===6&&!mobile&&<group position={[2,-.15,1]} rotation={[0,-.28,.06]}><Device kind="messages" palette={p} scale={.55}/></group>}</>}
     </group>
