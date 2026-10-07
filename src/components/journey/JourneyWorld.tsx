@@ -7,7 +7,7 @@ import type { JourneyPalette } from "@/lib/zaad-journey";
 type WorldProps = { progress: RefObject<number>; mobile: boolean; palette: JourneyPalette; onFailure: () => void };
 type PanelKind = "search" | "messages" | "calendar" | "recovery" | "review" | "database" | "dashboard";
 
-function screenTexture(kind: PanelKind, p: JourneyPalette) {
+function screenTexture(kind: PanelKind, p: JourneyPalette, abstract = false) {
   const canvas = document.createElement("canvas");
   canvas.width=768; canvas.height=1024;
   const c=canvas.getContext("2d");
@@ -15,6 +15,22 @@ function screenTexture(kind: PanelKind, p: JourneyPalette) {
   c.fillStyle=p.surface; c.fillRect(0,0,768,1024);
   const text=(s:string,x:number,y:number,size=64,color=p.light)=>{c.fillStyle=color;c.font=`400 ${size}px Arial`;c.fillText(s,x,y);};
   const box=(x:number,y:number,w:number,h:number,color=p.edge)=>{c.fillStyle=color;c.beginPath();c.roundRect(x,y,w,h,24);c.fill();};
+  if(abstract) {
+    // Small-screen objects carry geometry only; readable labels live in the HTML chapters.
+    box(80,90,608,18);
+    if(kind==="calendar"||kind==="dashboard") {
+      for(let i=0;i<12;i++) box(65+(i%3)*225,220+Math.floor(i/3)*165,180,125,i===7?p.booked:p.edge);
+    } else if(kind==="review") {
+      for(let i=0;i<5;i++) {
+        c.beginPath();for(let n=0;n<10;n++){const angle=n*Math.PI/5-Math.PI/2,r=n%2?24:55,x=104+i*140+Math.cos(angle)*r,y=500+Math.sin(angle)*r;n===0?c.moveTo(x,y):c.lineTo(x,y);}c.closePath();c.fillStyle=p.accent;c.fill();
+      }
+      box(190,700,388,24);
+    } else {
+      box(65,230,530,185);box(170,470,530,185,p.accent);box(65,710,530,140,p.edge);
+      [280,520,760].forEach((y,i)=>{box(i===1?215:110,y,330,15,p.light);box(i===1?215:110,y+45,230,15,p.muted);});
+    }
+    const texture=new THREE.CanvasTexture(canvas);texture.colorSpace=THREE.SRGBColorSpace;return texture;
+  }
   text("ZAAD",55,95,64); c.strokeStyle=p.edge;c.lineWidth=2;c.beginPath();c.moveTo(45,130);c.lineTo(720,130);c.stroke();
   if(kind==="search") {
     box(45,190,678,110);text("Search clinic",75,263,65);
@@ -44,8 +60,8 @@ function screenTexture(kind: PanelKind, p: JourneyPalette) {
   return texture;
 }
 
-function Device({ kind, palette:p, scale=1 }: { kind:PanelKind;palette:JourneyPalette;scale?:number }) {
-  const texture=useMemo(()=>screenTexture(kind,p),[kind,p]);
+function Device({ kind, palette:p, scale=1, abstract=false }: { kind:PanelKind;palette:JourneyPalette;scale?:number;abstract?:boolean }) {
+  const texture=useMemo(()=>screenTexture(kind,p,abstract),[kind,p,abstract]);
   useEffect(()=>()=>texture.dispose(),[texture]);
   return <group scale={scale}>
     <RoundedBox args={[2.5,3.55,.18]} radius={.14} smoothness={2}><meshStandardMaterial color={p.edge} metalness={.75} roughness={.25}/></RoundedBox>
@@ -80,7 +96,7 @@ function Station({ index, progress, mobile, palette:p }: { index:number;progress
   const kinds:PanelKind[]=["search","search","calendar","recovery","review","database","dashboard","review"];
   return <group ref={root} position={[mobile?0:compact?1.7:2.3,mobile?-.9:.1,-index*12]} scale={mobile?.4:compact?.65:1}>
     <group ref={item}>
-      {index===0 || index===7 ? <><group position={[0,-.9,-1.4]}><Doorway palette={p} small={mobile}/></group><group position={[index===0?.25:0,1.1,1]} rotation={[.06,index===0?-.18:.12,-.06]}><Device kind={index===0?"search":"review"} palette={p} scale={index===0?.78:.65}/></group></> : index===4 ? <><group position={[0,-1,-1]}><Doorway palette={p} small={mobile}/></group><group position={[0,1.7,.8]} rotation={[0,-.12,.025]}><Device kind="review" palette={p} scale={.78}/></group></> : <><group position={[0,.95,0]} rotation={[.04,-.18,.045]}><Device kind={kinds[index]??"search"} palette={p}/></group>{index===2&&!mobile&&<group position={[-1.9,.4,1]} rotation={[0,.22,-.07]}><Device kind="messages" palette={p} scale={.53}/></group>}{index===6&&!mobile&&<group position={[2,-.15,1]} rotation={[0,-.28,.06]}><Device kind="messages" palette={p} scale={.55}/></group>}</>}
+      {index===0 || index===7 ? <><group position={[0,-.9,-1.4]}><Doorway palette={p} small={mobile}/></group><group position={[index===0?.25:0,1.1,1]} rotation={[.06,index===0?-.18:.12,-.06]}><Device kind={index===0?"search":"review"} palette={p} abstract={mobile} scale={index===0?.78:.65}/></group></> : index===4 ? <><group position={[0,-1,-1]}><Doorway palette={p} small={mobile}/></group><group position={[0,1.7,.8]} rotation={[0,-.12,.025]}><Device kind="review" palette={p} abstract={mobile} scale={.78}/></group></> : <><group position={[0,.95,0]} rotation={[.04,-.18,.045]}><Device kind={kinds[index]??"search"} palette={p} abstract={mobile}/></group>{index===2&&!mobile&&<group position={[-1.9,.4,1]} rotation={[0,.22,-.07]}><Device kind="messages" palette={p} scale={.53}/></group>}{index===6&&!mobile&&<group position={[2,-.15,1]} rotation={[0,-.28,.06]}><Device kind="messages" palette={p} scale={.55}/></group>}</>}
     </group>
     {!mobile&&<pointLight position={[1,4,3]} intensity={14} distance={9} color={p.accent}/>}
   </group>;
