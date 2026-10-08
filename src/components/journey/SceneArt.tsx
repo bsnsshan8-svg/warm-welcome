@@ -88,13 +88,25 @@ function FollowUp() {
 }
 
 function Missed() {
-  return <Frame label="A missed call turning into a text conversation and a booking">
-    <g className="ring"><circle cx="200" cy="105" r="52" className="f-card s-edge" strokeWidth="2" /><path d="M182 88 c-4 18 14 40 34 36 l6 -10 l-12 -8 l-6 5 c-8 -4 -12 -10 -14 -16 l5 -6 l-8 -12z" className="f-light" /></g>
-    <g className="out" style={v({ "--s": .62 })}><rect x="226" y="56" width="128" height="32" rx="16" className="f-alert" /><text x="290" y="77" fontSize="14" textAnchor="middle" className="t-light t-bold">Missed call</text></g>
-    <g className="in pop" style={v({ "--s": .62 })}><rect x="226" y="56" width="128" height="32" rx="16" className="f-green" /><text x="290" y="77" fontSize="14" textAnchor="middle" className="t-dark t-bold">Booked ✓</text></g>
-    <g className="in" style={v({ "--s": .18 })}><rect x="40" y="190" width="250" height="52" rx="16" className="f-blue" /><text x="56" y="212" fontSize="14" className="t-light">Sorry we missed your call.</text><text x="56" y="230" fontSize="14" className="t-light">How can we help?</text></g>
-    <g className="in" style={v({ "--s": .38 })}><rect x="150" y="256" width="210" height="36" rx="16" className="f-edge" /><text x="166" y="279" fontSize="14" className="t-light">I'd like a check-up.</text></g>
-    <g className="in" style={v({ "--s": .5 })}><rect x="40" y="306" width="190" height="36" rx="16" className="f-blue" /><text x="56" y="329" fontSize="14" className="t-light">Monday 9:00 AM?</text></g>
+  return <Frame label="A missed call sends a text with a booking link; James fills in a short form and books Monday 9:00 AM">
+    <g className="ring"><rect x="30" y="18" width="160" height="34" rx="16" className="f-alert" /><text x="110" y="41" fontSize="18" textAnchor="middle" className="t-light t-bold">Missed call</text></g>
+    <path d="M110 56 v14 m-5 -5 l5 5 l5 -5" className="s-blue" fill="none" strokeWidth="2" />
+    <g className="in" style={v({ "--s": .18 })}>
+      <rect x="18" y="76" width="364" height="130" rx="16" className="f-blue" />
+      <text x="34" y="103" fontSize="19" className="t-light">Sorry we missed your call at</text>
+      <text x="34" y="130" fontSize="19" className="t-light">Riverside Dental. Book a time</text>
+      <text x="34" y="157" fontSize="19" className="t-light">that suits you here:</text>
+      <rect x="34" y="170" width="238" height="28" rx="8" className="f-light" /><text x="46" y="190" fontSize="19" className="t-dark t-bold">Book your visit →</text>
+    </g>
+    <path d="M200 210 v14 m-5 -5 l5 5 l5 -5" className="s-blue" fill="none" strokeWidth="2" />
+    <g className="in flip" style={v({ "--s": .4 })}>
+      <rect x="70" y="230" width="300" height="120" rx="12" className="f-light" />
+      <text x="86" y="258" fontSize="19" className="t-dark">Name: James Carter</text>
+      <text x="86" y="284" fontSize="19" className="t-dark">Reason: Check-up</text>
+      <text x="86" y="310" fontSize="19" className="t-dark">Time: Mon 9:00 AM</text>
+      <rect x="260" y="316" width="90" height="28" rx="8" className="f-blue" /><text x="305" y="337" fontSize="19" textAnchor="middle" className="t-light t-bold">Book</text>
+    </g>
+    <g className="in pop" style={v({ "--s": .62 })}><rect x="214" y="360" width="160" height="34" rx="16" className="f-green" /><text x="294" y="384" fontSize="19" textAnchor="middle" className="t-dark t-bold">Booked ✓</text></g>
   </Frame>;
 }
 

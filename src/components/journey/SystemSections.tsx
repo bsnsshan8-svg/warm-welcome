@@ -4,11 +4,11 @@ import { Button } from "@/components/ui/button";
 import { CountUp, useInView } from "./Extras";
 import clinician from "@/assets/clinician-patient.jpg";
 
-function Chat({ items, className = "" }: { items: (readonly [string, string])[]; className?: string }) {
+function Chat({ items, className = "", bookingLink = false }: { items: (readonly [string, string])[]; className?: string; bookingLink?: boolean }) {
   const [ref, inView] = useInView<HTMLDivElement>(0.35);
   return <div ref={ref} className={`chat-seq ${className}`} data-inview={inView} style={{ ["--n" as string]: items.length }}>
-    {items.map(([who, text], k) => <div key={k} className={`bubble ${who}`} style={{ ["--i" as string]: k }}>{text}</div>)}
-    <div className="bubble agent typing" aria-hidden="true"><i /><i /><i /></div>
+    {items.map(([who, text], k) => <div key={k} className={`bubble ${who}`} style={{ ["--i" as string]: k }}>{text}{bookingLink && k === 0 && <span className="booking-link-chip">Book your visit →</span>}</div>)}
+    {!bookingLink && <div className="bubble agent typing" aria-hidden="true"><i /><i /><i /></div>}
   </div>;
 }
 
@@ -40,7 +40,7 @@ export function ProblemSection() {
 const modules = [
   { key: "Get found", title: "People searching for a clinic like yours find you.", icon: Search, points: ["Show up when locals search for care", "A clear page that makes booking easy", "Offers that give people a reason to visit", "More new patients getting in touch"], flow: ["Emma searches “dentist near me”", "She finds Riverside Dental", "She asks about a check-up"] },
   { key: "Follow up", title: "Every enquiry gets a reply and a booking.", icon: CalendarCheck, points: ["A reply within moments, day or night", "Friendly follow-up if they go quiet", "The right questions before booking", "A reminder before the visit"], flow: ["Emma asks about a check-up", "She gets a reply in minutes", "Consultation, Thursday 3:30 PM"] },
-  { key: "Missed calls", title: "A missed call doesn't mean a missed patient.", icon: PhoneCall, points: ["Know when a call is missed", "The caller gets a text back", "The conversation carries on", "The appointment gets booked"], flow: ["James calls at lunchtime", "He gets a text back", "Booked for Monday 9:00 AM"] },
+  { key: "Missed calls", title: "A missed call doesn't mean a missed patient.", icon: PhoneCall, points: ["Know when a call is missed", "An automatic text within a minute", "A link to a short booking form", "The patient picks a time and books"], flow: ["James calls at lunchtime", "He gets a text with a booking link", "He books Monday 9:00 AM"] },
   { key: "Reviews", title: "Turn good visits into reviews.", icon: Star, points: ["Ask patients how their visit went", "Invite happy patients to leave a review", "More reviews where new patients look"], flow: ["Sarah finishes her visit", "She's asked how it went", "She leaves a 5-star review"] },
   { key: "Past patients", title: "Your past patients already trust you. Invite them back.", icon: RefreshCw, points: ["Reach patients you haven't seen in a while", "Send a friendly, relevant message", "They reply and book"], flow: ["Last visit 14 months ago", "A friendly check-up reminder", "Booked for next Tuesday"] },
 ];
@@ -67,12 +67,12 @@ export function SystemModules() {
 export function MissedCallSection() {
   return <section id="missed" className="sx sx-dark" aria-labelledby="missed-title">
     <div className="sx-shell sx-split">
-      <div className="sx-head"><span className="sx-kicker"><i />Missed calls</span><h2 id="missed-title">They called.<br />You missed it.<br /><em>They still get a reply.</em></h2><p>Calls during busy moments are covered by an assistant that replies when your team can't. The caller gets a text and an easy way to book.</p>
-        <ol className="mc-steps">{["James calls", "Nobody can answer", "He gets a text back", "He replies", "Appointment booked"].map((s, i) => <li key={s} className={i === 4 ? "booked" : ""}><span>{i + 1}</span>{s}</li>)}</ol></div>
-      <div className="sx-phone" aria-label="Missed call text conversation example">
+      <div className="sx-head"><span className="sx-kicker"><i />Missed calls</span><h2 id="missed-title">They called.<br />You missed it.<br /><em>They still get a reply.</em></h2><p>When nobody can answer, the caller gets a text within a minute with a link to a short booking form.</p>
+        <ol className="mc-steps">{["James calls", "Nobody can answer", "He gets a text with a booking link", "He fills in name, reason and preferred time", "He books the appointment"].map((s, i) => <li key={s} className={i === 4 ? "booked" : ""}><span>{i + 1}</span>{s}</li>)}</ol></div>
+      <div className="sx-phone" aria-label="Missed call text with booking link example">
         <div className="phone-top"><PhoneCall size={16} /> Riverside Dental</div>
         <div className="mc-call"><PhoneMissed size={18} /><div><small>Missed call, 12:40 PM</small><b>James Carter</b></div></div>
-        <Chat items={[["agent", "Hi James, sorry we missed your call at Riverside Dental. How can we help?"], ["patient", "I'd like to book a check-up."], ["agent", "Of course. Would Monday at 9:00 AM suit you?"]]} />
+        <Chat bookingLink items={[["agent", "Hi James, sorry we missed your call at Riverside Dental. You can book a time that suits you here:"], ["patient", "Done, booked for Monday 9am. Thanks!"]]} />
         <div className="booked-pill"><CalendarCheck size={18} /><span>Check-up, Monday 9:00 AM</span><Check size={16} /></div>
       </div>
     </div>
@@ -118,7 +118,7 @@ export function CommandCenterSection() {
 
 const threads = [
   { channel: "Website", icon: Globe, name: "Emma Wilson", preview: "Hi, do you have anything this week for a consultation?", messages: [["patient", "Hi, do you have anything this week for a consultation?"], ["agent", "Yes, we do. Would Thursday at 3:30 PM work for you?"], ["patient", "Thursday is perfect, thank you."]] },
-  { channel: "Missed calls", icon: PhoneMissed, name: "James Carter", preview: "Thanks for texting back, I was calling to book.", messages: [["agent", "Hi James, sorry we missed your call. How can we help?"], ["patient", "Thanks for texting back, I was calling to book."], ["agent", "Of course. Would Monday at 9:00 AM suit you?"]] },
+  { channel: "Missed calls", icon: PhoneMissed, name: "James Carter", preview: "Done, booked for Monday 9am. Thanks!", messages: [["agent", "Hi James, sorry we missed your call at Riverside Dental. You can book a time that suits you here:"], ["patient", "Done, booked for Monday 9am. Thanks!"]] },
   { channel: "Past patients", icon: RefreshCw, name: "Maria Lopez", preview: "Thanks for the reminder, I'd like to come back in.", messages: [["agent", "Hi Maria, it's been a while. You're due a check-up. Would you like to book?"], ["patient", "Thanks for the reminder, I'd like to come back in."]] },
 ] as const;
 
@@ -136,8 +136,8 @@ export function UniBoxSection() {
       <div className="ub">
         <ul className="ub-list" aria-label="Messages">{list.map(t => { const I = t.icon; return <li key={t.name}><Button variant="unstyled" size="unstyled" aria-pressed={openIdx === t.i} className="ub-row" onClick={() => setOpenIdx(t.i)}><span className="ub-ic"><I size={18} /></span><span className="ub-text"><b>{t.name}</b><span className="ub-prev" title={t.preview}>{t.preview}</span></span><small className="ub-meta">{t.channel}</small></Button></li>; })}</ul>
         <div className="ub-convo" aria-live="polite"><div className="ui-bar"><span>{open.name} · {open.channel}</span></div>
-          <Chat key={open.name} className="ub-msgs" items={open.messages as unknown as (readonly [string, string])[]} />
-          <div className="ub-next"><CalendarCheck size={18} /> Next step: confirm the appointment</div></div>
+          <Chat key={open.name} className="ub-msgs" bookingLink={open.channel === "Missed calls"} items={open.messages as unknown as (readonly [string, string])[]} />
+          <div className="ub-next"><CalendarCheck size={18} /> {open.channel === "Missed calls" ? "Booked: Monday 9:00 AM. Confirmation sent." : "Next step: confirm the appointment"}</div></div>
       </div>
     </div>
   </section>;
