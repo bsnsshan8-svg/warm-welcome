@@ -35,10 +35,9 @@ export function FounderSection() {
     <div className="sx-shell">
       <div className="sx-head"><span className="sx-kicker">Who's behind ZAAD</span><h2 id="fo-title">Built for practices, <em>not for everyone.</em></h2></div>
       <div className="pr-card fo-card">
-        <span className="fo-photo" aria-hidden="true"><User size={40} /></span>
         <div>
-          <p>[2 to 3 sentences in your own words: who started ZAAD, what you saw going wrong in practices, and why you built a system around follow-up instead of just adverts.]</p>
-          <p className="fo-name"><b>[FOUNDER NAME]</b>, [ROLE]</p>
+          <p>ZAAD was founded by Azan Tariq and Farhan Ali to help medical practices turn more enquiries into booked patients. We kept seeing the same thing: practices paying to attract patients, then losing them to slow replies, missed calls and no follow-up. So we built ZAAD around everything that happens after someone gets in touch.</p>
+          <div className="fo-people">{["Azan Tariq", "Farhan Ali"].map(n => <div key={n} className="fo-person"><span className="fo-photo" aria-hidden="true"><User size={36} /></span><p className="fo-name"><b>{n}</b>, Co-founder</p></div>)}</div>
           <p className="fo-contact">Based in Kalispell, Montana. Call <a href="tel:+14089423358">+1 408 942 3358</a> or email <a href="mailto:Info@zeroapplesaday.com">Info@zeroapplesaday.com</a>.</p>
         </div>
       </div>
@@ -47,11 +46,11 @@ export function FounderSection() {
 }
 
 const faqs = [
-  ["How long until we see new bookings?", "[YOUR HONEST TIMEFRAME, e.g. most practices see the first new enquiries within the first few weeks after launch.]"],
-  ["Is there a long contract?", "[YOUR CONTRACT TERMS.]"],
+  ["How long until we see new bookings?", "Setup and launch take about 7 working days after you complete our onboarding form. From then on, new enquiries start getting replies, follow-ups and booking links straight away. How many new patients you see depends on your location, treatments and offer, and we'll set realistic targets with you on the strategy call."],
+  ["Is there a long contract?", "The core systems plan is month to month, and you can cancel anytime. The done-for-you Accelerator and Power plans start with a 4-month programme, because advertising needs time to learn and improve, and then continue month to month."],
   ["What do we need to do?", "Tell us your treatments, prices and availability, and connect your calendar. We handle the rest. Your team only steps in for questions that need a person."],
   ["Who replies to patients?", "Patients get quick replies by text and email. Anything that needs a human goes straight to your team in one inbox."],
-  ["How is patient information handled?", "[YOUR DATA AND PRIVACY APPROACH.]"],
+  ["How is patient information handled?", "Only your practice and our team can see your patient conversations, and we only use them to reply to, follow up with and book your patients. On the strategy call we'll walk you through exactly where your data is stored and who can access it."],
   ["What does the guarantee cover?", "If we don't deliver on the targets we agree with you in the first 30 days, you get your money back."],
 ];
 

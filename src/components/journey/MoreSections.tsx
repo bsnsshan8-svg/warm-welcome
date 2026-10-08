@@ -147,16 +147,16 @@ export function BookPrompt({ text }: { text: string }) {
 
 export function Pricing() {
   const plans = [
-    { n: "The core systems", p: "$297", s: "/month", d: "Fast replies, follow-up, missed-call text-back, review invitations and past-patient messages, with monthly upkeep and support.", dark: false },
-    { n: "Done for you: Accelerator", p: "$1,497", s: "/month + ad spend", d: "We run your adverts, booking page, replies, follow-up and scheduling for you. Recommended ad spend $30 to $50 a day.", dark: true },
-    { n: "Done for you: Power", p: "$2,200", s: "/month + ad spend", d: "Everything in Accelerator on both Facebook and Google, for practices ready for more patients. Recommended ad spend up to $100 a day.", dark: false },
+    { n: "The core systems", p: "$297", s: "/month", d: "Fast replies, follow-up, missed-call text-back, review invitations and past-patient messages, with monthly upkeep and support.", t: "Month to month. Cancel anytime.", dark: false },
+    { n: "Done for you: Accelerator", p: "$1,497", s: "/month + ad spend", d: "We run your adverts, booking page, replies, follow-up and scheduling for you. Recommended ad spend $30 to $50 a day.", t: "4-month programme, then month to month.", dark: true },
+    { n: "Done for you: Power", p: "$2,200", s: "/month + ad spend", d: "Everything in Accelerator on both Facebook and Google, for practices ready for more patients. Recommended ad spend up to $100 a day.", t: "4-month programme, then month to month.", dark: false },
   ];
   return <>
   <section id="pricing" className="sx sx-light" aria-labelledby="pr-title">
     <div className="sx-shell">
       <div className="sx-head"><span className="sx-kicker">Pricing</span><h2 id="pr-title">Simple. <em>No surprises.</em></h2></div>
-      <div className="pr-grid">{plans.map(pl => <div key={pl.n} className={`pr-card ${pl.dark ? "pr-dark" : ""}`}>{pl.dark && <span className="pr-tag">Most chosen</span>}<h3>{pl.n}</h3><p className="pr-price"><b>{pl.p}</b><span>{pl.s}</span></p><p>{pl.d}</p><Button asChild variant="unstyled" size="unstyled" className="journey-primary pr-cta"><Link to="/book">Get started <ArrowUpRight size={18} /></Link></Button></div>)}</div>
-      <div className="pr-card pr-setup"><h3>One-time setup: $997.</h3><p>Onboarding, your treatments and prices, booking page, tracking, scheduling and launch.</p></div>
+      <div className="pr-grid">{plans.map(pl => <div key={pl.n} className={`pr-card ${pl.dark ? "pr-dark" : ""}`}>{pl.dark && <span className="pr-tag">Most chosen</span>}<h3>{pl.n}</h3><p className="pr-price"><b>{pl.p}</b><span>{pl.s}</span></p><p>{pl.d}</p><p className="pr-term">{pl.t}</p><Button asChild variant="unstyled" size="unstyled" className="journey-primary pr-cta"><Link to="/book">Get started <ArrowUpRight size={18} /></Link></Button></div>)}</div>
+      <div className="pr-card pr-setup"><h3>One-time setup: $997.</h3><p>Onboarding, your treatments and prices, booking page, tracking, scheduling and launch.</p><p className="pr-term">Live within 7 working days of onboarding.</p></div>
     </div>
   </section>
   <section className="guarantee-band" aria-labelledby="gb-title">
