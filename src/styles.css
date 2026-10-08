@@ -1083,3 +1083,4 @@ body:has(.journey-page){background:var(--navy);}
 @media (max-width:1023px){.zx-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.zx-fbrand{grid-column:1/-1;}}
 @media (max-width:899px){.zx-approach-grid,.zx-af-top,.zx-af-bottom,.zx-fo{grid-template-columns:1fr!important;}.zx-approach-items{grid-template-columns:1fr;}}
 @media (max-width:599px){.zx-footer-grid{grid-template-columns:1fr;}.zx-final{border-radius:0 0 50% 50% / 0 0 32px 32px;}.zx-footer{margin-top:-32px;padding-top:80px;}}
+.zx-stat b{color:#fff!important;}
