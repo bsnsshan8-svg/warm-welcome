@@ -40,7 +40,7 @@ export function MomentsSection() {
       if (disposed) return;
       gsap.registerPlugin(ScrollTrigger);
       const mm = gsap.matchMedia();
-      mm.add({ desktop: "(min-width: 1024px)", reduce: "(prefers-reduced-motion: reduce)" }, context => {
+      mm.add({ desktop: "(min-width: 1024px)", mobile: "(max-width: 1023px)", reduce: "(prefers-reduced-motion: reduce)" }, context => {
         const desktop = context.conditions?.['desktop'], reduce = context.conditions?.['reduce'];
         wrapper.style.setProperty("--moments-header", `${headerHeight()}px`);
         panels.forEach(panel => { panel.style.setProperty("--p", "1"); panel.style.setProperty("--scene-drift", "0"); });
@@ -50,7 +50,7 @@ export function MomentsSection() {
           const progress = wrapper.querySelector(".moments-progress i");
           const travel = gsap.fromTo(track, { x: 0 }, {
             x: () => -distance(), ease: "none",
-            onUpdate: () => { select(travel.progress() * (panels.length - 1)); if (progress) gsap.set(progress, { scaleX: travel.progress() }); },
+            onUpdate: function () { const value = this.progress(); select(value * (panels.length - 1)); if (progress) gsap.set(progress, { scaleX: value }); },
             scrollTrigger: { id: "patient-moments", trigger: wrapper, pin, pinSpacing: true, start: () => `top top+=${headerHeight()}`, end: () => `+=${distance() * 1.1}`, scrub: 1, anticipatePin: 1, invalidateOnRefresh: true },
           });
           panels.forEach(panel => {
