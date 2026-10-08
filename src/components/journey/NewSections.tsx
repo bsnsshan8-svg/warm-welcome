@@ -1,4 +1,7 @@
-import { Check, ChevronDown } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { ArrowUpRight, CalendarX, Check, ChevronDown, Clock, PhoneMissed, Star, UserX } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import clinic from "@/assets/practice-clinic.jpg";
 
 export function GoodEnquiry() {
   const items = [
@@ -16,13 +19,26 @@ export function GoodEnquiry() {
 }
 
 export function AdvertsFirst() {
+  const gaps = [[Clock, "Replies take a day or more"], [PhoneMissed, "Missed calls go unanswered"], [Star, "Very few recent reviews"], [CalendarX, "No reminders, so patients don't turn up"], [UserX, "Past patients never hear from them"]] as const;
+  const fixes = ["Fix how fast enquiries get a reply", "Set up missed-call text-back", "Add reminders before every visit", "Start collecting reviews", "Contact past patients"];
   return <section className="sx sx-light" aria-labelledby="af-title">
     <div className="sx-shell">
       <div className="sx-head"><span className="sx-kicker">Why we don't start with adverts</span><h2 id="af-title">More adverts won't help if <em>the basics leak.</em></h2></div>
-      <div className="af-grid">
-        <div className="pr-card"><span className="ge-n">A typical starting point</span><p>A practice wants more adverts. But replies take a day, missed calls go unanswered, reviews are thin and nobody follows up with past patients. More adverts would just send more people into the same gaps.</p></div>
-        <div className="pr-card pr-dark"><h3>What we do first</h3>
-          <ul className="af-ticks">{["Fix how quickly enquiries get a reply", "Set up missed-call text-back and reminders", "Start collecting reviews", "Contact past patients who haven't been back"].map(t => <li key={t}><Check size={18} aria-hidden="true" />{t}</li>)}</ul>
+      <div className="zx-af-top">
+        <div className="zx-af-card">
+          <h3 className="zx-h3">What this looks like in <em>practice</em></h3>
+          <p>A practice wants more adverts. But when we look at their setup, we find:</p>
+          <ul className="zx-af-rows">{gaps.map(([Icon, t]) => <li key={t}><Icon size={22} strokeWidth={1.6} aria-hidden="true" />{t}</li>)}</ul>
+          <p>More adverts at this stage would only burn budget and send more people into the same gaps.</p>
+        </div>
+        <img src={clinic} alt="Illustration of a small clinic building" loading="lazy" width={1024} height={1024} className="zx-af-img" />
+      </div>
+      <div className="zx-af-bottom">
+        <ul className="zx-pills">{fixes.map(f => <li key={f}><Check size={16} aria-hidden="true" />{f}</li>)}</ul>
+        <div className="zx-af-instead">
+          <h3 className="zx-h3">What we do instead</h3>
+          <span className="zx-mini-pill">Right fixes, in the right order → more booked patients</span>
+          <Button asChild variant="unstyled" size="unstyled" className="journey-primary"><Link to="/book">Book a strategy call <ArrowUpRight size={18} aria-hidden="true" /></Link></Button>
         </div>
       </div>
       <p className="af-close">Then we add adverts, once every new enquiry has a clear path to a booking.</p>
@@ -34,12 +50,13 @@ export function FounderSection() {
   return <section className="sx sx-light sx-mist" aria-labelledby="fo-title">
     <div className="sx-shell">
       <div className="sx-head"><span className="sx-kicker">Who's behind ZAAD</span><h2 id="fo-title">Built for practices, <em>not for everyone.</em></h2></div>
-      <div className="pr-card fo-card">
+      <div className="pr-card fo-card zx-fo">
         <div>
           <p>ZAAD was founded by Azan Tariq and Farhan Ali to help medical practices turn more enquiries into booked patients. We kept seeing the same thing: practices paying to attract patients, then losing them to slow replies, missed calls and no follow-up. So we built ZAAD around everything that happens after someone gets in touch.</p>
           <div className="fo-people">{[["Azan Tariq", "AT"], ["Farhan Ali", "FA"]].map(([n, ini]) => <div key={n} className="fo-person"><span className="fo-photo" aria-hidden="true">{ini}</span><p className="fo-name"><b>{n}</b>, Co-founder</p></div>)}</div>
           <p className="fo-contact">Based in Kalispell, Montana. Call <a href="tel:+14089423358">+1 408 942 3358</a> or email <a href="mailto:Info@zeroapplesaday.com">Info@zeroapplesaday.com</a>.</p>
         </div>
+        <div className="zx-stats">{[["7 days", "From onboarding to live"], ["7 specialties", "From chiropractors to surgeons"], ["30-day guarantee", "Money back if agreed targets aren't met"], ["2 co-founders", "The people you'll actually talk to"]].map(([n, l]) => <div key={n} className="zx-stat"><b>{n}</b><span>{l}</span></div>)}</div>
       </div>
     </div>
   </section>;
