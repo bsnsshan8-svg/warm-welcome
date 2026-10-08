@@ -8,6 +8,7 @@ import { ApproachSection, FinalCta, SiteFooter } from "@/components/journey/Fina
 import { MomentsSection } from "@/components/journey/MomentsSection";
 import { SiteHeader } from "@/components/journey/SiteHeader";
 import { HomeMotion } from "@/components/journey/HomeMotion";
+import { ClinicWeek } from "@/components/journey/ClinicWeek";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -34,7 +35,7 @@ function Index() {
     <HomeMotion />
     <SiteHeader />
     <CentredHero /><SpecialtyPicker /><ProblemGrid /><GoodEnquiry />
-    <MomentsSection /><ApproachSection /><StepExplorer /><AdvertsFirst />
+    <MomentsSection /><ClinicWeek /><ApproachSection /><StepExplorer /><AdvertsFirst />
     <section className="sx sx-light book-prompt-band"><div className="sx-shell"><BookPrompt text="Want to see what this looks like for your practice?" /></div></section>
     <UniBoxSection /><GrowthEstimator /><FounderSection /><Pricing /><FitCheck /><Faq /><FinalCta /><SiteFooter />
   </main>;

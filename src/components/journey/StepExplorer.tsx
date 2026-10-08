@@ -9,7 +9,7 @@ const mocks = [
   ["Emma searches 'dentist near me'", "Found your clinic"],
   ["New message from Emma Wilson", "Replied in 2 minutes"],
   ["Follow-up sent to Emma", "Thursday 3:30 PM booked"],
-  ["Missed call from James Carter", "Text sent, he replied"],
+  ["Missed call from James Carter", "Booking link sent. He booked Monday 9:00 AM."],
   ["Reminder sent to Emma", "Confirmed for Thursday 3:30 PM"],
   ["Review invitation sent to Sarah", "5-star review received"],
   ["Check-up reminder sent to Maria Lopez", "She booked a visit"],
