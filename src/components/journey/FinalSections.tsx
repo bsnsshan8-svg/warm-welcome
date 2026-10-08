@@ -65,7 +65,7 @@ export function SiteFooter() {
         </ul>
       </div>
       <nav className="zx-fcol" aria-label="Quick links"><h3>Quick links</h3>
-        <a href="#modules">How it works</a><a href="#unibox">UniBox</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><Link to="/book">Book a call</Link>
+        <a href="#modules">How it works</a><a href="#after-hours">After hours</a><a href="#unibox">UniBox</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><Link to="/book">Book a call</Link>
       </nav>
       <nav className="zx-fcol" aria-label="Who we help"><h3>Who we help</h3>
         {specialties.map(s => <a key={s} href="#who">{s}</a>)}
