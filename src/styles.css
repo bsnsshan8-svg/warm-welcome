@@ -954,7 +954,7 @@ body:has(.journey-page){background:var(--navy);}
 .vx-pin{position:sticky;top:77px;height:calc(100vh - 77px);display:flex;align-items:center;}
 .vx-pin-grid{display:grid;grid-template-columns:40% minmax(0,1fr);gap:48px;align-items:center;width:min(1180px,calc(100% - 48px));}
 .vx-pin-left .px-head h2{font-size:clamp(2rem,3.4vw,3.25rem);line-height:1.02;margin:14px 0 10px;}
-.vx-pin-left .px-head p{display:block;font-size:17px;margin:0;}
+.vx .vx-pin-left .px-head p{display:block;font-size:17px;margin:0;}
 .vx-nav{position:relative;margin-top:24px;padding-left:4px;}
 .vx-nav-track{position:absolute;left:13px;top:18px;bottom:18px;width:3px;background:var(--line);border-radius:3px;overflow:clip;}
 .vx-nav-track i{position:absolute;inset:0;background:var(--blue);transform-origin:top;}
