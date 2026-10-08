@@ -885,11 +885,14 @@ body:has(.journey-page){background:var(--navy);}
 
 /* ===== Vertical step explorer ===== */
 .vx{padding:120px 0;}
-.vx-cols{display:grid;grid-template-columns:46% 4px minmax(0,1fr);gap:32px;align-items:start;}
-.vx-left{position:sticky;top:calc(72px + 24px);}
-.vx-track{position:relative;width:4px;background:var(--line);border-radius:4px;align-self:stretch;overflow:hidden;}
+.vx-cols{display:grid;grid-template-columns:minmax(0,44%) minmax(0,1fr);gap:48px;align-items:start;}
+.vx-left{min-width:0;}
+.vx-left-sticky{position:sticky;top:calc(77px + 32px);}
+.vx-left .px-head h2{font-size:clamp(2.75rem,5vw,4.5rem);line-height:1.02;margin:14px 0 12px;}
+.vx-left .px-head p{font-size:20px;margin:0;}
+.vx-right{min-width:0;position:relative;padding-left:36px;}
+.vx-track{position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--line);border-radius:4px;overflow:hidden;}
 .vx-track i{position:absolute;inset:0;background:var(--blue);transform-origin:top;}
-.vx-right{min-width:0;}
 .vx-list{list-style:none;margin:0;padding:0;display:grid;gap:28px;}
 .vx-card{background:var(--navy);color:#fff;border:1px solid transparent;border-radius:20px;padding:36px;transition:border-color .15s,box-shadow .15s;}
 .vx-card[data-active=true]{border-color:var(--blue);box-shadow:var(--hard-sm);}
@@ -900,7 +903,7 @@ body:has(.journey-page){background:var(--navy);}
 .vx-card ul li{display:flex;gap:10px;align-items:center;font-size:17px;}
 .vx-card ul svg{color:var(--blue);flex-shrink:0;}
 .vx-card .px-step{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--blue-fill);color:#fff;}
-@media(max-width:1023px){.vx-cols{grid-template-columns:4px minmax(0,1fr);gap:20px;}.vx-left{position:static;grid-column:1/-1;}.vx-track{grid-column:1;grid-row:2;}.vx-right{grid-column:2;grid-row:2;}}
+@media(max-width:1023px){.vx-cols{grid-template-columns:minmax(0,1fr);gap:32px;}.vx-left-sticky{position:static;}}
 
 /* ===== Estimator ===== */
 .es-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;margin-top:40px;}
