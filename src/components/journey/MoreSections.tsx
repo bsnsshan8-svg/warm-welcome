@@ -16,6 +16,7 @@ export function CentredHero() {
         <Button asChild variant="unstyled" size="unstyled" className="journey-primary"><Link to="/book">Book a strategy call <ArrowUpRight size={18} /></Link></Button>
         <Button asChild variant="unstyled" size="unstyled" className="journey-text-link"><a href="#system">See how it works <ArrowDown size={18} /></a></Button>
       </div>
+      <ul className="ch-facts">{["Replies within minutes, day or night", "Reminders that cut no-shows", "30-day money-back guarantee"].map(f => <li key={f}><Check size={16} aria-hidden="true" />{f}</li>)}</ul>
     </div>
     <div className="ch-card" data-zaad={zaad}>
       <div className="ch-half ch-apple"><Apple size={36} aria-hidden="true" /><b>An apple a day</b><span>keeps patients away</span></div>
