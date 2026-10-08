@@ -51,7 +51,9 @@ export function MomentsSection() {
           const travel = gsap.fromTo(track, { x: 0 }, {
             x: () => -distance(), ease: "none",
             onUpdate: function (this: { progress: () => number }) { const value = this.progress(); select(value * (panels.length - 1)); if (progress) gsap.set(progress, { scaleX: value }); },
-            scrollTrigger: { id: "patient-moments", trigger: wrapper, pin, pinSpacing: true, start: () => `top top+=${headerHeight()}`, end: () => `+=${distance() * 1.1}`, scrub: 1, anticipatePin: 1, invalidateOnRefresh: true },
+            scrollTrigger: { id: "patient-moments", trigger: wrapper, pin, pinSpacing: true, start: () => `top top+=${headerHeight()}`, end: () => `+=${distance() * 1.1}`, scrub: 1, anticipatePin: 1, invalidateOnRefresh: true,
+              snap: { snapTo: 1 / (panels.length - 1), duration: { min: 0.25, max: 0.6 }, delay: 0.08, ease: "power2.inOut" },
+            },
           });
           panels.forEach(panel => {
             const content = panel.querySelectorAll(".chapter-eyebrow, h2, .moment-copy > p, .chapter-points, .chapter-stars");
