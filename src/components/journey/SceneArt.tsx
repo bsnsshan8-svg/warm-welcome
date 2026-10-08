@@ -89,7 +89,7 @@ function FollowUp() {
 
 function Missed() {
   return <Frame label="A missed call sends a text with a booking link; James fills in a short form and books Monday 9:00 AM">
-    <g className="ring"><rect x="30" y="18" width="160" height="34" rx="16" className="f-alert" /><text x="110" y="41" fontSize="18" textAnchor="middle" className="t-light t-bold">Missed call</text></g>
+    <g className="ring"><rect x="30" y="18" width="160" height="34" rx="16" className="f-alert" /><text x="110" y="41" fontSize="18" textAnchor="middle" className="t-dark t-bold">Missed call</text></g>
     <path d="M110 56 v14 m-5 -5 l5 5 l5 -5" className="s-blue" fill="none" strokeWidth="2" />
     <g className="in" style={v({ "--s": .18 })}>
       <rect x="18" y="76" width="364" height="130" rx="16" className="f-blue" />

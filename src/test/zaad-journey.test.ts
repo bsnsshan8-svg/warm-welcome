@@ -2,6 +2,12 @@ import { describe, expect, it } from "vitest";
 import { chapters, sceneProgress } from "@/lib/zaad-journey";
 
 describe("ZAAD scroll journey", () => {
+  it("describes missed calls as patient booking through a text link", () => {
+    const missed = chapters.find(chapter => chapter.id === "recover");
+    expect(missed?.text).toContain("a text with a link to book");
+    expect(missed?.points).toContain("The text links to a short booking form");
+    expect(missed?.points).toContain("They pick a time and they're booked");
+  });
   it("keeps all eight chapters and the system/contact anchors", () => {
     expect(chapters).toHaveLength(8);
     expect(chapters[1]?.id).toBe("system");

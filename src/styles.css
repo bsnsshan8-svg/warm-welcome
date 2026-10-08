@@ -1206,7 +1206,8 @@ body:has(.journey-page){background:var(--navy);}
 .cw-open-band>span{display:block;padding:8px 3px;text-align:center;font-size:12px;font-weight:700;color:var(--ink);}
 .cw-closed-label{position:absolute;top:38%;left:0;right:0;text-align:center;font-size:12px;color:var(--on-navy);}
 .cw-event{position:absolute;left:5px;right:5px;top:76%;border:1px solid var(--journey-edge);background:var(--navy);padding:10px 8px;border-radius:8px;min-height:154px;color:var(--on-navy);}
-.cw-event-0,.cw-event-1,.cw-event-2{top:calc(100% - 164px);}.cw-event-3{top:64%;}.cw-event-4{top:43.75%;}
+.cw-timeline .cw-event{transform:translateY(-100%);}
+.cw-event-0{top:81.944%;}.cw-event-1{top:96.875%;}.cw-event-2{top:87.847%;}.cw-event-3{top:68.056%;}.cw-event-4{top:43.75%;}
 .cw-event-heading{display:flex;flex-direction:column;gap:6px;margin-bottom:10px;}.cw-event-heading b{font-size:13px;color:var(--journey-light);}.cw-event-heading>span{font-size:12px;color:var(--on-navy);}
 .cw-wait,.cw-sent,.cw-booked{display:flex;align-items:flex-start;gap:6px;font-size:12px;line-height:1.5;}
 .cw-wait svg,.cw-sent svg,.cw-booked svg{flex-shrink:0;margin-top:2px;}.cw-wait svg{color:var(--on-navy);}.cw-sent svg{color:var(--blue);}
@@ -1226,6 +1227,6 @@ body:has(.journey-page){background:var(--navy);}
 @keyframes cwSent{0%,60%{opacity:1;transform:translateY(0)}80%,100%{opacity:0;transform:translateY(-8px)}}
 @keyframes cwBooked{0%,60%{opacity:0;transform:translateY(12px) rotateX(25deg)}80%,100%{opacity:1;transform:translateY(0) rotateX(0)}}
 @keyframes cwDrop{from{opacity:0;transform:translateY(-50px)}to{opacity:1;transform:translateY(0)}}
-@media(min-width:768px) and (max-width:1023px){.cw-track{height:660px;}.cw-event{left:3px;right:3px;padding:8px 5px;min-height:190px;}.cw-event-1{top:70%;}.cw-event-2{top:72%;}.cw-booked{left:5px;right:5px;}}
+@media(min-width:768px) and (max-width:1023px){.cw-track{height:660px;}.cw-event{left:3px;right:3px;padding:8px 5px;min-height:190px;}.cw-booked{left:5px;right:5px;}}
 @media(max-width:767px){.cw-timeline{display:none;}.cw-mobile-list{display:grid;gap:14px;}.cw-event{position:relative;inset:auto;min-height:164px;padding:18px;}.cw-event-heading{gap:8px;}.cw-event-heading b{font-size:16px;}.cw-event-heading>span{font-size:14px;}.cw-wait,.cw-sent,.cw-booked{font-size:14px;}.cw-booked{top:83px;left:18px;right:18px;}.cw-booked>span{flex-direction:row;flex-wrap:wrap;align-items:center;}.cw-booked>span>span,.cw-booked b{font-size:14px;}.cw-controls{align-items:flex-start;}.cw-toggle{width:100%;}.cw-toggle button{flex:1;padding:12px 10px;}.cw-elsewhere{font-size:14px;}.journey-page .cw-takeaway{min-height:0;font-size:17px;}}
 @media(prefers-reduced-motion:reduce){.clinic-week .cw-event::before,.cw-sent,.cw-booked,.cw-booking-dot{animation:none!important;transform:none!important;}.clinic-week[data-with-zaad=false] .cw-event::before{opacity:.4;}.cw-sent{opacity:0;}.cw-booked,.cw-booking-dot{opacity:1;}}
