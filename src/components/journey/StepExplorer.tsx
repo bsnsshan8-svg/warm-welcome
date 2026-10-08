@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Check } from "lucide-react";
 import { steps } from "./Extras";
+import { scrollHomeTo } from "@/lib/home-motion";
 
 const num = (i: number) => String(i + 1).padStart(2, "0");
 
@@ -65,9 +66,7 @@ export function StepExplorer() {
     const l = listRef.current;
     const el = l?.children[i] as HTMLElement | undefined;
     if (!el) return;
-    const top = el.getBoundingClientRect().top + window.scrollY - window.innerHeight / 2 + el.offsetHeight / 2;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    window.scrollTo({ top, behavior: reduce ? "auto" : "smooth" });
+    scrollHomeTo(el);
   };
 
   return (
