@@ -1,4 +1,4 @@
-import { Check, ChevronDown, User } from "lucide-react";
+import { Check, ChevronDown } from "lucide-react";
 
 export function GoodEnquiry() {
   const items = [
@@ -37,7 +37,7 @@ export function FounderSection() {
       <div className="pr-card fo-card">
         <div>
           <p>ZAAD was founded by Azan Tariq and Farhan Ali to help medical practices turn more enquiries into booked patients. We kept seeing the same thing: practices paying to attract patients, then losing them to slow replies, missed calls and no follow-up. So we built ZAAD around everything that happens after someone gets in touch.</p>
-          <div className="fo-people">{["Azan Tariq", "Farhan Ali"].map(n => <div key={n} className="fo-person"><span className="fo-photo" aria-hidden="true"><User size={36} /></span><p className="fo-name"><b>{n}</b>, Co-founder</p></div>)}</div>
+          <div className="fo-people">{[["Azan Tariq", "AT"], ["Farhan Ali", "FA"]].map(([n, ini]) => <div key={n} className="fo-person"><span className="fo-photo" aria-hidden="true">{ini}</span><p className="fo-name"><b>{n}</b>, Co-founder</p></div>)}</div>
           <p className="fo-contact">Based in Kalispell, Montana. Call <a href="tel:+14089423358">+1 408 942 3358</a> or email <a href="mailto:Info@zeroapplesaday.com">Info@zeroapplesaday.com</a>.</p>
         </div>
       </div>

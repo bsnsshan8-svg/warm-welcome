@@ -1009,7 +1009,7 @@ body:has(.journey-page){background:var(--navy);}
 .af-ticks li{display:flex;gap:10px;color:#fff;font-size:17px;}.af-ticks svg{color:var(--yellow);flex-shrink:0;margin-top:3px;}
 .af-close{margin-top:28px;font-size:20px;font-weight:700;color:var(--ink);text-align:center;}
 .fo-card{flex-direction:row!important;gap:28px;align-items:flex-start;margin-top:40px;}
-.fo-photo{flex-shrink:0;width:96px;height:96px;border-radius:50%;background:var(--line);display:grid;place-items:center;color:#475569;}
+.fo-photo{flex-shrink:0;width:96px;height:96px;border-radius:50%;background:var(--line);display:grid;place-items:center;color:#475569;font-weight:700;font-size:20px;}
 .fo-name{color:var(--ink)!important;}.fo-contact a{color:var(--ink);font-weight:700;text-decoration:underline;}
 .faq-list{margin-top:40px;display:grid;gap:12px;max-width:860px;}
 .faq-item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:0 24px;}
