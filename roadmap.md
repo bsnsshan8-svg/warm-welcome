@@ -1,6 +1,6 @@
 # Cinematic ZAAD patient journey
-- [ ] Combine three moments with desktop horizontal pinning, mobile swipe and reduced-motion stacking; preserve panel anchors.
-- [ ] Add hero staggered entrance and accessible full-screen mobile menu; verify requested viewports and navigation.
+- [x] Combine three moments with desktop horizontal pinning, mobile swipe and reduced-motion stacking; preserve panel anchors.
+- [x] Add hero staggered entrance and accessible full-screen mobile menu; verify requested viewports and navigation.
 - [x] Restore hero-only scroll-driven zoom, rotating segments and independent foreground travel; verified reverse scrolling, 12px SVG text, no overflow at 360/375/414/768/1440px, reduced motion, hero link and passing tests/build.
 - [x] Restore floating scroll hero using the selected dynamic journey core; enrich scene artwork with colourful segments without changing other sections.
 - [x] Verify scroll motion, reduced motion, #system link, rendered SVG text minimum and containment at 360/375/414/768/1440px; journey/navigation tests and build pass.
