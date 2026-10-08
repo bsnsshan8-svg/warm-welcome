@@ -59,7 +59,7 @@ function Index() {
       if(!first) return;
       const {index,local,travel}=chapterProgress(window.scrollY,sections.map(s=>s.offsetTop),first.offsetHeight);
       progress.current=travel;
-      setActive(index+1);
+      setActive(index+3);
       const vh=window.innerHeight;
        sections.forEach((section)=>{
          const r=section.getBoundingClientRect();
