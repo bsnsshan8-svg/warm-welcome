@@ -903,7 +903,7 @@ body:has(.journey-page){background:var(--navy);}
 .vx-card ul li{display:flex;gap:10px;align-items:center;font-size:17px;}
 .vx-card ul svg{color:var(--blue);flex-shrink:0;}
 .vx-card .px-step{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--blue-fill);color:#fff;}
-@media(max-width:1023px){.vx-cols{grid-template-columns:minmax(0,1fr);gap:32px;}.vx-left-sticky{position:static;}}
+@media(max-width:899px){.vx-cols{grid-template-columns:minmax(0,1fr);gap:32px;}.vx-left-sticky{position:static;}}
 
 /* ===== Estimator ===== */
 .es-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;margin-top:40px;}
