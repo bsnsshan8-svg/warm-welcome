@@ -964,10 +964,3 @@ body:has(.journey-page){background:var(--navy);}
 .vx-strip-name{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#B9C4DB;}
 .vx-strip-ev{color:#fff;flex:1;min-width:0;}
 .vx-strip b{display:inline-flex;align-items:center;gap:6px;color:#6EE7A8;font-size:14px;}
-@keyframes vxInUp{from{transform:translateY(60px);opacity:0}to{transform:none;opacity:1}}
-@keyframes vxOutUp{from{transform:none;opacity:1}to{transform:translateY(-60px);opacity:0}}
-@keyframes vxInDown{from{transform:translateY(-60px);opacity:0}to{transform:none;opacity:1}}
-@keyframes vxOutDown{from{transform:none;opacity:1}to{transform:translateY(60px);opacity:0}}
-}
-@media(min-width:1024px) and (max-height:760px){.vx-pin-left .px-head p{font-size:16px}.vx-nav{margin-top:14px}.vx-nav button{min-height:44px}.vx-stage>.vx-card{padding:22px 28px}.vx-stage .vx-card ul{gap:8px;margin-top:12px}.vx-strip{margin-top:12px;padding:10px 12px}}
-@media(prefers-reduced-motion:reduce){.vx-in-up,.vx-out-up,.vx-in-down,.vx-out-down{animation:none}.vx-out-up,.vx-out-down{display:none}}
