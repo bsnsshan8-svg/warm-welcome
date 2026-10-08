@@ -3,7 +3,7 @@ import { Check } from "lucide-react";
 import { steps } from "./Extras";
 
 const num = (i: number) => String(i + 1).padStart(2, "0");
-const HEADER = 72;
+const HEADER = 77;
 
 const mocks = [
   ["Emma searches 'dentist near me'", "Found your clinic"],

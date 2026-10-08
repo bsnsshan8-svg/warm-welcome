@@ -950,8 +950,8 @@ body:has(.journey-page){background:var(--navy);}
 @media(min-width:1024px){
 .vx{padding:0;}
 .vx-mobile{display:none;}
-.vx-pin-wrap{display:block;height:calc(480vh + 100vh - 72px);}
-.vx-pin{position:sticky;top:72px;height:calc(100vh - 72px);display:flex;align-items:center;}
+.vx-pin-wrap{display:block;height:calc(480vh + 100vh - 77px);}
+.vx-pin{position:sticky;top:77px;height:calc(100vh - 77px);display:flex;align-items:center;}
 .vx-pin-grid{display:grid;grid-template-columns:40% minmax(0,1fr);gap:48px;align-items:center;width:min(1180px,calc(100% - 48px));}
 .vx-pin-left .px-head h2{font-size:clamp(2rem,3.4vw,3.25rem);line-height:1.02;margin:14px 0 10px;}
 .vx-pin-left .px-head p{font-size:17px;margin:0;}
