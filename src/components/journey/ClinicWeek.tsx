@@ -41,7 +41,7 @@ export function ClinicWeek() {
   </article>;
   return <section id="after-hours" ref={sectionRef} className="sx sx-dark clinic-week" data-with-zaad={enabled} aria-labelledby="clinic-week-title">
     <div className="sx-shell">
-      <div className="sx-head"><span className="sx-kicker">AFTER HOURS</span><h2 id="clinic-week-title">YOUR CLINIC CLOSES.<br />PATIENTS <em>DON'T STOP LOOKING.</em></h2><p>People look for care in the evening, at night and at weekends, exactly when nobody is there to pick up.</p></div>
+      <div className="sx-head"><span className="sx-kicker">AFTER HOURS</span><h2 id="clinic-week-title">YOUR CLINIC CLOSES.<br />PATIENTS{" "}<em>DON'T STOP LOOKING.</em></h2><p>People look for care in the evening, at night and at weekends, exactly when nobody is there to pick up.</p></div>
       <div className="cw-controls"><div className="cw-toggle" role="group" aria-label="Your clinic's week">
         <Button variant="unstyled" size="unstyled" aria-pressed={!enabled} onClick={() => choose(false)}>WITHOUT ZAAD</Button>
         <Button variant="unstyled" size="unstyled" aria-pressed={enabled} onClick={() => choose(true)}>WITH ZAAD</Button>
