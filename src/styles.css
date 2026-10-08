@@ -886,7 +886,7 @@ body:has(.journey-page){background:var(--navy);}
 /* ===== Vertical step explorer ===== */
 .vx{padding:120px 0;}
 .vx-cols{display:grid;grid-template-columns:minmax(0,44%) minmax(0,1fr);gap:48px;align-items:start;}
-.vx-left{min-width:0;}
+.vx-left{min-width:0;align-self:stretch;}
 .vx-left-sticky{position:sticky;top:calc(77px + 32px);}
 .vx-left .px-head h2{font-size:clamp(2.75rem,5vw,4.5rem);line-height:1.02;margin:14px 0 12px;}
 .vx-left .px-head p{font-size:20px;margin:0;}
