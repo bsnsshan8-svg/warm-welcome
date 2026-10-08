@@ -5,7 +5,7 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import zaadLogo from "@/assets/zaad-logo.png.asset.json";
 
-const links = [["Who we help", "who"], ["How it works", "modules"], ["UniBox", "unibox"], ["Pricing", "pricing"], ["FAQ", "faq"]];
+const links = [["Who we help", "who"], ["How it works", "modules"], ["UniBox", "unibox"], ["Pricing", "pricing"], ["FAQ", "faq"]] as const;
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);

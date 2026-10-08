@@ -54,11 +54,11 @@ export function MomentsSection() {
         const visible = reduced.matches || (inView && (isDesktop ? Math.abs(current - i) < .6 : nearest === i));
         if (visible && !entrances[i]) { entrances[i] = now; progress[i] = 0; }
         if (!visible) entrances[i] = 0;
-        if (visible && !reduced.matches) { progress[i] = clamp((now - entrances[i]) / 900); if (progress[i] < 1) animating = true; }
+        if (visible && !reduced.matches) { progress[i] = clamp((now - (entrances[i] ?? now)) / 900); if ((progress[i] ?? 1) < 1) animating = true; }
         panel.style.setProperty("--p", String(reduced.matches ? 1 : progress[i]));
         panel.style.setProperty("--scene-drift", String(isDesktop ? clamp(current - i + .25) * .4 : 0));
-        panel.dataset.visible = String(visible);
-        panel.dataset.active = String(i === nearest);
+        panel.dataset['visible'] = String(visible);
+        panel.dataset['active'] = String(i === nearest);
       });
       if (animating) frame = requestAnimationFrame(update);
     };
