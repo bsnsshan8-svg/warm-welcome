@@ -68,14 +68,14 @@ export function StepExplorer() {
   };
 
   const dir = prev?.dir ?? 1;
-  const head = <div className="px-head"><span className="sx-kicker"><i />What ZAAD does for your practice</span><h2 id="modules-title">How we turn attention into <em>booked patients</em></h2><p>Six steps, from the first search to a patient in your chair, and back again for their next visit.</p></div>;
+  const head = (id?: string) => <div className="px-head"><span className="sx-kicker"><i />What ZAAD does for your practice</span><h2 id={id}>How we turn attention into <em>booked patients</em></h2><p>Six steps, from the first search to a patient in your chair, and back again for their next visit.</p></div>;
 
   return <section id="modules" className="sx sx-light px vx" aria-labelledby="modules-title">
     <div ref={wrapRef} className="vx-pin-wrap">
       <div className="vx-pin">
         <div className="sx-shell vx-pin-grid">
           <div className="vx-pin-left">
-            {head}
+            {head("modules-title")}
             <div className="vx-nav">
               <span className="vx-nav-track" aria-hidden="true"><i style={{ transform: `scaleY(${fill})` }} /></span>
               <ol>{steps.map((st, i) => <li key={st.t} data-state={i === active ? "active" : i < active ? "done" : "next"}>
@@ -97,7 +97,7 @@ export function StepExplorer() {
 
     <div className="sx-shell vx-mobile">
       <div className="vx-cols">
-        <div className="vx-left">{head}</div>
+        <div className="vx-left">{head()}</div>
         <span className="vx-track" aria-hidden="true"><i style={{ transform: `scaleY(${mfill})` }} /></span>
         <div className="vx-right">
           <ol ref={listRef} className="vx-list">{steps.map((st, i) => <li key={st.t} className="vx-card" data-active="false">
