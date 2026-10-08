@@ -3,6 +3,7 @@ import { ArrowDown, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SceneArt } from "@/components/journey/SceneArt";
 import { chapters } from "@/lib/zaad-journey";
+import { headerHeight, loadMotion, scrollHomeTo, setMomentPositions } from "@/lib/home-motion";
 
 const moments = chapters.slice(3, 6);
 const clamp = (n: number, max = 1) => Math.max(0, Math.min(max, n));
@@ -14,86 +15,78 @@ export function MomentsSection() {
   const [active, setActive] = useState(0);
 
   useEffect(() => {
-    const wrapper = wrapperRef.current;
-    const track = trackRef.current;
-    if (!wrapper || !track) return;
-    const viewport = track.parentElement;
-    if (!viewport) return;
+    const wrapper = wrapperRef.current, track = trackRef.current;
+    const viewport = track?.parentElement;
+    const pin = wrapper?.querySelector<HTMLElement>(".moments-pin");
+    if (!wrapper || !track || !viewport || !pin) return;
     const panels = Array.from(track.querySelectorAll<HTMLElement>(".moment-panel"));
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const desktop = window.matchMedia("(min-width: 1024px)");
-    let frame = 0, previous = 0, current = 0, selected = -1;
-    const entrances = panels.map(() => 0);
-    const progress = panels.map(() => 1);
-    const headerHeight = () => document.querySelector(".journey-header")?.getBoundingClientRect().height ?? 76;
-    const start = () => wrapper.getBoundingClientRect().top + window.scrollY - headerHeight();
-    const go = (i: number) => {
-      const index = Math.round(clamp(i, 2));
-      if (reduced.matches) panels[index]?.scrollIntoView({ behavior: "auto", block: "start" });
-      else if (desktop.matches) window.scrollTo({ top: start() + (index + .5) * window.innerHeight, behavior: "smooth" });
-      else viewport.scrollTo({ left: panels[index]?.offsetLeft ?? 0, behavior: "smooth" });
-    };
-    goRef.current = go;
-    const update = (now: number) => {
-      frame = 0;
-      const dt = previous ? Math.min(64, now - previous) : 16;
-      previous = now;
-      const isDesktop = desktop.matches && !reduced.matches;
-      const rect = wrapper.getBoundingClientRect();
-      const inView = rect.top < window.innerHeight && rect.bottom > headerHeight();
-      const raw = clamp((window.scrollY - start()) / (3 * window.innerHeight));
-      const target = clamp(raw * 3 - .5, 2);
-      current = isDesktop ? current + (target - current) * (1 - Math.exp(-dt / 180)) : 0;
-      if (Math.abs(target - current) < .001) current = target;
-      track.style.transform = isDesktop ? `translate3d(${-current * viewport.clientWidth}px,0,0)` : "none";
-      wrapper.style.setProperty("--moments-progress", String(isDesktop ? raw : 0));
-      const nearest = isDesktop ? Math.round(current) : reduced.matches ? 0 : panels.reduce((best, panel, i) => Math.abs(panel.offsetLeft - viewport.scrollLeft) < Math.abs((panels[best]?.offsetLeft ?? 0) - viewport.scrollLeft) ? i : best, 0);
+    let disposed = false;
+    let selected = 0;
+    let cleanup: (() => void) | undefined;
+    const select = (index: number) => {
+      const nearest = Math.round(clamp(index, panels.length - 1));
       if (nearest !== selected) { selected = nearest; setActive(nearest); }
-      let animating = isDesktop && current !== target;
-      panels.forEach((panel, i) => {
-        const visible = reduced.matches || (inView && (isDesktop ? Math.abs(current - i) < .6 : nearest === i));
-        if (visible && !entrances[i]) { entrances[i] = now; progress[i] = 0; }
-        if (!visible) entrances[i] = 0;
-        if (visible && !reduced.matches) { progress[i] = clamp((now - (entrances[i] ?? now)) / 900); if ((progress[i] ?? 1) < 1) animating = true; }
-        panel.style.setProperty("--p", String(reduced.matches ? 1 : progress[i]));
-        panel.style.setProperty("--scene-drift", String(isDesktop ? clamp(current - i + .25) * .4 : 0));
-        panel.dataset['visible'] = String(visible);
-        panel.dataset['active'] = String(i === nearest);
-      });
-      if (animating) frame = requestAnimationFrame(update);
+      panels.forEach((panel, i) => { panel.dataset['active'] = String(i === nearest); panel.dataset['visible'] = String(i === nearest); });
     };
-    const request = () => { if (!frame) frame = requestAnimationFrame(update); };
-    const resize = () => { wrapper.style.setProperty("--moments-header", `${headerHeight()}px`); request(); };
-    const anchor = (event: MouseEvent) => {
-      const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>('a[href^="#"]') : null;
-      const index = moments.findIndex(m => `#${m.id}` === link?.getAttribute("href"));
-      if (index < 0) return;
-      event.preventDefault(); history.pushState(null, "", `#${moments[index]?.id}`); go(index);
-    };
-    const hash = () => { const index = moments.findIndex(m => `#${m.id}` === window.location.hash); if (index >= 0) go(index); };
+    goRef.current = i => { const moment = moments[Math.round(clamp(i, panels.length - 1))]; if (moment) scrollHomeTo(moment.id); };
     const key = (event: KeyboardEvent) => {
       if (event.defaultPrevented || document.querySelector('[role="dialog"]') || event.target instanceof HTMLElement && event.target.closest("input,textarea,select,[contenteditable=true]")) return;
-      const r = wrapper.getBoundingClientRect();
-      if (r.top >= window.innerHeight || r.bottom <= headerHeight() || reduced.matches) return;
-      if (event.key === "ArrowLeft" || event.key === "ArrowRight") { event.preventDefault(); go(selected + (event.key === "ArrowRight" ? 1 : -1)); }
+      const r = pin.getBoundingClientRect();
+      if (r.top >= window.innerHeight || r.bottom <= headerHeight() || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      if (event.key === "ArrowLeft" || event.key === "ArrowRight") { event.preventDefault(); goRef.current(selected + (event.key === "ArrowRight" ? 1 : -1)); }
     };
-    resize();
-    const initial = window.setTimeout(hash, 100);
-    window.addEventListener("scroll", request, { passive: true });
-    viewport.addEventListener("scroll", request, { passive: true });
-    window.addEventListener("resize", resize);
-    reduced.addEventListener("change", resize);
-    document.addEventListener("click", anchor);
-    window.addEventListener("hashchange", hash);
-    window.addEventListener("popstate", hash);
     window.addEventListener("keydown", key);
-    return () => {
-      cancelAnimationFrame(frame); clearTimeout(initial);
-      window.removeEventListener("scroll", request); viewport.removeEventListener("scroll", request);
-      window.removeEventListener("resize", resize); reduced.removeEventListener("change", resize);
-      document.removeEventListener("click", anchor); window.removeEventListener("hashchange", hash);
-      window.removeEventListener("popstate", hash); window.removeEventListener("keydown", key);
-    };
+    void loadMotion().then(([{ gsap }, { ScrollTrigger }]) => {
+      if (disposed) return;
+      gsap.registerPlugin(ScrollTrigger);
+      const mm = gsap.matchMedia();
+      mm.add({ desktop: "(min-width: 1024px)", reduce: "(prefers-reduced-motion: reduce)" }, context => {
+        const desktop = context.conditions?.['desktop'], reduce = context.conditions?.['reduce'];
+        wrapper.style.setProperty("--moments-header", `${headerHeight()}px`);
+        panels.forEach(panel => { panel.style.setProperty("--p", "1"); panel.style.setProperty("--scene-drift", "0"); });
+        let mobileScroll: (() => void) | undefined;
+        if (desktop && !reduce) {
+          const distance = () => Math.max(0, track.scrollWidth - viewport.clientWidth);
+          const progress = wrapper.querySelector(".moments-progress i");
+          const travel = gsap.fromTo(track, { x: 0 }, {
+            x: () => -distance(), ease: "none",
+            onUpdate: () => { select(travel.progress() * (panels.length - 1)); if (progress) gsap.set(progress, { scaleX: travel.progress() }); },
+            scrollTrigger: { id: "patient-moments", trigger: wrapper, pin, pinSpacing: true, start: () => `top top+=${headerHeight()}`, end: () => `+=${distance() * 1.1}`, scrub: 1, anticipatePin: 1, invalidateOnRefresh: true },
+          });
+          panels.forEach(panel => {
+            const content = panel.querySelectorAll(".chapter-eyebrow, h2, .moment-copy > p, .chapter-points, .chapter-stars");
+            const art = panel.querySelector(".scene-art");
+            const graphic = panel.querySelector(".moment-graphic");
+            gsap.fromTo(content, { y: 40, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.08, ease: "none", scrollTrigger: { trigger: panel, containerAnimation: travel, start: "left 80%", end: "left 40%", scrub: true } });
+            if (art) gsap.fromTo(art, { scale: 0.92, opacity: 0 }, { scale: 1, opacity: 1, ease: "none", scrollTrigger: { trigger: panel, containerAnimation: travel, start: "left 80%", end: "left 40%", scrub: true } });
+            if (graphic) gsap.fromTo(graphic, { x: () => -viewport.clientWidth * 0.075 }, { x: () => viewport.clientWidth * 0.075, ease: "none", scrollTrigger: { trigger: panel, containerAnimation: travel, start: "left right", end: "right left", scrub: true, invalidateOnRefresh: true } });
+          });
+          setMomentPositions(id => {
+            const index = moments.findIndex(m => m.id === id);
+            const st = travel.scrollTrigger;
+            return index >= 0 && st ? st.start + (st.end - st.start) * index / (panels.length - 1) : undefined;
+          });
+          ScrollTrigger.refresh();
+        } else {
+          gsap.set(track, { clearProps: "transform" });
+          const update = () => select(panels.reduce((best, panel, i) => Math.abs(panel.offsetLeft - viewport.scrollLeft - viewport.clientWidth * 0.06) < Math.abs((panels[best]?.offsetLeft ?? 0) - viewport.scrollLeft - viewport.clientWidth * 0.06) ? i : best, 0));
+          if (!reduce) { mobileScroll = update; viewport.addEventListener("scroll", update, { passive: true }); update(); }
+          setMomentPositions(id => {
+            const index = moments.findIndex(m => m.id === id);
+            const panel = panels[index];
+            if (!panel) return;
+            if (reduce) return panel.getBoundingClientRect().top + window.scrollY - headerHeight();
+            viewport.scrollTo({ left: panel.offsetLeft - viewport.clientWidth * 0.06, behavior: "smooth" });
+            return wrapper.getBoundingClientRect().top + window.scrollY - headerHeight();
+          });
+        }
+        select(selected);
+        const initial = window.setTimeout(() => { if (moments.some(m => `#${m.id}` === location.hash)) scrollHomeTo(location.hash); }, 100);
+        return () => { clearTimeout(initial); if (mobileScroll) viewport.removeEventListener("scroll", mobileScroll); setMomentPositions(); };
+      });
+      cleanup = () => mm.revert();
+    });
+    return () => { disposed = true; cleanup?.(); window.removeEventListener("keydown", key); setMomentPositions(); };
   }, []);
 
   return <section id="moments" ref={wrapperRef} className="moments-section" aria-label="Patient moments">
@@ -109,7 +102,7 @@ export function MomentsSection() {
               <p className="chapter-why"><strong>Why it matters:</strong> {chapter.why}</p>
               {k === 1 && <div className="chapter-stars" aria-label="5-star rating">{Array.from({ length: 5 }, (_, n) => <Star key={n} size={18} fill="currentColor" />)}</div>}
             </div>
-            <SceneArt index={k + 3} />
+            <div className="moment-graphic"><SceneArt index={k + 3} /></div>
             <div className="scene-caption"><span className="caption-marker" /><div><span>{chapter.scene}</span><p>{chapter.detail}</p></div></div>
           </div>
           <a className="moment-next" href={k === 2 ? "#approach" : `#${moments[k + 1]?.id}`} aria-label="Next section"><ArrowDown size={18} /></a>

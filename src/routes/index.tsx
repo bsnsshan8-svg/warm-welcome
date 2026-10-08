@@ -7,6 +7,7 @@ import { AdvertsFirst, Faq, FounderSection, GoodEnquiry } from "@/components/jou
 import { ApproachSection, FinalCta, SiteFooter } from "@/components/journey/FinalSections";
 import { MomentsSection } from "@/components/journey/MomentsSection";
 import { SiteHeader } from "@/components/journey/SiteHeader";
+import { HomeMotion } from "@/components/journey/HomeMotion";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -30,6 +31,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return <main className="journey-page journey-live">
+    <HomeMotion />
     <SiteHeader />
     <CentredHero /><SpecialtyPicker /><ProblemGrid /><GoodEnquiry />
     <MomentsSection /><ApproachSection /><StepExplorer /><AdvertsFirst />

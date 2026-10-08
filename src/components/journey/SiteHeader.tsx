@@ -4,6 +4,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import zaadLogo from "@/assets/zaad-logo.png.asset.json";
+import { pauseHomeScroll, resumeHomeScroll, scrollHomeTo } from "@/lib/home-motion";
 
 const links = [["Who we help", "who"], ["How it works", "modules"], ["UniBox", "unibox"], ["Pricing", "pricing"], ["FAQ", "faq"]] as const;
 
@@ -19,6 +20,7 @@ export function SiteHeader() {
     const main = document.querySelector("main");
     const wasInert = main?.inert ?? false;
     if (main) main.inert = true;
+    pauseHomeScroll();
     body.style.position = "fixed"; body.style.top = `${-y}px`; body.style.width = "100%";
     dialogRef.current?.querySelector<HTMLButtonElement>("button")?.focus();
     const key = (e: KeyboardEvent) => {
@@ -35,6 +37,7 @@ export function SiteHeader() {
       if (main) main.inert = wasInert;
       Object.assign(body.style, original);
       window.scrollTo({ top: y, behavior: "instant" });
+      resumeHomeScroll();
       triggerRef.current?.focus({ preventScroll: true });
       window.removeEventListener("keydown", key); window.removeEventListener("resize", resize);
     };
@@ -43,7 +46,7 @@ export function SiteHeader() {
     setOpen(false);
     window.setTimeout(() => {
       history.pushState(null, "", `#${id}`);
-      document.getElementById(id)?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+      scrollHomeTo(id);
     }, 0);
   };
   return <>
