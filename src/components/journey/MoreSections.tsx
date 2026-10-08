@@ -14,7 +14,7 @@ export function CentredHero() {
       <p className="ch-p">Most practices don't need more marketing. They need every enquiry answered, followed up and booked. ZAAD brings the right patients in, replies within minutes, books the appointment and makes sure they turn up.</p>
       <div className="ch-actions">
         <Button asChild variant="unstyled" size="unstyled" className="journey-primary"><Link to="/book">Book a strategy call <ArrowUpRight size={18} /></Link></Button>
-        <Button asChild variant="unstyled" size="unstyled" className="journey-text-link"><a href="#system">See how it works <ArrowDown size={18} /></a></Button>
+        <Button asChild variant="unstyled" size="unstyled" className="journey-text-link"><a href="#modules">See how it works <ArrowDown size={18} /></a></Button>
       </div>
       <ul className="ch-facts">{["Replies within minutes, day or night", "Reminders that cut no-shows", "30-day money-back guarantee"].map(f => <li key={f}><Check size={16} aria-hidden="true" />{f}</li>)}</ul>
     </div>

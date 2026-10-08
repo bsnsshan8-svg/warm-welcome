@@ -7,6 +7,7 @@ import { ProblemGrid } from "@/components/journey/Extras";
 import { BookPrompt, CentredHero, FitCheck, GrowthEstimator, Pricing, SpecialtyPicker } from "@/components/journey/MoreSections";
 import { Button } from "@/components/ui/button";
 import { AdvertsFirst, Faq, FounderSection, GoodEnquiry } from "@/components/journey/NewSections";
+import { ApproachSection, FinalCta, SiteFooter } from "@/components/journey/FinalSections";
 import { SceneArt } from "@/components/journey/SceneArt";
 import { chapters, chapterProgress } from "@/lib/zaad-journey";
 import zaadLogo from "@/assets/zaad-logo.png.asset.json";
@@ -83,7 +84,7 @@ function Index() {
         content.style.opacity=mode==="3d"?String(opacity):"1";section.querySelectorAll<HTMLElement>(".scene-art,.scene-caption").forEach(el=>{el.style.opacity=mode==="3d"&&window.innerWidth>=768?String(opacity):"1";});
         content.style.transform=mode==="3d"?`translateY(${i===index?Math.max(0,local-.42)*-35:0}px)`:"none";
       });
-      root.style.setProperty("--journey-progress",`${(index+local)/7*100}%`);
+      root.style.setProperty("--journey-progress",`${(index+local)/Math.max(1,sections.length)*100}%`);
       root.style.setProperty("--foreground-shift",`${travel*-17}px`);
     };
     const request=()=>{if(!frame)frame=requestAnimationFrame(update);};
@@ -98,7 +99,7 @@ function Index() {
       <Button asChild variant="unstyled" size="unstyled" className="journey-call"><Link to="/book">Book a strategy call <ArrowUpRight size={18}/></Link></Button>
       <Button variant="unstyled" size="unstyled" className="journey-menu" aria-label="Toggle menu" aria-expanded={menuOpen} onClick={()=>setMenuOpen(o=>!o)}>{menuOpen?<X size={22}/>:<Menu size={22}/>}</Button>
     </header>
-    <nav className="chapter-nav" aria-label="Scenes">{chapters.slice(1,7).map((chapter,k)=>{const i=k+1;return <a key={chapter.id} href={`#${chapter.id}`} aria-label={`Scene ${i}: ${chapter.label}`} aria-current={active===i?"step":undefined}><span className="cn-label">{chapter.label}</span><i/></a>;})}</nav>
+    <nav className="chapter-nav" aria-label="Scenes">{chapters.slice(3,6).map((chapter,k)=>{const i=k+3;return <a key={chapter.id} href={`#${chapter.id}`} aria-label={`Scene ${i}: ${chapter.label}`} aria-current={active===i?"step":undefined}><span className="cn-label">{chapter.label}</span><i/></a>;})}</nav>
         {(()=>{const renderChapter=(chapter:(typeof chapters)[number],i:number)=><section className={`journey-chapter${i===7?" journey-chapter--plain":""}`} id={chapter.id} key={chapter.id} aria-labelledby={`title-${i}`}>
       <div className="chapter-pin">
         <div className={`chapter-content ${i===0?"chapter-hero":""}`}>
@@ -116,36 +117,10 @@ function Index() {
         </div>
         <SceneArt index={i}/>
         <div className="scene-caption"><span className="caption-marker"/><div><span>{chapter.scene}</span><p>{chapter.detail}</p></div></div>
-        <div className="chapter-bottom"><a href={i===7?"#top":`#${chapters[i+1]?.id??"top"}`} aria-label={i===7?"Back to top":"Next section"}>{i===7?"Back to top":""}<ArrowDown size={18}/></a></div>
+        <div className="chapter-bottom"><a href={i===7?"#top":(i>=5?"#approach":`#${chapters[i+1]?.id??"top"}`)} aria-label={i===7?"Back to top":"Next section"}>{i===7?"Back to top":""}<ArrowDown size={18}/></a></div>
       </div>
     </section>;
-      return <><CentredHero/><SpecialtyPicker/><ProblemGrid/><GoodEnquiry/>{chapters.slice(1,7).map((c,k)=>renderChapter(c,k+1))}<StepExplorer/><AdvertsFirst/><section className="sx sx-light book-prompt-band"><div className="sx-shell"><BookPrompt text="Want to see what this looks like for your practice?"/></div></section><UniBoxSection/><GrowthEstimator/><FounderSection/><Pricing/><FitCheck/><Faq/>{renderChapter(chapters[7],7)}</>;})()}
-    <footer className="journey-footer">
-      <div className="footer-top">
-        <div className="footer-brand">
-          <a href="#top" aria-label="ZAAD home"><img src={zaadLogo.url} alt="ZAAD — Zero Apples A Day"/></a>
-          <span>A steady flow of new patients for healthcare practices.</span>
-        </div>
-        <div className="footer-col">
-          <span className="footer-label">Explore</span>
-          <nav aria-label="Footer navigation" className="footer-nav">
-            <a href="#who">Who we help</a>
-            <a href="#modules">How it works</a>
-            <a href="#unibox">UniBox</a>
-            <a href="#pricing">Pricing</a>
-            <Link to="/book">Book a strategy call</Link>
-          </nav>
-        </div>
-        <div className="footer-col">
-          <span className="footer-label">Contact</span>
-          <div className="footer-contact">
-            <a href="mailto:Info@zeroapplesaday.com">Info@zeroapplesaday.com</a>
-            <a href="tel:+14089423358">+1 408 942 3358</a>
-            <address>1001 S Main St, Ste 500<br/>Kalispell MT 59901, United States</address>
-          </div>
-        </div>
-      </div>
-      <div className="footer-bottom"><small>© 2026 ZAAD — Zero Apples A Day. Built for healthcare practices.</small></div>
-    </footer>
+      return <><CentredHero/><SpecialtyPicker/><ProblemGrid/><GoodEnquiry/>{chapters.slice(3,6).map((c,k)=>renderChapter(c,k+3))}<ApproachSection/><StepExplorer/><AdvertsFirst/><section className="sx sx-light book-prompt-band"><div className="sx-shell"><BookPrompt text="Want to see what this looks like for your practice?"/></div></section><UniBoxSection/><GrowthEstimator/><FounderSection/><Pricing/><FitCheck/><Faq/><FinalCta/></>;})()}
+    <SiteFooter/>
   </main>;
 }
