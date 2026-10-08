@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import zaadLogo from "@/assets/zaad-logo.png.asset.json";
 
 // Replace with the real scheduling link.
-const BOOKING_URL = "[YOUR BOOKING LINK]";
+const BOOKING_URL = "https://calendly.com/d/y6m-9rd-xdj/30min";
 
 const title = "Book a Free Strategy Call — ZAAD";
 const desc = "A free 30-minute call about what happens between a patient's first enquiry and their appointment. No pressure, no jargon.";
