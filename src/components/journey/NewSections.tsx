@@ -1,4 +1,4 @@
-import { Check, ChevronDown, User } from "lucide-react";
+import { Check, ChevronDown } from "lucide-react";
 
 export function GoodEnquiry() {
   const items = [
