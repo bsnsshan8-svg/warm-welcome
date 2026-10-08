@@ -11,7 +11,8 @@
 
 - Landing-page controls use the shared Button's unstyled variant and size with existing page classes, preserving the brand design while sharing control semantics.
 - Landing-page responsive and readability rules live in the global stylesheet; semantic journey color tokens also supply procedural scene materials.
-- One shared scroll progress ref drives camera travel and chapter fades without per-frame React updates; CSS sticky sections pin chapters in document flow.
+- Patient moments own a requestAnimationFrame horizontal track driver and panel reveal variables; CSS sticky pinning stays in document flow without overflow-hidden ancestors, so desktop travel and mobile snap share the same content.
+- The site mobile menu portals outside the inert main and restores focus and body position on close, so keyboard containment and background scroll locking remain accessible.
 - Render module panels in a shared CSS grid cell with inactive panels hidden and inert so the tallest content determines stable tab height without hard-coded sizing or browser measurements.
 - Each pinned scene renders inline SVG art with --p for reveal and --scene-drift for layered scroll travel; idle float pauses offscreen, and reduced motion shows final static states without WebGL.
 - Hero camera and layer transforms read a dedicated normalized --hero-travel value from the shared scroll handler, independent of reveal timing, so zoom reverses naturally without changing other scenes.
