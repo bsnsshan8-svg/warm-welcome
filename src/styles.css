@@ -990,3 +990,4 @@ body:has(.journey-page){background:var(--navy);}
 .book-cta{font-size:18px!important;padding:18px 32px!important;}
 .book-alt{margin-top:24px;color:#475569;}.book-alt a{color:var(--ink);font-weight:700;text-decoration:underline;}
 .book-guarantee{font-weight:700;color:var(--ink);}
+.sx-light .pr-dark .pr-tag{color:var(--ink);}
