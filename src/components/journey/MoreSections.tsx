@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Apple, ArrowDown, ArrowUpRight, Check, DoorOpen, User, X } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 
 export function CentredHero() {
@@ -10,9 +11,9 @@ export function CentredHero() {
       <span className="sx-kicker">Zero Apples A Day · For medical practices</span>
       <h1 id="hero-title">An apple a day keeps the doctor <em>away.</em></h1>
       <p className="ch-yellow">ZAAD does the opposite. It brings patients in.</p>
-      <p className="ch-p">ZAAD brings new patients to your practice, replies to every enquiry, books the appointment, and brings past patients back, so your team can focus on care.</p>
+      <p className="ch-p">We help medical practices bring the right patients in, reply to every enquiry fast, and turn more enquiries into booked appointments, so your team can focus on care.</p>
       <div className="ch-actions">
-        <Button asChild variant="unstyled" size="unstyled" className="journey-primary"><a href="#contact">Book a strategy call <ArrowUpRight size={18} /></a></Button>
+        <Button asChild variant="unstyled" size="unstyled" className="journey-primary"><Link to="/book">Book a strategy call <ArrowUpRight size={18} /></Link></Button>
         <Button asChild variant="unstyled" size="unstyled" className="journey-text-link"><a href="#system">See how it works <ArrowDown size={18} /></a></Button>
       </div>
     </div>
@@ -115,7 +116,7 @@ function Slider({ label, min, max, step, value, onChange, fmt }: { label: string
 
 export function GrowthEstimator() {
   const [enq, setEnq] = useState(40), [book, setBook] = useState(35), [show, setShow] = useState(80), [val, setVal] = useState(1500);
-  const booked = enq * book / 100, shows = booked * show / 100, value = shows * val;
+  const booked = Math.round(enq * book / 100), shows = Math.round(booked * show / 100), value = shows * val;
   const pct = (n: number) => `${n}%`;
   return <section id="estimator" className="sx sx-light sx-mist" aria-labelledby="es-title">
     <div className="sx-shell">
@@ -128,29 +129,43 @@ export function GrowthEstimator() {
           <Slider label="Average value per patient" min={100} max={5000} step={50} value={val} onChange={setVal} fmt={money} />
         </div>
         <div className="es-out" aria-live="polite">
-          <div><span>Booked patients</span><b>{booked.toFixed(1)}</b></div>
-          <div><span>Patients who show up</span><b>{shows.toFixed(1)}</b></div>
+          <div><span>Booked patients</span><b>{booked}</b></div>
+          <div><span>Patients who show up</span><b>{shows}</b></div>
           <div className="es-big"><span>Monthly value</span><b>{money(value)}</b></div>
           <small>Illustrative only, based on your inputs. Excludes ad spend, running costs, cancellations and refunds.</small>
         </div>
       </div>
+      <BookPrompt text="Want help turning these numbers into patients?" />
     </div>
   </section>;
 }
 
+export function BookPrompt({ text }: { text: string }) {
+  return <div className="book-prompt"><p>{text}</p><Button asChild variant="unstyled" size="unstyled" className="journey-primary"><Link to="/book">Book a strategy call <ArrowUpRight size={18} /></Link></Button></div>;
+}
+
 export function Pricing() {
   const plans = [
-    { n: "The core systems", p: "$297", s: "/month", d: "", dark: false },
-    { n: "Done for you: Accelerator", p: "$1,497", s: "/month + ad spend", d: "Recommended ad spend $30 to $50 a day.", dark: true },
-    { n: "Done for you: Power", p: "$2,200", s: "/month + ad spend", d: "Recommended ad spend up to $100 a day.", dark: false },
+    { n: "The core systems", p: "$297", s: "/month", d: "Fast replies, follow-up, missed-call text-back, review invitations and past-patient messages, with monthly upkeep and support.", dark: false },
+    { n: "Done for you: Accelerator", p: "$1,497", s: "/month + ad spend", d: "We run your adverts, booking page, replies, follow-up and scheduling for you. Recommended ad spend $30 to $50 a day.", dark: true },
+    { n: "Done for you: Power", p: "$2,200", s: "/month + ad spend", d: "Everything in Accelerator on both Facebook and Google, for practices ready for more patients. Recommended ad spend up to $100 a day.", dark: false },
   ];
-  return <section id="pricing" className="sx sx-light" aria-labelledby="pr-title">
+  return <>
+  <section id="pricing" className="sx sx-light" aria-labelledby="pr-title">
     <div className="sx-shell">
       <div className="sx-head"><span className="sx-kicker">Pricing</span><h2 id="pr-title">Simple. <em>No surprises.</em></h2></div>
-      <div className="pr-grid">{plans.map(pl => <div key={pl.n} className={`pr-card ${pl.dark ? "pr-dark" : ""}`}><h3>{pl.n}</h3><p className="pr-price"><b>{pl.p}</b><span>{pl.s}</span></p>{pl.d && <p>{pl.d}</p>}</div>)}</div>
-      <div className="pr-extra"><div className="pr-card"><h3>One-time setup: $997</h3></div><div className="pr-card pr-yellow"><h3>30-day money-back guarantee.</h3><p>If we don't deliver on the targets we agree with you, you get your money back.</p></div></div>
+      <div className="pr-grid">{plans.map(pl => <div key={pl.n} className={`pr-card ${pl.dark ? "pr-dark" : ""}`}>{pl.dark && <span className="pr-tag">Most chosen</span>}<h3>{pl.n}</h3><p className="pr-price"><b>{pl.p}</b><span>{pl.s}</span></p><p>{pl.d}</p><Button asChild variant="unstyled" size="unstyled" className="journey-primary pr-cta"><Link to="/book">Get started <ArrowUpRight size={18} /></Link></Button></div>)}</div>
+      <div className="pr-card pr-setup"><h3>One-time setup: $997.</h3><p>Onboarding, your treatments and prices, booking page, tracking, scheduling and launch.</p></div>
     </div>
-  </section>;
+  </section>
+  <section className="guarantee-band" aria-labelledby="gb-title">
+    <div className="sx-shell">
+      <h2 id="gb-title">30-day money-back guarantee.</h2>
+      <p>If we don't deliver on the targets we agree with you, you get your money back.</p>
+      <p>Want to see the opportunity first? <Link to="/book">Book a free strategy call</Link> and we'll show you where patients are slipping away.</p>
+    </div>
+  </section>
+  </>;
 }
 
 export function FitCheck() {
@@ -158,8 +173,8 @@ export function FitCheck() {
     <div className="sx-shell">
       <div className="sx-head"><span className="sx-kicker">Fit check</span><h2 id="fit-title">Is ZAAD <em>a fit?</em></h2></div>
       <div className="fit-grid">
-        <div className="pr-card fit-yes"><h3><Check size={22} aria-hidden="true" /> Good fit</h3><p>You have room for more patients, your team can handle new appointments, and you want something that keeps working month after month.</p></div>
-        <div className="pr-card fit-no"><h3><X size={22} aria-hidden="true" /> Not a fit</h3><p>You only want the cheapest possible enquiries, or you expect marketing to fix a clinical or staffing problem by itself.</p></div>
+        <div className="pr-card fit-yes"><h3><Check size={22} aria-hidden="true" /> Good fit</h3><p>You have room for more patients, you offer a high-value service, your team can handle new appointments, and you want something that keeps improving month after month.</p></div>
+        <div className="pr-card fit-no"><h3><X size={22} aria-hidden="true" /> Not a fit</h3><p>You only want the cheapest possible enquiries, you're not willing to change how enquiries are handled, or you expect marketing to fix a clinical or staffing problem by itself.</p></div>
       </div>
     </div>
   </section>;

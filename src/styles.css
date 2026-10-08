@@ -965,3 +965,29 @@ body:has(.journey-page){background:var(--navy);}
 .vx-strip-name{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#B9C4DB;}
 .vx-strip-ev{color:#fff;flex:1;min-width:0;}
 .vx-strip b{display:inline-flex;align-items:center;gap:6px;color:#6EE7A8;font-size:14px;}
+
+/* Booking path */
+.book-prompt{display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;margin-top:48px;}
+.book-prompt p{margin:0;font-size:20px;font-weight:600;color:var(--ink);}
+.book-prompt-band{padding-top:0!important;}
+.pr-card{position:relative;display:flex;flex-direction:column;}
+.pr-cta{margin-top:auto;align-self:flex-start;}
+.pr-card>p:not(.pr-price){margin:0 0 24px;}
+.pr-tag{position:absolute;top:-14px;right:20px;background:var(--yellow);color:var(--ink);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px;}
+.pr-setup{margin-top:24px;}.pr-setup p{margin:8px 0 0!important;}
+.guarantee-band{background:var(--navy);color:#fff;padding:72px 0;text-align:center;}
+.guarantee-band h2{color:#fff;margin:0 0 16px;font-size:clamp(1.75rem,4vw,2.75rem);font-weight:900;text-transform:uppercase;}
+.guarantee-band p{color:var(--on-navy);font-size:18px;max-width:720px;margin:0 auto 10px;}
+.guarantee-band a{color:var(--yellow);text-decoration:underline;font-weight:700;}
+.book-main{padding-top:150px!important;min-height:100vh;}
+.book-inner{max-width:760px;}
+.book-inner h1{font-size:clamp(2.25rem,6vw,4rem);line-height:1.02;text-transform:uppercase;margin:20px 0;color:var(--ink);font-weight:900;}
+.book-lead{font-size:20px;color:var(--ink);}
+.book-sub{font-weight:700;margin-top:28px;color:var(--ink);}
+.book-ticks{list-style:none;padding:0;margin:12px 0 32px;display:grid;gap:12px;}
+.book-ticks li{display:flex;gap:10px;align-items:flex-start;font-size:17px;color:var(--ink);}
+.book-ticks svg{color:var(--blue,#2563eb);flex-shrink:0;margin-top:2px;}
+.book-cta{font-size:18px!important;padding:18px 32px!important;}
+.book-alt{margin-top:24px;color:#475569;}.book-alt a{color:var(--ink);font-weight:700;text-decoration:underline;}
+.book-guarantee{font-weight:700;color:var(--ink);}
+.sx-light .pr-dark .pr-tag{color:var(--ink);}
