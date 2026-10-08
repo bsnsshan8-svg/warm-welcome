@@ -1,7 +1,7 @@
 # Cinematic ZAAD patient journey
-- [ ] Add one home-page Lenis/GSAP ticker, shared anchor navigation and menu pause/resume.
-- [ ] Replace desktop moments motion with ScrollTrigger and add light once-only section/grid reveals.
-- [ ] Verify inertia, pin/unpin, sticky steps, anchors, mobile swipe/menu, reduced motion and routes.
+- [x] Add one home-page Lenis/GSAP ticker, shared anchor navigation and menu pause/resume.
+- [x] Replace desktop moments motion with ScrollTrigger and add light once-only section/grid reveals.
+- [x] Verify inertia, pin/unpin, sticky steps, anchors, mobile swipe/menu, reduced motion and routes.
 - [x] Combine three moments with desktop horizontal pinning, mobile swipe and reduced-motion stacking; preserve panel anchors.
 - [x] Add hero staggered entrance and accessible full-screen mobile menu; verify requested viewports and navigation.
 - [x] Restore hero-only scroll-driven zoom, rotating segments and independent foreground travel; verified reverse scrolling, 12px SVG text, no overflow at 360/375/414/768/1440px, reduced motion, hero link and passing tests/build.
