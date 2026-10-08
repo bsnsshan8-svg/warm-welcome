@@ -1097,6 +1097,7 @@ body:has(.journey-page){background:var(--navy);}
 .moment-layout{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"text" "art" "cap";gap:24px;padding:36px 0 16px;}
 .moments-section .moment-copy{grid-area:text;width:100%;max-width:none;min-width:0;transform:none;opacity:1;}
 .journey-page .moment-copy h2{font-size:32px!important;letter-spacing:0!important;line-height:1.05!important;}
+.journey-page .moment-copy h2 br{display:block;}
 .moments-section .chapter-eyebrow{margin:0 0 22px;line-height:1.5;}
 .moments-section .moment-copy>p{font-size:16px!important;line-height:1.55;margin:18px 0 0!important;max-width:none;}
 .moments-section .chapter-points{gap:8px!important;margin-top:20px!important;}
