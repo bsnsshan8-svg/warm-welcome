@@ -12,7 +12,7 @@ export function HomeMotion() {
       const run = ++generation;
       teardown?.(); teardown = undefined;
       if (reduced.matches) return;
-      const [{ gsap }, { ScrollTrigger }, { default: Lenis }] = await Promise.all([...loadMotion(), import("lenis")]);
+      const [[{ gsap }, { ScrollTrigger }], { default: Lenis }] = await Promise.all([loadMotion(), import("lenis")]);
       if (disposed || run !== generation) return;
       gsap.registerPlugin(ScrollTrigger);
       const lenis = new Lenis({ lerp: 0.085, smoothWheel: true, wheelMultiplier: 1, syncTouch: false, autoRaf: false, prevent: node => node.classList.contains("moments-viewport") || node.closest(".zaad-mobile-menu") !== null });
