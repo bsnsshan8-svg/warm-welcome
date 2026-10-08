@@ -1,6 +1,6 @@
 # Cinematic ZAAD patient journey
-- [ ] Correct all missed-call copy and depictions to the text-with-booking-form flow.
-- [ ] Add interactive clinic-week section and footer anchor; verify desktop/mobile controls, scrolling, accessibility and routes.
+- [x] Correct all missed-call copy and depictions to the text-with-booking-form flow.
+- [x] Add interactive clinic-week section and footer anchor; verify desktop/mobile controls, scrolling, accessibility and routes.
 - [x] Fix hero trust-row contrast and verify desktop moments snapping, navigation and unpinning.
 - [x] Add one home-page Lenis/GSAP ticker, shared anchor navigation and menu pause/resume.
 - [x] Replace desktop moments motion with ScrollTrigger and add light once-only section/grid reveals.
