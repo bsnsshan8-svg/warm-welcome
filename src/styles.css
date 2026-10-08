@@ -999,7 +999,7 @@ body:has(.journey-page){background:var(--navy);}
 
 /* Copy rewrite additions */
 .ch-facts{list-style:none;padding:0;margin:24px 0 0;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 24px;}
-.ch-facts li{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--ink);}
+.ch-facts li{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--on-navy);}
 .ch-facts svg{color:var(--green,#15803d);flex-shrink:0;}
 .pg-cost{font-size:15px!important;color:var(--ink)!important;margin-top:8px!important;}
 .chapter-why{font-size:16px!important;margin-top:16px!important;max-width:460px;}
