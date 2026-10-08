@@ -6,6 +6,7 @@ import { StepExplorer } from "@/components/journey/StepExplorer";
 import { ProblemGrid } from "@/components/journey/Extras";
 import { BookPrompt, CentredHero, FitCheck, GrowthEstimator, Pricing, SpecialtyPicker } from "@/components/journey/MoreSections";
 import { Button } from "@/components/ui/button";
+import { AdvertsFirst, Faq, FounderSection, GoodEnquiry } from "@/components/journey/NewSections";
 import { SceneArt } from "@/components/journey/SceneArt";
 import { chapters, chapterProgress } from "@/lib/zaad-journey";
 import zaadLogo from "@/assets/zaad-logo.png.asset.json";
@@ -106,6 +107,7 @@ function Index() {
           <p>{chapter.text}</p>
           {i===0&&<p className="hero-trust">Built for healthcare practices. Your team stays in control of every patient conversation.</p>}
           {chapter.points.length>0&&<ul className="chapter-points">{chapter.points.map(pt=><li key={pt}>{pt}</li>)}</ul>}
+          {chapter.why&&<p className="chapter-why"><strong>Why it matters:</strong> {chapter.why}</p>}
           {i===0&&<Button asChild variant="unstyled" size="unstyled" className="journey-text-link"><a href="#system">See how ZAAD works <ArrowDown size={18}/></a></Button>}
           {i===2&&<div className="chapter-booked"><Check size={16}/> Appointment booked</div>}
           {i===4&&<div className="chapter-stars" aria-label="5-star rating">{Array.from({length:5},(_,n)=><Star key={n} size={18} fill="currentColor"/>)}</div>}
@@ -117,7 +119,7 @@ function Index() {
         <div className="chapter-bottom"><a href={i===7?"#top":`#${chapters[i+1]?.id??"top"}`} aria-label={i===7?"Back to top":"Next section"}>{i===7?"Back to top":""}<ArrowDown size={18}/></a></div>
       </div>
     </section>;
-      return <><CentredHero/><SpecialtyPicker/><ProblemGrid/>{chapters.slice(1,7).map((c,k)=>renderChapter(c,k+1))}<StepExplorer/><section className="sx sx-light book-prompt-band"><div className="sx-shell"><BookPrompt text="Want to see what this looks like for your practice?"/></div></section><UniBoxSection/><GrowthEstimator/><Pricing/><FitCheck/>{renderChapter(chapters[7],7)}</>;})()}
+      return <><CentredHero/><SpecialtyPicker/><ProblemGrid/><GoodEnquiry/>{chapters.slice(1,7).map((c,k)=>renderChapter(c,k+1))}<StepExplorer/><AdvertsFirst/><section className="sx sx-light book-prompt-band"><div className="sx-shell"><BookPrompt text="Want to see what this looks like for your practice?"/></div></section><UniBoxSection/><GrowthEstimator/><FounderSection/><Pricing/><FitCheck/><Faq/>{renderChapter(chapters[7],7)}</>;})()}
     <footer className="journey-footer">
       <div className="footer-top">
         <div className="footer-brand">

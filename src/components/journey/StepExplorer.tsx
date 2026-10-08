@@ -97,6 +97,7 @@ export function StepExplorer() {
           <ol ref={listRef} className="vx-list">
             {steps.map((st, i) => <li key={st.t}><StepCard i={i} active={i === active} /></li>)}
           </ol>
+          <div className="why-box"><b>Why this matters</b><p>Most practices lose patients between steps, not at the start. Fixing the gaps often fills more appointments than spending more on adverts.</p></div>
         </div>
       </div>
     </section>
