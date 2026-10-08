@@ -1,10 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, Menu, MessageSquare, Star, X } from "lucide-react";
 import { UniBoxSection } from "@/components/journey/SystemSections";
 import { StepExplorer } from "@/components/journey/StepExplorer";
 import { ProblemGrid } from "@/components/journey/Extras";
-import { CentredHero, FitCheck, GrowthEstimator, Pricing, SpecialtyPicker } from "@/components/journey/MoreSections";
+import { BookPrompt, CentredHero, FitCheck, GrowthEstimator, Pricing, SpecialtyPicker } from "@/components/journey/MoreSections";
 import { Button } from "@/components/ui/button";
 import { SceneArt } from "@/components/journey/SceneArt";
 import { chapters, chapterProgress } from "@/lib/zaad-journey";
@@ -94,7 +94,7 @@ function Index() {
     <header className="journey-header">
       <a href="#top" aria-label="ZAAD home" className="journey-logo"><img src={zaadLogo.url} alt="ZAAD — Zero Apples A Day"/></a>
       <nav aria-label="Main navigation" className={menuOpen?"open":""} onClick={()=>setMenuOpen(false)}><a href="#who">Who we help</a><a href="#modules">How it works</a><a href="#unibox">UniBox</a><a href="#pricing">Pricing</a></nav>
-      <Button asChild variant="unstyled" size="unstyled" className="journey-call"><a href="#contact">Book a strategy call <ArrowUpRight size={18}/></a></Button>
+      <Button asChild variant="unstyled" size="unstyled" className="journey-call"><Link to="/book">Book a strategy call <ArrowUpRight size={18}/></Link></Button>
       <Button variant="unstyled" size="unstyled" className="journey-menu" aria-label="Toggle menu" aria-expanded={menuOpen} onClick={()=>setMenuOpen(o=>!o)}>{menuOpen?<X size={22}/>:<Menu size={22}/>}</Button>
     </header>
     <nav className="chapter-nav" aria-label="Scenes">{chapters.slice(1,7).map((chapter,k)=>{const i=k+1;return <a key={chapter.id} href={`#${chapter.id}`} aria-label={`Scene ${i}: ${chapter.label}`} aria-current={active===i?"step":undefined}><span className="cn-label">{chapter.label}</span><i/></a>;})}</nav>
@@ -110,14 +110,14 @@ function Index() {
           {i===2&&<div className="chapter-booked"><Check size={16}/> Appointment booked</div>}
           {i===4&&<div className="chapter-stars" aria-label="5-star rating">{Array.from({length:5},(_,n)=><Star key={n} size={18} fill="currentColor"/>)}</div>}
           {i===6&&<div className="chapter-tools"><span>Your practice at a glance</span><span><MessageSquare size={16}/> UniBox</span></div>}
-          {i===7&&<div className="chapter-actions"><Button asChild variant="unstyled" size="unstyled" className="journey-primary"><a href="mailto:hello@zaad.health">Book a strategy call <ArrowUpRight size={20}/></a></Button><Button asChild variant="unstyled" size="unstyled" className="journey-text-link"><a href="#system">See how ZAAD works <ArrowRight size={18}/></a></Button></div>}
+          {i===7&&<div className="chapter-actions"><Button asChild variant="unstyled" size="unstyled" className="journey-primary"><Link to="/book">Book a strategy call <ArrowUpRight size={20}/></Link></Button><Button asChild variant="unstyled" size="unstyled" className="journey-text-link"><a href="#system">See how ZAAD works <ArrowRight size={18}/></a></Button></div>}
         </div>
         <SceneArt index={i}/>
         <div className="scene-caption"><span className="caption-marker"/><div><span>{chapter.scene}</span><p>{chapter.detail}</p></div></div>
         <div className="chapter-bottom"><a href={i===7?"#top":`#${chapters[i+1]?.id??"top"}`} aria-label={i===7?"Back to top":"Next section"}>{i===7?"Back to top":""}<ArrowDown size={18}/></a></div>
       </div>
     </section>;
-      return <><CentredHero/><SpecialtyPicker/><ProblemGrid/>{chapters.slice(1,7).map((c,k)=>renderChapter(c,k+1))}<StepExplorer/><UniBoxSection/><GrowthEstimator/><Pricing/><FitCheck/>{renderChapter(chapters[7],7)}</>;})()}
+      return <><CentredHero/><SpecialtyPicker/><ProblemGrid/>{chapters.slice(1,7).map((c,k)=>renderChapter(c,k+1))}<StepExplorer/><section className="sx sx-light book-prompt-band"><div className="sx-shell"><BookPrompt text="Want to see what this looks like for your practice?"/></div></section><UniBoxSection/><GrowthEstimator/><Pricing/><FitCheck/>{renderChapter(chapters[7],7)}</>;})()}
     <footer className="journey-footer">
       <div className="footer-top">
         <div className="footer-brand">
@@ -131,7 +131,7 @@ function Index() {
             <a href="#modules">How it works</a>
             <a href="#unibox">UniBox</a>
             <a href="#pricing">Pricing</a>
-            <a href="#contact">Book a strategy call</a>
+            <Link to="/book">Book a strategy call</Link>
           </nav>
         </div>
         <div className="footer-col">

@@ -9,6 +9,7 @@ const mocks = [
   ["New message from Emma Wilson", "Replied in 2 minutes"],
   ["Follow-up sent to Emma", "Thursday 3:30 PM booked"],
   ["Missed call from James Carter", "Text sent, he replied"],
+  ["Reminder sent to Emma", "Confirmed for Thursday 3:30 PM"],
   ["Review invitation sent to Sarah", "5-star review received"],
   ["Check-up reminder sent to Maria Lopez", "She booked a visit"],
 ];
@@ -77,7 +78,7 @@ export function StepExplorer() {
             <div className="px-head">
               <span className="sx-kicker"><i />What ZAAD does for your practice</span>
               <h2 id="modules-title">How we turn attention into <em>booked patients</em></h2>
-              <p>Six steps, from the first search to a patient in your chair, and back again for their next visit.</p>
+              <p>Seven steps, from the first search to a patient in your chair, and back again for their next visit.</p>
             </div>
             <div className="vx-nav">
               <ol>{steps.map((st, i) => (

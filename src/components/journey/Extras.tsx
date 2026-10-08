@@ -90,6 +90,7 @@ export const steps = [
   { t: "Reply to every enquiry", d: "Every patient enquiry gets a quick reply, day or night.", p: ["A reply within moments, day or night", "The right questions before booking", "Every patient message in one inbox", "One clear next step"] },
   { t: "Follow up until they book", d: "Friendly follow-up and an easy way to book, until the visit is in your calendar.", p: ["Friendly follow-up if they go quiet", "An easy way to book", "The appointment booked in your calendar", "A reminder so they turn up"] },
   { t: "Recover missed calls", d: "When nobody can answer, the caller gets a text back and a way to book.", p: ["Know straight away when a call is missed", "A text goes back to the caller", "The conversation picks up where it stopped", "The appointment gets booked"] },
+  { t: "Help patients show up", d: "Reminders and friendly check-ins so booked patients actually walk through the door.", p: ["A confirmation when they book", "A reminder the day before", "A same-day text", "An easy way to reschedule instead of a no-show"] },
   { t: "Turn visits into reviews", d: "After a good visit, patients are invited to share it, so new patients see the care you give.", p: ["Ask patients how their visit went", "Invite happy patients to leave a review", "More reviews where new patients look", "The relationship continues after the appointment"] },
   { t: "Bring past patients back", d: "Your past patients already trust you. Invite them back with a friendly message.", p: ["Reach patients you haven't seen in a while", "Send a friendly, relevant invitation", "They reply and book a visit", "Patients you've treated before hear from you"] },
 ];
@@ -116,7 +117,7 @@ export function ProcessSteps() {
   }, []);
   return <section id="modules" className="sx sx-light process" aria-labelledby="modules-title">
     <div className="sx-shell process-grid">
-      <div className="process-head sx-head"><span className="sx-kicker"><i />What ZAAD does for your practice</span><h2 id="modules-title">How we turn attention into <em>booked patients</em></h2><p>Six steps, from the first search to a patient in your chair, and back again for their next visit.</p></div>
+      <div className="process-head sx-head"><span className="sx-kicker"><i />What ZAAD does for your practice</span><h2 id="modules-title">How we turn attention into <em>booked patients</em></h2><p>Seven steps, from the first search to a patient in your chair, and back again for their next visit.</p></div>
       <div className="process-track">
         <span className="process-line" aria-hidden="true"><i style={{ transform: `scaleY(${fill})` }} /></span>
         <ol ref={listRef} className="process-list">{steps.map((s, i) => <li key={s.t} className="process-card" data-active={i === active}>
