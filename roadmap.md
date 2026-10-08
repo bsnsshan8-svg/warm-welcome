@@ -1,5 +1,5 @@
 # Cinematic ZAAD patient journey
-- [ ] Fix hero trust-row contrast and verify desktop moments snapping, navigation and unpinning.
+- [x] Fix hero trust-row contrast and verify desktop moments snapping, navigation and unpinning.
 - [x] Add one home-page Lenis/GSAP ticker, shared anchor navigation and menu pause/resume.
 - [x] Replace desktop moments motion with ScrollTrigger and add light once-only section/grid reveals.
 - [x] Verify inertia, pin/unpin, sticky steps, anchors, mobile swipe/menu, reduced motion and routes.
