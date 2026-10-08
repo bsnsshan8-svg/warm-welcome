@@ -50,7 +50,7 @@ export function MomentsSection() {
           const progress = wrapper.querySelector(".moments-progress i");
           const travel = gsap.fromTo(track, { x: 0 }, {
             x: () => -distance(), ease: "none",
-            onUpdate: function () { const value = this.progress(); select(value * (panels.length - 1)); if (progress) gsap.set(progress, { scaleX: value }); },
+            onUpdate: function (this: { progress: () => number }) { const value = this.progress(); select(value * (panels.length - 1)); if (progress) gsap.set(progress, { scaleX: value }); },
             scrollTrigger: { id: "patient-moments", trigger: wrapper, pin, pinSpacing: true, start: () => `top top+=${headerHeight()}`, end: () => `+=${distance() * 1.1}`, scrub: 1, anticipatePin: 1, invalidateOnRefresh: true },
           });
           panels.forEach(panel => {

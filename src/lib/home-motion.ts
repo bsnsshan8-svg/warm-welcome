@@ -9,7 +9,7 @@ export const loadMotion = () => Promise.all([import("gsap"), import("gsap/Scroll
 export function setHomeScroller(instance?: Lenis) { scrolling = instance; }
 export function setMomentPositions(resolve?: (id: string) => number | undefined) { panelPosition = resolve; }
 export function pauseHomeScroll() { scrolling?.stop(); }
-export function resumeHomeScroll() { scrolling?.start(); }
+export function resumeHomeScroll() { scrolling?.start(); scrolling?.resize(); }
 
 /** Numeric destinations are already header-adjusted (for pinned panel positions). */
 export function scrollHomeTo(target: string | HTMLElement | number) {
