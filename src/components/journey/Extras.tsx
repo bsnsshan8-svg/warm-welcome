@@ -68,31 +68,31 @@ export function StatsBand() {
 }
 
 const problems = [
-  { icon: Clock, t: "Someone asks about an appointment", d: "If nobody replies quickly, they book somewhere else." },
-  { icon: PhoneMissed, t: "A patient calls", d: "A missed call can mean a missed appointment." },
-  { icon: StarOff, t: "A patient has a great visit", d: "Without a nudge, few leave a review." },
-  { icon: CalendarX, t: "Time passes", d: "Past patients drift away unless someone invites them back." },
-  { icon: BellOff, t: "No reviews coming in", d: "New patients check reviews before they choose a clinic." },
-  { icon: UserX, t: "Past patients never hear from you", d: "Patients you've treated before end up at another practice." },
+  { icon: Clock, t: "Someone asks about an appointment", d: "If nobody replies quickly, they book somewhere else.", c: "the patient you already paid to attract." },
+  { icon: PhoneMissed, t: "A patient calls at a busy moment", d: "A missed call can mean a missed appointment.", c: "most callers don't leave a voicemail; they call the next clinic." },
+  { icon: StarOff, t: "A patient has a great visit", d: "Without a nudge, few leave a review.", c: "new patients choose the clinic with more recent reviews." },
+  { icon: CalendarX, t: "Time passes", d: "Past patients drift away unless someone invites them back.", c: "your easiest bookings, from people who already trust you." },
+  { icon: BellOff, t: "No reviews coming in", d: "New patients check reviews before they choose.", c: "you lose patients before they ever contact you." },
+  { icon: UserX, t: "Booked patients don't turn up", d: "An empty chair still costs you the time slot.", c: "lost revenue, and a slot another patient could have had." },
 ];
 
 export function ProblemGrid() {
   return <section id="problem" className="sx sx-light" aria-labelledby="problem-title">
     <div className="sx-shell">
       <div className="sx-head"><span className="sx-kicker"><i />Where patients slip away</span><h2 id="problem-title">Most clinics don't have an enquiry problem. They have a <em>follow-up problem.</em></h2></div>
-      <Reveal as="ul" className="problem-grid-x">{problems.map(({ icon: I, t, d }, i) => <li key={t} style={{ ["--i" as string]: i }}><span className="pg-icon"><I size={24} strokeWidth={1.75} /></span><b>{t}</b><p>{d}</p></li>)}</Reveal>
+      <Reveal as="ul" className="problem-grid-x">{problems.map(({ icon: I, t, d, c }, i) => <li key={t} style={{ ["--i" as string]: i }}><span className="pg-icon"><I size={24} strokeWidth={1.75} /></span><b>{t}</b><p>{d}</p><p className="pg-cost"><strong>What it costs:</strong> {c}</p></li>)}</Reveal>
     </div>
   </section>;
 }
 
 export const steps = [
-  { t: "Get found", d: "People searching for a clinic like yours find you, and get in touch.", p: ["Show up when locals look for care nearby", "A clear page that makes booking easy", "Offers that give people a reason to visit", "More new patients asking to book"] },
-  { t: "Reply to every enquiry", d: "Every patient enquiry gets a quick reply, day or night.", p: ["A reply within moments, day or night", "The right questions before booking", "Every patient message in one inbox", "One clear next step"] },
-  { t: "Follow up until they book", d: "Friendly follow-up and an easy way to book, until the visit is in your calendar.", p: ["Friendly follow-up if they go quiet", "An easy way to book", "The appointment booked in your calendar", "A reminder so they turn up"] },
-  { t: "Recover missed calls", d: "When nobody can answer, the caller gets a text back and a way to book.", p: ["Know straight away when a call is missed", "A text goes back to the caller", "The conversation picks up where it stopped", "The appointment gets booked"] },
-  { t: "Help patients show up", d: "Reminders and friendly check-ins so booked patients actually walk through the door.", p: ["A confirmation when they book", "A reminder the day before", "A same-day text", "An easy way to reschedule instead of a no-show"] },
-  { t: "Turn visits into reviews", d: "After a good visit, patients are invited to share it, so new patients see the care you give.", p: ["Ask patients how their visit went", "Invite happy patients to leave a review", "More reviews where new patients look", "The relationship continues after the appointment"] },
-  { t: "Bring past patients back", d: "Your past patients already trust you. Invite them back with a friendly message.", p: ["Reach patients you haven't seen in a while", "Send a friendly, relevant invitation", "They reply and book a visit", "Patients you've treated before hear from you"] },
+  { t: "Get found", d: "We run adverts on Google and Facebook for the treatments you most want to grow, and make sure you show up when people nearby search.", p: ["Adverts built around your treatments and area", "Your Google profile set up to be found", "A simple page that makes booking easy", "An offer that gives people a reason to choose you"] },
+  { t: "Reply to every enquiry", d: "Every enquiry gets a reply within minutes, by text or email, day or night, with a few simple questions to check it's the right fit.", p: ["Replies within minutes, around the clock", "A few questions about need and timing", "Every message in one inbox for your team", "Urgent or complex enquiries passed straight to your staff"] },
+  { t: "Follow up until they book", d: "If someone goes quiet, they hear from you again over the next days, with an easy way to choose a time.", p: ["Several friendly follow-ups, not just one", "Times offered directly from your calendar", "The booking lands in your diary automatically", "Your team only steps in when needed"] },
+  { t: "Recover missed calls", d: "When nobody can answer, the caller gets a text within a minute so the conversation carries on.", p: ["Instant text back after a missed call", "The conversation continues by message", "The appointment booked without a callback", "Your team sees every recovered call"] },
+  { t: "Help patients show up", d: "Booked isn't the finish line. Confirmations and reminders make sure the patient actually arrives.", p: ["A confirmation as soon as they book", "A reminder the day before", "A text on the morning of the visit", "An easy way to reschedule instead of not turning up"] },
+  { t: "Turn visits into reviews", d: "After a good visit, patients get a short thank-you with one tap to leave a review. Unhappy patients reach you privately first.", p: ["A thank-you message after each visit", "One tap to leave a review", "Concerns come to you before they go public", "More recent reviews where new patients look"] },
+  { t: "Bring past patients back", d: "We send friendly, relevant messages to patients you haven't seen in a while, like check-up reminders or seasonal offers.", p: ["Patients grouped by when they last visited", "Messages that suit their treatment", "Replies go straight into your inbox", "They book like any new patient"] },
 ];
 
 export function ProcessSteps() {

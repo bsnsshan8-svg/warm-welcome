@@ -11,11 +11,12 @@ export function CentredHero() {
       <span className="sx-kicker">Zero Apples A Day · For medical practices</span>
       <h1 id="hero-title">An apple a day keeps the doctor <em>away.</em></h1>
       <p className="ch-yellow">ZAAD does the opposite. It brings patients in.</p>
-      <p className="ch-p">We help medical practices bring the right patients in, reply to every enquiry fast, and turn more enquiries into booked appointments, so your team can focus on care.</p>
+      <p className="ch-p">Most practices don't need more marketing. They need every enquiry answered, followed up and booked. ZAAD brings the right patients in, replies within minutes, books the appointment and makes sure they turn up.</p>
       <div className="ch-actions">
         <Button asChild variant="unstyled" size="unstyled" className="journey-primary"><Link to="/book">Book a strategy call <ArrowUpRight size={18} /></Link></Button>
         <Button asChild variant="unstyled" size="unstyled" className="journey-text-link"><a href="#system">See how it works <ArrowDown size={18} /></a></Button>
       </div>
+      <ul className="ch-facts">{["Replies within minutes, day or night", "Reminders that cut no-shows", "30-day money-back guarantee"].map(f => <li key={f}><Check size={16} aria-hidden="true" />{f}</li>)}</ul>
     </div>
     <div className="ch-card" data-zaad={zaad}>
       <div className="ch-half ch-apple"><Apple size={36} aria-hidden="true" /><b>An apple a day</b><span>keeps patients away</span></div>
@@ -28,13 +29,13 @@ export function CentredHero() {
 }
 
 const specialties: [string, string][] = [
-  ["Chiropractors", "We help new patients in your area find you and book their first adjustment, then keep them coming back for their care plan."],
-  ["Regenerative Medicine", "We explain your treatments in plain words, answer early questions quickly, and guide interested patients to a consultation."],
-  ["Physical Therapy", "We help people with pain or injuries find your clinic, book an assessment, and stay on track with their sessions."],
-  ["Dental Clinics", "We bring in local patients looking for a dentist, reply to every enquiry, and remind past patients when their check-up is due."],
-  ["Med Spas", "We help people discover your treatments, answer their questions, and book them in, then invite them back for their next visit."],
-  ["Eye Clinics", "We help people looking for eye care find you, book an exam, and come back when it's time for their next check."],
-  ["Surgeons", "We help patients researching a procedure reach you, get their questions answered, and book a consultation with your team."],
+  ["Chiropractors", "New patients rarely book after one call. We follow up until the first adjustment is booked, then remind them through their care plan so they finish it."],
+  ["Regenerative Medicine", "Patients research for weeks before booking. We answer their questions quickly and stay in touch until they're ready for a consultation."],
+  ["Physical Therapy", "Referrals go cold when nobody calls back. We contact them the same day and book the first session before they look elsewhere."],
+  ["Dental Clinics", "Empty hygiene slots and overdue recalls cost you every week. We fill the diary with new patients and bring back the ones who are due."],
+  ["Med Spas", "Clients compare prices by message. Fast, friendly replies win the booking, and timely reminders bring them back for their next treatment."],
+  ["Eye Clinics", "Procedure enquiries take time to decide. We book the consultation and keep in touch until the patient is ready."],
+  ["Surgeons", "Every consultation request matters. We make sure each one is answered, followed up and confirmed, with your team kept in the loop."],
 ];
 
 /** Animated flat-art scene for each specialty. Pure SVG + CSS, theme colours only. */

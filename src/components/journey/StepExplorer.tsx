@@ -15,7 +15,7 @@ const mocks = [
 ];
 
 function StepCard({ i, active }: { i: number; active: boolean }) {
-  const st = steps[i];
+  const st = steps[i]!;
   return (
     <article className="vx-card" data-active={active}>
       <span className="px-step">Step {num(i)}</span>
@@ -24,8 +24,8 @@ function StepCard({ i, active }: { i: number; active: boolean }) {
       <ul>{st.p.map(x => <li key={x}><Check size={18} aria-hidden="true" />{x}</li>)}</ul>
       <div className="vx-strip">
         <span className="vx-strip-name">Riverside Dental</span>
-        <span className="vx-strip-ev">{mocks[i][0]}</span>
-        <b><Check size={14} aria-hidden="true" />{mocks[i][1]}</b>
+        <span className="vx-strip-ev">{mocks[i]![0]}</span>
+        <b><Check size={14} aria-hidden="true" />{mocks[i]![1]}</b>
       </div>
     </article>
   );
@@ -97,6 +97,7 @@ export function StepExplorer() {
           <ol ref={listRef} className="vx-list">
             {steps.map((st, i) => <li key={st.t}><StepCard i={i} active={i === active} /></li>)}
           </ol>
+          <div className="why-box"><b>Why this matters</b><p>Most practices lose patients between steps, not at the start. Fixing the gaps often fills more appointments than spending more on adverts.</p></div>
         </div>
       </div>
     </section>
