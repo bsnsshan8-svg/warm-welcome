@@ -33,7 +33,7 @@ export function ClinicWeek() {
     <div className="cw-event-heading"><b>{event.time}</b><span>{event.kind}</span></div>
     {enabled ? <>
       <div className="cw-sent"><Send size={16} aria-hidden="true" /><span>Text with booking link sent in 1 minute</span></div>
-      <div className="cw-booked"><Check size={16} aria-hidden="true" /><span><b>Booked</b><span>Booked: {event.booked}</span></span></div>
+      <div className="cw-booked"><Check size={16} aria-hidden="true" /><span><b>Booked</b> <span>{event.booked}</span></span></div>
     </> : <>
       <div className="cw-wait"><Clock3 size={16} aria-hidden="true" /><span>Waits until {event.wait}</span></div>
       <small className="cw-elsewhere">Booked elsewhere?</small>
