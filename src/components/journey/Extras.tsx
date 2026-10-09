@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { BellOff, CalendarX, Check, Clock, MessageSquare, PhoneMissed, StarOff, UserX } from "lucide-react";
+import { BellOff, CalendarX, Check, Clock, MessageSquare, PhoneMissed, Plus, StarOff, UserX } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 /** Adds data-inview="true" once the element scrolls into view. */
 export function useInView<T extends HTMLElement>(threshold = 0.25) {
@@ -77,10 +79,23 @@ const problems = [
 ];
 
 export function ProblemGrid() {
+  const isMobile = useIsMobile();
+  const [openCard, setOpenCard] = useState<number | null>(0);
   return <section id="problem" className="sx sx-light" aria-labelledby="problem-title">
     <div className="sx-shell">
       <div className="sx-head"><span className="sx-kicker"><i />Where patients slip away</span><h2 id="problem-title">Most clinics don't have an enquiry problem. They have a <em>follow-up problem.</em></h2></div>
-      <Reveal as="ul" className="problem-grid-x">{problems.map(({ icon: I, t, d, c }, i) => <li key={t} style={{ ["--i" as string]: i }}><span className="pg-icon"><I size={24} strokeWidth={1.75} /></span><b>{t}</b><p>{d}</p><p className="pg-cost"><strong>What it costs:</strong> {c}</p></li>)}</Reveal>
+      <Reveal as="ul" className="problem-grid-x">{problems.map(({ icon: I, t, d, c }, i) => <li key={t} style={{ ["--i" as string]: i }} className={isMobile ? "pg-mobile-card" : undefined} data-open={isMobile ? openCard === i : undefined}>
+        {isMobile ? <>
+          <Button type="button" variant="unstyled" size="unstyled" className="pg-toggle" id={`problem-toggle-${i}`} aria-expanded={openCard === i} aria-controls={`problem-panel-${i}`} onClick={() => setOpenCard(current => current === i ? null : i)}>
+            <span className="pg-icon"><I size={24} strokeWidth={1.75} aria-hidden="true" /></span>
+            <span className="pg-heading"><span className="pg-number">{String(i + 1).padStart(2, "0")}</span><b>{t}</b></span>
+            <span className="pg-expand" aria-hidden="true"><Plus size={16} /></span>
+          </Button>
+          <div id={`problem-panel-${i}`} className="pg-panel" role="region" aria-labelledby={`problem-toggle-${i}`} aria-hidden={openCard !== i} inert={openCard !== i}>
+            <div className="pg-panel-clip"><div className="pg-panel-copy"><p>{d}</p><p className="pg-cost"><strong>What it costs:</strong> {c}</p></div></div>
+          </div>
+        </> : <><span className="pg-icon"><I size={24} strokeWidth={1.75} /></span><b>{t}</b><p>{d}</p><p className="pg-cost"><strong>What it costs:</strong> {c}</p></>}
+      </li>)}</Reveal>
     </div>
   </section>;
 }

@@ -1,9 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
-import { ArrowUpRight, CalendarX, Check, ChevronDown, Clock, PhoneMissed, Rocket, RotateCw, ShieldCheck, Star, Stethoscope, Users, UserX } from "lucide-react";
+import { ArrowUpRight, CalendarX, Check, ChevronDown, Clock, PhoneMissed, Star, UserX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import clinic from "@/assets/practice-clinic.jpg";
-import { CountUp, useInView } from "./Extras";
 
 export function GoodEnquiry() {
   const items = [
@@ -44,33 +42,6 @@ export function AdvertsFirst() {
         </div>
       </div>
       <p className="af-close">Then we add adverts, once every new enquiry has a clear path to a booking.</p>
-    </div>
-  </section>;
-}
-
-export function FounderSection() {
-  const [ref, inView] = useInView<HTMLDivElement>(0.25);
-  const [flipped, setFlipped] = useState<boolean[]>([false, false, false, false]);
-  const tiles = [
-    { Icon: Rocket, count: 7, suffix: " days", label: "Onboarding to live", back: "We set everything up and go live within 7 working days of your onboarding form." },
-    { Icon: Stethoscope, count: 7, suffix: " specialties", label: "Chiropractors to surgeons", back: "Chiropractors, regenerative medicine, physical therapy, dental, med spas, eye clinics and surgeons." },
-    { Icon: ShieldCheck, count: 30, suffix: "-day", label: "Money-back guarantee", back: "Miss the targets we agree in the first 30 days and you get your money back." },
-    { Icon: Users, count: 2, suffix: " co-founders", label: "People you'll actually talk to", back: "No call centre. You speak to the people who built ZAAD." },
-  ];
-  return <section className="sx sx-light sx-mist" aria-labelledby="fo-title">
-    <div className="sx-shell">
-      <div className="sx-head"><span className="sx-kicker">Why practices choose ZAAD</span><h2 id="fo-title">Built for practices, <em>not for everyone.</em></h2></div>
-      <div className="zx-stats" ref={ref}>{tiles.map(({ Icon, count, suffix, label, back }, index) => <Button key={label} type="button" variant="unstyled" size="unstyled" className="zx-stat" aria-pressed={flipped[index] ?? false} aria-label={`${count}${suffix}: ${label}`} onClick={() => setFlipped(current => current.map((value, i) => i === index ? !value : value))}>
-        <span className="zx-stat-inner">
-          <span className="zx-stat-front" aria-hidden={flipped[index] ?? false}>
-            <span className="zx-stat-icon"><Icon size={22} aria-hidden="true" /></span>
-            <span className="zx-stat-number"><CountUp value={count} start={inView} /><span className="zx-stat-suffix">{suffix}</span></span>
-            <span className="zx-stat-label">{label}</span>
-            <span className="zx-stat-hint">Tap to see more <RotateCw size={14} aria-hidden="true" /></span>
-          </span>
-          <span className="zx-stat-back" aria-hidden={!(flipped[index] ?? false)}><span>{back}</span><span className="zx-stat-hint">Tap to flip back</span></span>
-        </span>
-      </Button>)}</div>
     </div>
   </section>;
 }

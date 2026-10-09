@@ -1,4 +1,5 @@
 # Cinematic ZAAD patient journey
+- [ ] Remove founder section and unused flip styles/memory; make phone problem cards accessible single-open accordions, then verify desktop/tablet preservation and phone behavior.
 - [x] Correct all missed-call copy and depictions to the text-with-booking-form flow.
 - [x] Add interactive clinic-week section and footer anchor; verify desktop/mobile controls, scrolling, accessibility and routes.
 - [x] Fix hero trust-row contrast and verify desktop moments snapping, navigation and unpinning.
