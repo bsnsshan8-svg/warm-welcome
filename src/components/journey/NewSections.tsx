@@ -1,7 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, CalendarX, Check, ChevronDown, Clock, PhoneMissed, Star, UserX } from "lucide-react";
+import { useState } from "react";
+import { ArrowUpRight, CalendarX, Check, ChevronDown, Clock, PhoneMissed, Rocket, RotateCw, ShieldCheck, Star, Stethoscope, Users, UserX } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import clinic from "@/assets/practice-clinic.jpg";
+import { CountUp, useInView } from "./Extras";
 
 export function GoodEnquiry() {
   const items = [
@@ -47,17 +49,28 @@ export function AdvertsFirst() {
 }
 
 export function FounderSection() {
+  const [ref, inView] = useInView<HTMLDivElement>(0.25);
+  const [flipped, setFlipped] = useState<boolean[]>([false, false, false, false]);
+  const tiles = [
+    { Icon: Rocket, count: 7, suffix: " days", label: "Onboarding to live", back: "We set everything up and go live within 7 working days of your onboarding form." },
+    { Icon: Stethoscope, count: 7, suffix: " specialties", label: "Chiropractors to surgeons", back: "Chiropractors, regenerative medicine, physical therapy, dental, med spas, eye clinics and surgeons." },
+    { Icon: ShieldCheck, count: 30, suffix: "-day", label: "Money-back guarantee", back: "Miss the targets we agree in the first 30 days and you get your money back." },
+    { Icon: Users, count: 2, suffix: " co-founders", label: "People you'll actually talk to", back: "No call centre. You speak to the people who built ZAAD." },
+  ];
   return <section className="sx sx-light sx-mist" aria-labelledby="fo-title">
     <div className="sx-shell">
-      <div className="sx-head"><span className="sx-kicker">Who's behind ZAAD</span><h2 id="fo-title">Built for practices, <em>not for everyone.</em></h2></div>
-      <div className="pr-card fo-card zx-fo">
-        <div>
-          <p>ZAAD was founded by Azan Tariq and Farhan Ali to help medical practices turn more enquiries into booked patients. We kept seeing the same thing: practices paying to attract patients, then losing them to slow replies, missed calls and no follow-up. So we built ZAAD around everything that happens after someone gets in touch.</p>
-          <div className="fo-people">{[["Azan Tariq", "AT"], ["Farhan Ali", "FA"]].map(([n, ini]) => <div key={n} className="fo-person"><span className="fo-photo" aria-hidden="true">{ini}</span><p className="fo-name"><b>{n}</b>, Co-founder</p></div>)}</div>
-          <p className="fo-contact">Based in Kalispell, Montana. Call <a href="tel:+14089423358">+1 408 942 3358</a> or email <a href="mailto:Info@zeroapplesaday.com">Info@zeroapplesaday.com</a>.</p>
-        </div>
-        <div className="zx-stats">{[["7 days", "From onboarding to live"], ["7 specialties", "From chiropractors to surgeons"], ["30-day guarantee", "Money back if agreed targets aren't met"], ["2 co-founders", "The people you'll actually talk to"]].map(([n, l]) => <div key={n} className="zx-stat"><b>{n}</b><span>{l}</span></div>)}</div>
-      </div>
+      <div className="sx-head"><span className="sx-kicker">Why practices choose ZAAD</span><h2 id="fo-title">Built for practices, <em>not for everyone.</em></h2></div>
+      <div className="zx-stats" ref={ref}>{tiles.map(({ Icon, count, suffix, label, back }, index) => <Button key={label} type="button" variant="unstyled" size="unstyled" className="zx-stat" aria-pressed={flipped[index] ?? false} aria-label={`${count}${suffix}: ${label}`} onClick={() => setFlipped(current => current.map((value, i) => i === index ? !value : value))}>
+        <span className="zx-stat-inner">
+          <span className="zx-stat-front" aria-hidden={flipped[index] ?? false}>
+            <span className="zx-stat-icon"><Icon size={22} aria-hidden="true" /></span>
+            <span className="zx-stat-number"><CountUp value={count} start={inView} /><span className="zx-stat-suffix">{suffix}</span></span>
+            <span className="zx-stat-label">{label}</span>
+            <span className="zx-stat-hint">Tap to see more <RotateCw size={14} aria-hidden="true" /></span>
+          </span>
+          <span className="zx-stat-back" aria-hidden={!(flipped[index] ?? false)}><span>{back}</span><span className="zx-stat-hint">Tap to flip back</span></span>
+        </span>
+      </Button>)}</div>
     </div>
   </section>;
 }
