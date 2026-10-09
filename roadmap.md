@@ -1,4 +1,5 @@
 # Cinematic ZAAD patient journey
+- [x] Remove founder section and unused flip styles/memory; verify all six phone accordions, keyboard/reduced motion, 360/375px containment, exact 768/1440px card preservation, and routing/scrolling tests.
 - [x] Correct all missed-call copy and depictions to the text-with-booking-form flow.
 - [x] Add interactive clinic-week section and footer anchor; verify desktop/mobile controls, scrolling, accessibility and routes.
 - [x] Fix hero trust-row contrast and verify desktop moments snapping, navigation and unpinning.
