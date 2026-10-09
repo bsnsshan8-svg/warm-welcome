@@ -22,10 +22,10 @@ export const Route = createFileRoute("/")({
       { name: "twitter:description", content: "ZAAD brings new patients to your practice, replies to every enquiry, books the appointment, and brings past patients back." },
       { name: "author", content: "ZAAD" },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://hello-hub-host.lovable.app/" },
+      { property: "og:url", content: "https://zeroapplesaday.com/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://hello-hub-host.lovable.app/" }],
+    links: [{ rel: "canonical", href: "https://zeroapplesaday.com/" }],
   }),
 });
 
