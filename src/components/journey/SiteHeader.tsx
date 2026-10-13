@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import zaadLogo from "@/assets/zaad-logo.png.asset.json";
 import { pauseHomeScroll, resumeHomeScroll, scrollHomeTo } from "@/lib/home-motion";
 
-const links = [["Who we help", "who"], ["How it works", "modules"], ["UniBox", "unibox"], ["Pricing", "pricing"], ["FAQ", "faq"]] as const;
+const links = [["Who we help", "who"], ["How it works", "modules"], ["UniBox", "unibox"], ["Plans", "pricing"], ["FAQ", "faq"]] as const;
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
