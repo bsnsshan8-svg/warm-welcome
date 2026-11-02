@@ -3,11 +3,10 @@ import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import zaadLogo from "@/assets/zaad-logo.png.asset.json";
 
-// Replace with the real scheduling link.
-const BOOKING_URL = "https://calendly.com/d/y6m-9rd-xdj/30min";
+const BOOKING_URL = "https://calendly.com/azan-zeroapplesaday/15-min-demo";
 
 const title = "Book a Free Strategy Call — ZAAD";
-const desc = "A free 30-minute call about what happens between a patient's first enquiry and their appointment. No pressure, no jargon.";
+const desc = "A free 15-minute call about what happens between a patient's first enquiry and their appointment. No pressure, no jargon.";
 
 export const Route = createFileRoute("/book")({
   head: () => ({
@@ -32,7 +31,7 @@ function BookPage() {
     </header>
     <section className="sx sx-light book-main" aria-labelledby="book-title">
       <div className="sx-shell book-inner">
-        <span className="sx-kicker">Free 30-minute call</span>
+        <span className="sx-kicker">Free 15-minute call</span>
         <h1 id="book-title">Let's find where your patients are <em>slipping away.</em></h1>
         <p className="book-lead">A practical call about what happens between a patient's first enquiry and their appointment. No pressure, no jargon.</p>
         <p className="book-sub">On the call we'll look at:</p>
@@ -40,7 +39,7 @@ function BookPage() {
           {["Where your enquiries come from today", "Where patients drop out before booking", "What a steady flow of new patients would look like for your practice"].map(t => <li key={t}><Check size={20} aria-hidden="true" />{t}</li>)}
         </ul>
         <Button asChild variant="unstyled" size="unstyled" className="journey-primary book-cta"><a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Choose a time <ArrowUpRight size={20} /></a></Button>
-        <p className="book-alt">Prefer to talk first? Call <a href="tel:+14089423358">+1 408 942 3358</a> or email <a href="mailto:Info@zeroapplesaday.com">Info@zeroapplesaday.com</a></p>
+        <p className="book-alt">Prefer to talk first? Call <a href="tel:+16045058898">+1 604 505 8898</a> or email <a href="mailto:azan@zeroapplesaday.com">azan@zeroapplesaday.com</a></p>
         <p className="book-guarantee">30-day money-back guarantee on every plan.</p>
       </div>
     </section>
