@@ -78,6 +78,6 @@ export function SiteFooter() {
         <BookButton />
       </div>
     </div>
-    <div className="zx-footer-bottom"><small>© 2026 ZAAD — Zero Apples A Day. Built for healthcare practices.</small></div>
+    <div className="zx-footer-bottom"><small>© 2026 ZAAD — Zero Apples A Day. Built for healthcare practices.</small><small className="zx-footer-company">A Genrationz company · <a href="mailto:azan@zeroapplesaday.com">azan@zeroapplesaday.com</a></small></div>
   </footer>;
 }
