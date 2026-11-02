@@ -39,7 +39,7 @@ function BookPage() {
           {["Where your enquiries come from today", "Where patients drop out before booking", "What a steady flow of new patients would look like for your practice"].map(t => <li key={t}><Check size={20} aria-hidden="true" />{t}</li>)}
         </ul>
         <Button asChild variant="unstyled" size="unstyled" className="journey-primary book-cta"><a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Choose a time <ArrowUpRight size={20} /></a></Button>
-        <p className="book-alt">Prefer to talk first? Call <a href="tel:+16045058898">+1 604 505 8898</a> or email <a href="mailto:azan@zeroapplesaday.com">azan@zeroapplesaday.com</a></p>
+        <p className="book-alt">Prefer to talk first? Call <a href="tel:+14065058898">+1 406 505 8898</a> or email <a href="mailto:azan@zeroapplesaday.com">azan@zeroapplesaday.com</a></p>
         <p className="book-guarantee">30-day money-back guarantee on every plan.</p>
       </div>
     </section>
