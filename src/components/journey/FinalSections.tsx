@@ -59,7 +59,7 @@ export function SiteFooter() {
         <p>A steady flow of new patients for healthcare practices.</p>
         <p className="zx-tagline"><em>More patients.</em> Fewer gaps. <em>Less chasing.</em></p>
         <ul className="zx-contact">
-          <li><Phone size={16} aria-hidden="true" /><a href="tel:+16045058898">+1 604 505 8898</a></li>
+          <li><Phone size={16} aria-hidden="true" /><a href="tel:+14065058898">+1 406 505 8898</a></li>
           <li><Mail size={16} aria-hidden="true" /><a href="mailto:azan@zeroapplesaday.com">azan@zeroapplesaday.com</a></li>
           <li><MapPin size={16} aria-hidden="true" /><address>1001 S Main St, Ste 500, Kalispell MT 59901, United States</address></li>
         </ul>
