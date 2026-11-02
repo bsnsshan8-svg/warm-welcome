@@ -59,8 +59,8 @@ export function SiteFooter() {
         <p>A steady flow of new patients for healthcare practices.</p>
         <p className="zx-tagline"><em>More patients.</em> Fewer gaps. <em>Less chasing.</em></p>
         <ul className="zx-contact">
-          <li><Phone size={16} aria-hidden="true" /><a href="tel:+14089423358">+1 408 942 3358</a></li>
-          <li><Mail size={16} aria-hidden="true" /><a href="mailto:Info@zeroapplesaday.com">Info@zeroapplesaday.com</a></li>
+          <li><Phone size={16} aria-hidden="true" /><a href="tel:+16045058898">+1 604 505 8898</a></li>
+          <li><Mail size={16} aria-hidden="true" /><a href="mailto:azan@zeroapplesaday.com">azan@zeroapplesaday.com</a></li>
           <li><MapPin size={16} aria-hidden="true" /><address>1001 S Main St, Ste 500, Kalispell MT 59901, United States</address></li>
         </ul>
       </div>
@@ -73,11 +73,11 @@ export function SiteFooter() {
       <nav className="zx-fcol" aria-label="Plans"><h3>Plans</h3>
         <a href="#pricing">Core systems</a><a href="#pricing">Done for you: Accelerator</a><a href="#pricing">Done for you: Power</a>
       </nav>
-      <div className="zx-fcol"><h3>Ready for more patients?</h3>
-        <p>Book a free 30-minute call and we'll show you where patients are slipping away.</p>
+      <div className="zx-fcol zx-fcta"><h3>Ready for more patients?</h3>
+        <p className="zx-fcta-intro">Book a free 15-minute call and we'll show you where patients are slipping away.</p>
         <BookButton />
       </div>
     </div>
-    <div className="zx-footer-bottom"><small>© 2026 ZAAD — Zero Apples A Day. Built for healthcare practices.</small><small className="zx-footer-company">A Genrationz company · <a href="mailto:azan@zeroapplesaday.com">azan@zeroapplesaday.com</a></small></div>
+    <div className="zx-footer-bottom"><small>© 2026 ZAAD — Zero Apples A Day. Built for healthcare practices.</small><small className="zx-footer-company">A Genrationz company</small></div>
   </footer>;
 }

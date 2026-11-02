@@ -1061,27 +1061,31 @@ body:has(.journey-page){background:var(--navy);}
 .zx-final p{font-size:18px;line-height:1.6;color:#e6ecf5;margin:0;max-width:680px;}
 .zx-final-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;}
 .zx-footer{position:relative;z-index:3;background:var(--navy);color:#c7d1e2;padding:120px 24px 28px;margin-top:-64px;font-size:15px;}
-.zx-footer-grid{width:min(100%,1280px);margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1.1fr 1.2fr 1.4fr;gap:36px;}
-.zx-fcol{display:flex;flex-direction:column;gap:6px;min-width:0;}
-.zx-fcol h3{color:#fff;font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin:0 0 8px;}
-.zx-fcol>a{color:#c7d1e2;min-height:44px;display:flex;align-items:center;}
-.zx-fcol>a:hover{color:#fff;}
+.zx-footer-grid{width:min(100%,1280px);margin:0 auto;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,.9fr) minmax(0,1fr) minmax(0,1.15fr) minmax(280px,1.3fr);gap:40px 36px;align-items:start;}
+.zx-fcol{display:flex;flex-direction:column;gap:0;min-width:0;}
+.zx-fcol h3{color:#fff;font-size:14px;line-height:20px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin:0 0 12px;min-height:20px;}
+.zx-fcol>a{color:#c7d1e2;min-height:40px;display:flex;align-items:center;line-height:1.35;border-radius:4px;}
+.zx-fcol>a:hover,.zx-fcol>a:focus-visible{color:#fff;text-decoration:underline;text-underline-offset:3px;}
+.zx-fcol>a:focus-visible,.zx-contact a:focus-visible{outline:2px solid #6ea8ff;outline-offset:2px;}
 .zx-fcol p{margin:0 0 12px;line-height:1.55;}
-.zx-fbrand img{width:180px;height:auto;margin-bottom:12px;}
+.zx-fbrand>a:first-child{min-height:0;display:block;margin-top:-4px;}
+.zx-fbrand img{width:180px;height:auto;margin-bottom:12px;display:block;}
 .zx-tagline{color:#fff;font-weight:700;}
 .zx-tagline em{font-style:normal;color:#6ea8ff;}
-.zx-contact{list-style:none;padding:0;margin:0;display:grid;gap:4px;}
-.zx-contact li{display:flex;gap:10px;align-items:center;min-height:44px;}
-.zx-contact svg{color:#6ea8ff;flex:none;}
-.zx-contact a,.zx-contact address{color:#c7d1e2;font-style:normal;overflow-wrap:anywhere;}
-.zx-footer-bottom{width:min(100%,1280px);margin:40px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.14);}
+.zx-contact{list-style:none;padding:0;margin:4px 0 0;display:grid;gap:12px;}
+.zx-contact li{display:grid;grid-template-columns:20px minmax(0,1fr);column-gap:12px;align-items:start;line-height:22px;}
+.zx-contact svg{color:#6ea8ff;width:20px;height:22px;padding:3px 2px;box-sizing:border-box;}
+.zx-contact a,.zx-contact address{color:#c7d1e2;font-style:normal;overflow-wrap:anywhere;line-height:22px;}
+.zx-contact a{display:inline-block;padding:11px 0;margin:-11px 0;}
+.zx-contact a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px;}
+.zx-fcta-intro{max-width:34ch;}
+.zx-fcta>a,.zx-fcta .zx-btn,.zx-fcta a{white-space:nowrap;align-self:flex-start;}
+.zx-fcta svg{flex:none;}
+.zx-footer-bottom{width:min(100%,1280px);margin:48px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.14);display:flex;justify-content:space-between;align-items:center;gap:8px 24px;flex-wrap:wrap;}
 .zx-footer-bottom small{font-size:14px;color:#c7d1e2;}
-.zx-footer-company{display:block;margin-top:6px;overflow-wrap:anywhere;}
-.zx-footer-company a{color:#c7d1e2;text-decoration:underline;text-underline-offset:3px;}
-.zx-footer-company a:hover{color:#fff;}
-@media (max-width:1023px){.zx-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.zx-fbrand{grid-column:1/-1;}}
+@media (max-width:1199px){.zx-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.zx-fbrand{grid-column:1/-1;}.zx-fcta{grid-column:auto;}}
 @media (max-width:899px){.zx-approach-grid,.zx-af-top,.zx-af-bottom{grid-template-columns:1fr!important;}.zx-approach-items{grid-template-columns:1fr;}}
-@media (max-width:599px){.zx-footer-grid{grid-template-columns:1fr;}.zx-final{border-radius:0 0 50% 50% / 0 0 32px 32px;}.zx-footer{margin-top:-32px;padding-top:80px;}}
+@media (max-width:599px){.zx-footer-grid{grid-template-columns:1fr;gap:32px;}.zx-footer-bottom{flex-direction:column;align-items:flex-start;}.zx-final{border-radius:0 0 50% 50% / 0 0 32px 32px;}.zx-footer{margin-top:-32px;padding-top:80px;}}
 .zx-af-card .zx-h3{color:#fff!important;}
 
 /* Horizontal patient moments: sticky ancestry remains overflow-visible. */
