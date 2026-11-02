@@ -1076,6 +1076,9 @@ body:has(.journey-page){background:var(--navy);}
 .zx-contact a,.zx-contact address{color:#c7d1e2;font-style:normal;overflow-wrap:anywhere;}
 .zx-footer-bottom{width:min(100%,1280px);margin:40px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.14);}
 .zx-footer-bottom small{font-size:14px;color:#c7d1e2;}
+.zx-footer-company{display:block;margin-top:6px;overflow-wrap:anywhere;}
+.zx-footer-company a{color:#c7d1e2;text-decoration:underline;text-underline-offset:3px;}
+.zx-footer-company a:hover{color:#fff;}
 @media (max-width:1023px){.zx-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.zx-fbrand{grid-column:1/-1;}}
 @media (max-width:899px){.zx-approach-grid,.zx-af-top,.zx-af-bottom{grid-template-columns:1fr!important;}.zx-approach-items{grid-template-columns:1fr;}}
 @media (max-width:599px){.zx-footer-grid{grid-template-columns:1fr;}.zx-final{border-radius:0 0 50% 50% / 0 0 32px 32px;}.zx-footer{margin-top:-32px;padding-top:80px;}}
