@@ -38,7 +38,7 @@ const leadSchema = z.object({
   clinic: z.string().trim().min(1, "Please enter your clinic name").max(150),
   phone: z.string().trim().max(30).refine(v => /^\+?[\d\s().-]+$/.test(v) && v.replace(/\D/g, "").length >= 10 && v.replace(/\D/g, "").length <= 15, "Please enter a valid mobile number"),
   email: z.string().trim().email("Please enter a valid email").max(255),
-  consent: z.literal(true, { errorMap: () => ({ message: "Please tick the box to continue" }) }),
+  consent: z.boolean().refine(v => v, "Please tick the box to continue"),
 });
 
 type NumField = { id: Exclude<keyof LeakInputs, "web">; label: string; hint?: string; slider?: number; step?: number };
@@ -153,10 +153,10 @@ function CalculatorPage() {
               {errors[k] && <p className="calc-err" id={`err-${k}`}>{errors[k]}</p>}
             </div>)}
             <label className="calc-consent">
-              <input id="lead-consent" type="checkbox" required checked={lead.consent} aria-invalid={!!errors.consent} onChange={e => setLead(p => ({ ...p, consent: e.target.checked }))} />
+              <input id="lead-consent" type="checkbox" required checked={lead.consent} aria-invalid={!!errors["consent"]} onChange={e => setLead(p => ({ ...p, consent: e.target.checked }))} />
               <span>I agree that ZAAD may call, text or email me about my result and the clinic audit. Message and data rates may apply. Reply STOP to opt out of texts.</span>
             </label>
-            {errors.consent && <p className="calc-err">{errors.consent}</p>}
+            {errors["consent"] && <p className="calc-err">{errors["consent"]}</p>}
             <Button type="submit" variant="unstyled" size="unstyled" className="journey-primary calc-btn">Show my result <ArrowRight size={18} /></Button>
           </form> : <div className="calc-out">
             <p className="calc-out-label">Estimated value slipping away each month</p>
