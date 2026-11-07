@@ -76,8 +76,8 @@ function CalculatorPage() {
   const inputs = useMemo<LeakInputs>(() => {
     const o = { ...defaultInputs } as LeakInputs;
     for (const f of fields) o[f.id] = Number(raw[f.id]) || 0;
-    o.web = raw.web === "yes" ? "yes" : "no";
-    o.val = Number(raw.val) || 0;
+    o.web = raw["web"] === "yes" ? "yes" : "no";
+    o.val = Number(raw["val"]) || 0;
     return o;
   }, [raw]);
   const r = useMemo(() => computeLeak(inputs), [inputs]);
@@ -134,12 +134,12 @@ function CalculatorPage() {
           </div>)}
           <div className="calc-field">
             <label htmlFor="in-web">Can a new patient book online at 11 pm?</label>
-            <select id="in-web" value={raw.web} onChange={e => set("web", e.target.value)}><option value="no">No</option><option value="yes">Yes</option></select>
+            <select id="in-web" value={raw["web"]} onChange={e => set("web", e.target.value)}><option value="no">No</option><option value="yes">Yes</option></select>
           </div>
           <div className="calc-field">
             <label htmlFor="in-val">What a typical new patient pays you, in dollars</label>
             <p className="calc-hint" id="hint-val">From the first visit to the end of their care. If you aren't sure, use a cautious number, because every result above is built on it.</p>
-            <input id="in-val" type="number" inputMode="numeric" min={0} step={50} value={raw.val} aria-describedby="hint-val" onChange={e => set("val", e.target.value)} />
+            <input id="in-val" type="number" inputMode="numeric" min={0} step={50} value={raw["val"]} aria-describedby="hint-val" onChange={e => set("val", e.target.value)} />
           </div>
         </div>
 
