@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import zaadLogo from "@/assets/zaad-logo.png.asset.json";
 import { pauseHomeScroll, resumeHomeScroll, scrollHomeTo } from "@/lib/home-motion";
 
-const links = [["Who we help", "who"], ["How it works", "modules"], ["UniBox", "unibox"], ["Plans", "pricing"], ["FAQ", "faq"]] as const;
+const links = [["Who we help", "who"], ["How it works", "modules"], ["UniBox", "unibox"], ["Calculator", "estimator"], ["Plans", "pricing"], ["FAQ", "faq"]] as const;
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -45,20 +45,21 @@ export function SiteHeader() {
   const follow = (id: string) => {
     setOpen(false);
     window.setTimeout(() => {
+      if (window.location.pathname !== "/") { window.location.assign(`/#${id}`); return; }
       history.pushState(null, "", `#${id}`);
       scrollHomeTo(id);
     }, 0);
   };
   return <>
     <header className="journey-header zaad-header">
-      <a href="#top" aria-label="ZAAD home" className="journey-logo"><img src={zaadLogo.url} alt="ZAAD — Zero Apples A Day" /></a>
-      <nav aria-label="Main navigation">{links.slice(0, 3).map(([label, id]) => <a key={id} href={`#${id}`}>{label}</a>)}<Link to="/calculator">Calculator</Link>{links.slice(3, 4).map(([label, id]) => <a key={id} href={`#${id}`}>{label}</a>)}</nav>
+      <a href="/#top" aria-label="ZAAD home" className="journey-logo"><img src={zaadLogo.url} alt="ZAAD — Zero Apples A Day" /></a>
+      <nav aria-label="Main navigation">{links.slice(0, 5).map(([label, id]) => <a key={id} href={`/#${id}`}>{label}</a>)}</nav>
       <Button asChild variant="unstyled" size="unstyled" className="journey-call"><Link to="/book">Book a strategy call <ArrowUpRight size={18} /></Link></Button>
       <Button ref={triggerRef} variant="unstyled" size="unstyled" className="journey-menu" aria-label="Open menu" aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen(true)}><Menu size={22} /></Button>
     </header>
     {open && createPortal(<div id="mobile-menu" className="zaad-mobile-menu" ref={dialogRef} role="dialog" aria-modal="true" aria-label="Main navigation">
       <div className="mobile-menu-top"><img src={zaadLogo.url} alt="ZAAD — Zero Apples A Day" /><Button variant="unstyled" size="unstyled" className="mobile-menu-close" aria-label="Close menu" onClick={() => setOpen(false)}><X size={28} /></Button></div>
-      <nav aria-label="Mobile navigation">{links.flatMap(([label, id]) => [...(id === "pricing" ? [<Link key="calc" to="/calculator" onClick={() => setOpen(false)}>Calculator</Link>] : []), <a key={id} href={`#${id}`} onClick={e => { e.preventDefault(); follow(id); }}>{label}</a>])}<Button asChild variant="unstyled" size="unstyled" className="journey-primary"><Link to="/book" onClick={() => setOpen(false)}>Book a strategy call <ArrowUpRight size={18} /></Link></Button></nav>
+      <nav aria-label="Mobile navigation">{links.map(([label, id]) => <a key={id} href={`/#${id}`} onClick={e => { e.preventDefault(); follow(id); }}>{label}</a>)}<Button asChild variant="unstyled" size="unstyled" className="journey-primary"><Link to="/book" onClick={() => setOpen(false)}>Book a strategy call <ArrowUpRight size={18} /></Link></Button></nav>
     </div>, document.body)}
   </>;
 }

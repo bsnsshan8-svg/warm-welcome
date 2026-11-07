@@ -141,18 +141,6 @@ export function GrowthEstimator() {
   </section>;
 }
 
-export function CalculatorPromo() {
-  return <section id="estimator" className="calc-promo" aria-labelledby="cp-title">
-    <div className="sx-shell calc-promo-inner">
-      <span className="sx-kicker">Free calculator</span>
-      <h2 id="cp-title">See what your clinic's leaks cost you <em>each month.</em></h2>
-      <p>Two minutes, your own numbers. Answer a few questions and see where patients slip away.</p>
-      <Button asChild variant="unstyled" size="unstyled" className="journey-primary"><Link to="/calculator">Try the calculator <ArrowUpRight size={18} /></Link></Button>
-      <small>Free to try. No obligation.</small>
-    </div>
-  </section>;
-}
-
 export function BookPrompt({ text }: { text: string }) {
   return <div className="book-prompt"><p>{text}</p><Button asChild variant="unstyled" size="unstyled" className="journey-primary"><Link to="/book">Book a strategy call <ArrowUpRight size={18} /></Link></Button></div>;
 }
