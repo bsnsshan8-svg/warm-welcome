@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { UniBoxSection } from "@/components/journey/SystemSections";
 import { StepExplorer } from "@/components/journey/StepExplorer";
 import { ProblemGrid } from "@/components/journey/Extras";
-import { BookPrompt, CentredHero, FitCheck, GrowthEstimator, Pricing, SpecialtyPicker } from "@/components/journey/MoreSections";
-import { AdvertsFirst, Faq, GoodEnquiry } from "@/components/journey/NewSections";
+import { CalculatorPromo, CentredHero, Pricing, SpecialtyPicker } from "@/components/journey/MoreSections";
+import { Faq } from "@/components/journey/NewSections";
 import { ApproachSection, FinalCta, SiteFooter } from "@/components/journey/FinalSections";
 import { MomentsSection } from "@/components/journey/MomentsSection";
 import { SiteHeader } from "@/components/journey/SiteHeader";
@@ -34,9 +34,8 @@ function Index() {
   return <main className="journey-page journey-live">
     <HomeMotion />
     <SiteHeader />
-    <CentredHero /><SpecialtyPicker /><ProblemGrid /><GoodEnquiry />
-    <MomentsSection /><ClinicWeek /><ApproachSection /><StepExplorer /><AdvertsFirst />
-    <section className="sx sx-light book-prompt-band"><div className="sx-shell"><BookPrompt text="Want to see what this looks like for your practice?" /></div></section>
-    <UniBoxSection /><GrowthEstimator /><Pricing /><FitCheck /><Faq /><FinalCta /><SiteFooter />
+    <CentredHero /><SpecialtyPicker /><ProblemGrid />
+    <MomentsSection /><ClinicWeek /><ApproachSection /><StepExplorer />
+    <UniBoxSection /><CalculatorPromo /><Pricing /><Faq /><FinalCta /><SiteFooter />
   </main>;
 }
