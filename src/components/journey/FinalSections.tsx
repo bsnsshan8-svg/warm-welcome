@@ -55,7 +55,7 @@ export function SiteFooter() {
   return <footer className="zx-footer">
     <div className="zx-footer-grid">
       <div className="zx-fcol zx-fbrand">
-        <a href="#top" aria-label="ZAAD home"><img src={zaadLogo.url} alt="ZAAD — Zero Apples A Day" /></a>
+        <a href="/" aria-label="ZAAD home"><img src={zaadLogo.url} alt="ZAAD — Zero Apples A Day" /></a>
         <p>A steady flow of new patients for healthcare practices.</p>
         <p className="zx-tagline"><em>More patients.</em> Fewer gaps. <em>Less chasing.</em></p>
         <ul className="zx-contact">
@@ -65,13 +65,13 @@ export function SiteFooter() {
         </ul>
       </div>
       <nav className="zx-fcol" aria-label="Quick links"><h3>Quick links</h3>
-        <a href="#modules">How it works</a><a href="#after-hours">After hours</a><a href="#unibox">UniBox</a><a href="#pricing">Plans</a><a href="#faq">FAQ</a><Link to="/book">Book a call</Link>
+        <a href="/#modules">How it works</a><Link to="/how-it-works">A real clinic week</Link><a href="/how-it-works#after-hours">After hours</a><a href="/#unibox">UniBox</a><a href="/#pricing">Plans</a><a href="/#faq">FAQ</a><Link to="/book">Book a call</Link>
       </nav>
       <nav className="zx-fcol" aria-label="Who we help"><h3>Who we help</h3>
-        {specialties.map(s => <a key={s} href="#who">{s}</a>)}
+        {specialties.map(s => <a key={s} href="/#who">{s}</a>)}
       </nav>
       <nav className="zx-fcol" aria-label="Plans"><h3>Plans</h3>
-        <a href="#pricing">Core systems</a><a href="#pricing">Done for you: Accelerator</a><a href="#pricing">Done for you: Power</a>
+        <a href="/#pricing">Core systems</a><a href="/#pricing">Done for you: Accelerator</a><a href="/#pricing">Done for you: Power</a>
       </nav>
       <div className="zx-fcol zx-fcta"><h3>Ready for more patients?</h3>
         <p className="zx-fcta-intro">Book a free 15-minute call and we'll show you where patients are slipping away.</p>

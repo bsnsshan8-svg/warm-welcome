@@ -107,7 +107,7 @@ export function MomentsSection() {
             <div className="moment-graphic"><SceneArt index={k + 3} /></div>
             <div className="scene-caption"><span className="caption-marker" /><div><span>{chapter.scene}</span><p>{chapter.detail}</p></div></div>
           </div>
-          <a className="moment-next" href={k === 2 ? "#approach" : `#${moments[k + 1]?.id}`} aria-label="Next section"><ArrowDown size={18} /></a>
+          <a className="moment-next" href={k === 2 ? "#after-hours" : `#${moments[k + 1]?.id}`} aria-label="Next section"><ArrowDown size={18} /></a>
         </section>)}
       </div></div>
       <nav className="moments-navigation" aria-label="Patient moments navigation">
