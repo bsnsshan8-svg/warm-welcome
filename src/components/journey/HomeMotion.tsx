@@ -45,9 +45,10 @@ export function HomeMotion() {
       event.preventDefault(); history.pushState(null, "", url.hash); scrollHomeTo(decodeURIComponent(url.hash));
     };
     const hash = () => { if (location.hash) scrollHomeTo(decodeURIComponent(location.hash)); };
-    void setup(); reduced.addEventListener("change", setup);
+    let initialHash = 0;
+    void setup().then(() => { if (!disposed && location.hash) initialHash = window.setTimeout(hash, 250); }); reduced.addEventListener("change", setup);
     document.addEventListener("click", anchor); window.addEventListener("hashchange", hash); window.addEventListener("popstate", hash);
-    return () => { disposed = true; generation++; teardown?.(); reduced.removeEventListener("change", setup); document.removeEventListener("click", anchor); window.removeEventListener("hashchange", hash); window.removeEventListener("popstate", hash); };
+    return () => { window.clearTimeout(initialHash); disposed = true; generation++; teardown?.(); reduced.removeEventListener("change", setup); document.removeEventListener("click", anchor); window.removeEventListener("hashchange", hash); window.removeEventListener("popstate", hash); };
   }, []);
   return null;
 }
