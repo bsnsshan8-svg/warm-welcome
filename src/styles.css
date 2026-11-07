@@ -1289,7 +1289,7 @@ body:has(.journey-page){background:var(--navy);}
 .calc-consent input{width:22px;height:22px;flex-shrink:0;margin-top:2px;accent-color:var(--blue-fill);}
 .calc-btn{margin-top:20px;width:100%;justify-content:center;text-align:center;}
 .calc-out-label{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;}
-.calc-big{font-size:clamp(2rem,5vw,3.25rem);font-weight:900;color:var(--yellow)!important;line-height:1.1;margin:6px 0;overflow-wrap:anywhere;}
+.calc-page .calc-result p.calc-big{font-size:clamp(2rem,5vw,3.25rem);font-weight:900;color:var(--yellow)!important;line-height:1.1;margin:6px 0;overflow-wrap:anywhere;}
 .calc-range{font-size:15px;}
 .calc-break{display:grid;gap:12px;margin-top:20px;}
 .calc-break>div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;border-top:1px solid var(--journey-border);padding-top:12px;}
@@ -1305,7 +1305,7 @@ body:has(.journey-page){background:var(--navy);}
 .calc-list{display:grid;gap:10px;font-size:16px;}.calc-list em{font-style:normal;color:var(--body);}
 .calc-why{background:var(--mist);border-radius:16px;padding:4px 18px 18px;margin-top:24px;}
 .calc-buy{text-align:center;}
-.calc-was{font-size:16px;}.calc-price{font-size:4rem;font-weight:900;color:var(--ink)!important;line-height:1;margin:8px 0;}
+.calc-was{font-size:16px;}.calc-page p.calc-price{font-size:4rem;font-weight:900;color:var(--ink)!important;line-height:1;margin:8px 0;}
 .calc-small{font-size:14px!important;margin-top:12px;}
 .calc-faq{padding:64px 0;}
 .calc-faq button{font-size:17px;font-weight:700;min-height:56px;color:var(--ink);}
