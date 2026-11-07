@@ -1316,7 +1316,7 @@ body:has(.journey-page){background:var(--navy);}
 @media (max-width:640px){.calc-hero{padding-top:110px;}.calc-card,.calc-result,.calc-buy{padding:18px;}}
 
 /* Home calculator promo band */
-.calc-promo{background:var(--navy);color:#fff;padding:72px 0;border-top:4px solid var(--blue);}
+.calc-promo{background:var(--navy);color:#fff;padding:48px 0 56px;}
 .calc-promo-inner{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;max-width:760px;}
 .calc-promo h2{font-size:clamp(1.75rem,4.5vw,3rem);font-weight:900;line-height:1.08;text-transform:uppercase;color:#fff;}
 .calc-promo h2 em{font-style:normal;background:var(--yellow);color:var(--ink);padding:0 .2em;box-decoration-break:clone;-webkit-box-decoration-break:clone;}

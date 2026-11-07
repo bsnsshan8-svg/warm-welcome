@@ -34,8 +34,8 @@ function Index() {
   return <main className="journey-page journey-live">
     <HomeMotion />
     <SiteHeader />
-    <CentredHero /><SpecialtyPicker /><ProblemGrid />
+    <CentredHero /><CalculatorPromo /><SpecialtyPicker /><ProblemGrid />
     <MomentsSection /><ClinicWeek /><ApproachSection /><StepExplorer />
-    <UniBoxSection /><CalculatorPromo /><Pricing /><Faq /><FinalCta /><SiteFooter />
+    <UniBoxSection /><Pricing /><Faq /><FinalCta /><SiteFooter />
   </main>;
 }
