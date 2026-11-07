@@ -1,12 +1,23 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import zaadLogo from "@/assets/zaad-logo.png.asset.json";
 import { pauseHomeScroll, resumeHomeScroll, scrollHomeTo } from "@/lib/home-motion";
 
-const links = [["Who we help", "who"], ["How it works", "modules"], ["UniBox", "unibox"], ["Calculator", "estimator"], ["Plans", "pricing"], ["FAQ", "faq"]] as const;
+type NavItem =
+  | { label: string; to: "/how-it-works"; id?: undefined }
+  | { label: string; id: string; to?: undefined };
+
+const links: NavItem[] = [
+  { label: "Who we help", id: "who" },
+  { label: "How it works", to: "/how-it-works" },
+  { label: "UniBox", id: "unibox" },
+  { label: "Calculator", id: "estimator" },
+  { label: "Plans", id: "pricing" },
+  { label: "FAQ", id: "faq" },
+];
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
