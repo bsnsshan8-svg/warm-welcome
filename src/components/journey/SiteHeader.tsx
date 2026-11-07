@@ -58,7 +58,7 @@ export function SiteHeader() {
     </header>
     {open && createPortal(<div id="mobile-menu" className="zaad-mobile-menu" ref={dialogRef} role="dialog" aria-modal="true" aria-label="Main navigation">
       <div className="mobile-menu-top"><img src={zaadLogo.url} alt="ZAAD — Zero Apples A Day" /><Button variant="unstyled" size="unstyled" className="mobile-menu-close" aria-label="Close menu" onClick={() => setOpen(false)}><X size={28} /></Button></div>
-      <nav aria-label="Mobile navigation">{links.map(([label, id]) => <>{id === "pricing" && <Link key="calc" to="/calculator" onClick={() => setOpen(false)}>Calculator</Link>}<a key={id} href={`#${id}`} onClick={e => { e.preventDefault(); follow(id); }}>{label}</a></>)}<Button asChild variant="unstyled" size="unstyled" className="journey-primary"><Link to="/book" onClick={() => setOpen(false)}>Book a strategy call <ArrowUpRight size={18} /></Link></Button></nav>
+      <nav aria-label="Mobile navigation">{links.flatMap(([label, id]) => [...(id === "pricing" ? [<Link key="calc" to="/calculator" onClick={() => setOpen(false)}>Calculator</Link>] : []), <a key={id} href={`#${id}`} onClick={e => { e.preventDefault(); follow(id); }}>{label}</a>])}<Button asChild variant="unstyled" size="unstyled" className="journey-primary"><Link to="/book" onClick={() => setOpen(false)}>Book a strategy call <ArrowUpRight size={18} /></Link></Button></nav>
     </div>, document.body)}
   </>;
 }
