@@ -55,7 +55,7 @@ export function SiteFooter() {
   return <footer className="zx-footer">
     <div className="zx-footer-grid">
       <div className="zx-fcol zx-fbrand">
-        <a href="/" aria-label="ZAAD home"><img src={zaadLogo.url} alt="ZAAD — Zero Apples A Day" /></a>
+        <a href="/#top" aria-label="ZAAD home"><img src={zaadLogo.url} alt="ZAAD — Zero Apples A Day" /></a>
         <p>A steady flow of new patients for healthcare practices.</p>
         <p className="zx-tagline"><em>More patients.</em> Fewer gaps. <em>Less chasing.</em></p>
         <ul className="zx-contact">

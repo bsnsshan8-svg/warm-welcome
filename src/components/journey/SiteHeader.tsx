@@ -52,7 +52,7 @@ export function SiteHeader() {
   };
   return <>
     <header className="journey-header zaad-header">
-      <a href="/" aria-label="ZAAD home" className="journey-logo"><img src={zaadLogo.url} alt="ZAAD — Zero Apples A Day" /></a>
+      <a href="/#top" aria-label="ZAAD home" className="journey-logo"><img src={zaadLogo.url} alt="ZAAD — Zero Apples A Day" /></a>
       <nav aria-label="Main navigation">{links.slice(0, 5).map(([label, id]) => <a key={id} href={`/#${id}`}>{label}</a>)}</nav>
       <Button asChild variant="unstyled" size="unstyled" className="journey-call"><Link to="/book">Book a strategy call <ArrowUpRight size={18} /></Link></Button>
       <Button ref={triggerRef} variant="unstyled" size="unstyled" className="journey-menu" aria-label="Open menu" aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen(true)}><Menu size={22} /></Button>
