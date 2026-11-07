@@ -28,7 +28,6 @@ export const submitLead = createServerFn({ method: "POST" })
     const [first, ...others] = name.split(/\s+/);
     const payload = {
       first_name: first ?? "", last_name: others.join(" "), full_name: name, clinic_name: clinic,
-      phone: rest.phone, email: rest.email,
       consent_calls_texts_emails: true, consent_text: CONSENT_TEXT, consent_timestamp: new Date().toISOString(),
       source: "calculator", ...rest,
     };
