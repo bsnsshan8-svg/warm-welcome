@@ -19,3 +19,4 @@
 - Each pinned scene renders inline SVG art with --p for reveal and --scene-drift for layered scroll travel; idle float pauses offscreen, and reduced motion shows final static states without WebGL.
 - Hero camera and layer transforms read a dedicated normalized --hero-travel value from the shared scroll handler, independent of reveal timing, so zoom reverses naturally without changing other scenes.
 - ProblemGrid uses the shared mobile hook for a single-open accordion below the phone breakpoint; expand motion stays inside each list item so entrance reveals remain independent and larger screens retain static cards.
+- The clinic leak calculator lives in one shared LeakCalculator component used by both the home page and /calculator, so the formula, form and lead sending never drift apart.
