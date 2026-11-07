@@ -1329,3 +1329,6 @@ body:has(.journey-page){background:var(--navy);}
 .hiw-hero h1{font-size:clamp(2.25rem,6vw,4.5rem);font-weight:900;text-transform:uppercase;line-height:1.05;}
 .hiw-hero p{color:var(--on-navy);font-size:19px;max-width:52ch;margin:16px auto 0;}
 @media (max-width:640px){.calc-home{padding:36px 0 40px;}.hiw-hero{padding-top:110px;}}
+.hiw-subnav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:28px;}
+.hiw-subnav a{display:inline-flex;align-items:center;min-height:44px;padding:8px 18px;border-radius:999px;border:1px solid var(--journey-border);color:#fff;font-weight:700;font-size:14px;}
+.hiw-subnav a:hover,.hiw-subnav a:focus-visible{background:var(--blue-fill);border-color:var(--blue-fill);}

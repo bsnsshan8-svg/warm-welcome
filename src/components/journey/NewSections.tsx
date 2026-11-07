@@ -10,7 +10,7 @@ export function GoodEnquiry() {
     ["Fit", "Does your location, price and availability suit them?"],
     ["Timing", "Are they ready to book now, or in a few months?"],
   ];
-  return <section className="sx sx-light sx-mist" aria-labelledby="ge-title">
+  return <section id="good-enquiry" className="sx sx-light sx-mist" aria-labelledby="ge-title">
     <div className="sx-shell">
       <div className="sx-head"><span className="sx-kicker">What makes a good enquiry</span><h2 id="ge-title">More enquiries aren't the goal. <em>The right patients are.</em></h2><p>We check four things before an enquiry reaches your calendar, so your team spends time on people who will book.</p></div>
       <div className="ge-grid">{items.map(([t, d], i) => <div key={t} className="pr-card"><span className="ge-n">{String(i + 1).padStart(2, "0")}</span><h3>{t}</h3><p>{d}</p></div>)}</div>
@@ -21,7 +21,7 @@ export function GoodEnquiry() {
 export function AdvertsFirst() {
   const gaps = [[Clock, "Replies take a day or more"], [PhoneMissed, "Missed calls go unanswered"], [Star, "Very few recent reviews"], [CalendarX, "No reminders, so patients don't turn up"], [UserX, "Past patients never hear from them"]] as const;
   const fixes = ["Fix how fast enquiries get a reply", "Set up missed-call text-back", "Add reminders before every visit", "Start collecting reviews", "Contact past patients"];
-  return <section className="sx sx-light" aria-labelledby="af-title">
+  return <section id="adverts" className="sx sx-light" aria-labelledby="af-title">
     <div className="sx-shell">
       <div className="sx-head"><span className="sx-kicker">Why we don't start with adverts</span><h2 id="af-title">More adverts won't help if <em>the basics leak.</em></h2></div>
       <div className="zx-af-top">

@@ -5,7 +5,7 @@ import { StepExplorer } from "@/components/journey/StepExplorer";
 import { ProblemGrid } from "@/components/journey/Extras";
 import { CentredHero, Pricing, SpecialtyPicker } from "@/components/journey/MoreSections";
 import { Faq } from "@/components/journey/NewSections";
-import { ApproachSection, FinalCta, SiteFooter } from "@/components/journey/FinalSections";
+import { FinalCta, SiteFooter } from "@/components/journey/FinalSections";
 import { SiteHeader } from "@/components/journey/SiteHeader";
 import { HomeMotion } from "@/components/journey/HomeMotion";
 
@@ -39,7 +39,7 @@ function Index() {
       <LeakCalculator />
     </section>
     <SpecialtyPicker /><ProblemGrid />
-    <ApproachSection /><StepExplorer />
+    <StepExplorer />
     <div className="sx sx-light hiw-link-wrap"><Link to="/how-it-works" className="hiw-link">See how it works in a real clinic week →</Link></div>
     
     <UniBoxSection /><Pricing /><Faq /><FinalCta /><SiteFooter />
