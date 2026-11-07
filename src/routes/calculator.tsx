@@ -1,4 +1,5 @@
-import { useMemo, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
+import { submitLead, type LeadPayloadInput } from "@/lib/submit-lead";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { z } from "zod";
@@ -28,9 +29,35 @@ export const Route = createFileRoute("/calculator")({
 
 type Lead = { name: string; clinic: string; phone: string; email: string; consent: true };
 
-/** Lead hand-off point. Currently logs only; connect a database here later. */
-function saveLead(lead: Lead, inputs: LeakInputs, result: LeakResult) {
-  console.log("[ZAAD lead]", { lead, inputs, result });
+const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"] as const;
+type Utm = Record<(typeof UTM_KEYS)[number], string>;
+
+function readUtm(): Utm {
+  const q = new URLSearchParams(window.location.search);
+  let stored: Partial<Utm> = {};
+  try { stored = JSON.parse(sessionStorage.getItem("zaad_utm") || "{}"); } catch { /* ignore */ }
+  const utm = Object.fromEntries(UTM_KEYS.map(k => [k, q.get(k) ?? stored[k] ?? ""])) as Utm;
+  try { sessionStorage.setItem("zaad_utm", JSON.stringify(utm)); } catch { /* ignore */ }
+  return utm;
+}
+
+/** Sends the lead to GoHighLevel via the server. Never surfaces errors to the visitor. */
+async function saveLead(lead: Lead, inputs: LeakInputs, result: LeakResult, utm: Utm) {
+  const payload: LeadPayloadInput = {
+    name: lead.name, clinic: lead.clinic, phone: lead.phone, email: lead.email,
+    page_url: window.location.href, ...utm,
+    calls_missed_per_week: inputs.missed, conv_pct: inputs.convS, voicemail_recovery_pct: inputs.recS,
+    messages_per_month: inputs.msgs, past_patients: inputs.past, return_pct: inputs.retS,
+    google_reviews: inputs.rev, competitor_reviews: inputs.comp, online_booking_at_night: inputs.web, patient_value: inputs.val,
+    leak_low_usd: Math.round(result.dLow), leak_high_usd: Math.round(result.dHigh),
+    patients_low: Math.round(result.pLow * 10) / 10, patients_high: Math.round(result.pHigh * 10) / 10,
+    calls_value_usd_month: Math.round(result.callsValue), messages_value_usd_month: Math.round(result.msgsValue),
+    past_patients_value_usd_once: Math.round(result.pastValue), review_gap: result.reviewGap, largest_leak: result.largest ?? "",
+  };
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try { const res = await submitLead({ data: payload }); if (res.ok) return; } catch { /* retry */ }
+    if (attempt === 0) await new Promise(r => setTimeout(r, 2000));
+  }
 }
 
 const leadSchema = z.object({
@@ -86,6 +113,11 @@ function CalculatorPage() {
   const [lead, setLead] = useState({ name: "", clinic: "", phone: "", email: "", consent: false });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [unlocked, setUnlocked] = useState(false);
+  const [sending, setSending] = useState(false);
+  const sentRef = useRef(false);
+  const utmRef = useRef<Utm>({ utm_source: "", utm_medium: "", utm_campaign: "", utm_content: "", utm_term: "" });
+  const honeypotRef = useRef<HTMLInputElement>(null);
+  useEffect(() => { utmRef.current = readUtm(); }, []);
   const submit = (e: FormEvent) => {
     e.preventDefault();
     const parsed = leadSchema.safeParse(lead);
@@ -97,8 +129,12 @@ function CalculatorPage() {
       return;
     }
     setErrors({});
-    saveLead(parsed.data as Lead, inputs, r);
+    if (sentRef.current) return;
+    sentRef.current = true;
+    setSending(true);
     setUnlocked(true);
+    if (!honeypotRef.current?.value) void saveLead(parsed.data as Lead, inputs, r, utmRef.current).finally(() => setSending(false));
+    else setSending(false);
   };
 
   const gap = r.reviewGap;
@@ -157,7 +193,8 @@ function CalculatorPage() {
               <span>I agree that ZAAD may call, text or email me about my result and the clinic audit. Message and data rates may apply. Reply STOP to opt out of texts.</span>
             </label>
             {errors["consent"] && <p className="calc-err">{errors["consent"]}</p>}
-            <Button type="submit" variant="unstyled" size="unstyled" className="journey-primary calc-btn">Show my result <ArrowRight size={18} /></Button>
+            <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}><label htmlFor="company_website">Company website</label><input ref={honeypotRef} id="company_website" name="company_website" type="text" tabIndex={-1} autoComplete="off" /></div>
+            <Button type="submit" disabled={sending} variant="unstyled" size="unstyled" className="journey-primary calc-btn">Show my result <ArrowRight size={18} /></Button>
           </form> : <div className="calc-out">
             <p className="calc-out-label">Estimated value slipping away each month</p>
             <p className="calc-big">{bigNumber(r)}</p>
