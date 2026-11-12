@@ -27,7 +27,7 @@ describe("Clinic week", () => {
     fireEvent.click(screen.getByRole("button", { name: "WITHOUT ZAAD" }));
     act(() => vi.advanceTimersByTime(5000));
     expect(screen.getByRole("button", { name: "WITHOUT ZAAD" })).toHaveAttribute("aria-pressed", "true");
-    expect(screen.getByRole("link", { name: "BOOK A STRATEGY CALL" })).toHaveAttribute("href", "/book");
+    expect(screen.getByRole("link", { name: "GET THE CLINIC AUDIT, $17" })).toHaveAttribute("href", "/audit");
   });
   it("does not override a visitor's choice during the preview delay", () => {
     render(<ClinicWeek />); enter();

@@ -58,7 +58,7 @@ export function ClinicWeek() {
       </div>
       <div className="cw-mobile-list">{enquiries.map(card)}</div>
       <p className="cw-takeaway" aria-live="polite">{enabled ? "Every enquiry outside opening hours gets a text with a booking link within a minute, so patients book while they're still looking." : "Five people wanted an appointment. They all waited, and some will book somewhere else."}</p>
-      <Button asChild variant="unstyled" size="unstyled" className="journey-primary"><Link to="/book">BOOK A STRATEGY CALL <ArrowUpRight size={18} /></Link></Button>
+      <Button asChild variant="unstyled" size="unstyled" className="journey-primary"><Link to="/audit">GET THE CLINIC AUDIT, $17 <ArrowUpRight size={18} /></Link></Button>
     </div>
   </section>;
 }

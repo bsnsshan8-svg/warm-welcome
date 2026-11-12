@@ -134,7 +134,7 @@ export function LeakCalculator() {
             </div>)}
             <label className="calc-consent">
               <input id="lead-consent" type="checkbox" required checked={lead.consent} aria-invalid={!!errors["consent"]} onChange={e => setLead(p => ({ ...p, consent: e.target.checked }))} />
-              <span>I agree that ZAAD may call, text or email me about my result and the clinic audit. Message and data rates may apply. Reply STOP to opt out of texts.</span>
+              <span>I agree that ZAAD may call, text or email me about my result and the clinic audit. Message and data rates may apply. Reply STOP to opt out of texts. See our <Link to="/privacy">Privacy Policy</Link> and <Link to="/sms-terms">SMS and email terms</Link>.</span>
             </label>
             {errors["consent"] && <p className="calc-err">{errors["consent"]}</p>}
             <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}><label htmlFor="company_website">Company website</label><input ref={honeypotRef} id="company_website" name="company_website" type="text" tabIndex={-1} autoComplete="off" /></div>
@@ -151,7 +151,7 @@ export function LeakCalculator() {
               <div><dt>Booking online at night</dt><dd>{r.webAvailable ? "Available" : "Not available"}</dd><small>Website and chat. {r.webAvailable ? "Check that it works on a phone." : "A visitor at 11 pm has nowhere to book."}</small></div>
             </dl>
             <p className="calc-start">{r.largest ? <>Start with: <b>{r.largest}</b>. It is the largest monthly leak in your numbers.</> : "Enter your numbers to see which leak is largest."}</p>
-            <Button asChild variant="unstyled" size="unstyled" className="journey-primary calc-btn"><Link to="/book">Book your 30-minute audit, $17 <ArrowRight size={18} /></Link></Button>
+            <Button asChild variant="unstyled" size="unstyled" className="journey-primary calc-btn"><Link to="/audit">Book your 30-minute audit, $17 <ArrowRight size={18} /></Link></Button>
             <p className="calc-disc">A planning tool, not a forecast or a promise. It excludes ad spend, running costs and cancellations, and it counts only what you entered.</p>
           </div>}
         </div>

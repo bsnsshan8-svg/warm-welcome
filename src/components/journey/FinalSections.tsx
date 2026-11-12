@@ -5,8 +5,8 @@ import clinicians from "@/assets/approach-clinicians.jpg";
 import finalPhoto from "@/assets/final-clinicians.jpg";
 import zaadLogo from "@/assets/zaad-logo.png.asset.json";
 
-function BookButton({ label = "Book a strategy call" }: { label?: string }) {
-  return <Button asChild variant="unstyled" size="unstyled" className="journey-primary"><Link to="/book">{label} <ArrowUpRight size={18} aria-hidden="true" /></Link></Button>;
+function BookButton({ label = "Get the Clinic Audit, $17" }: { label?: string }) {
+  return <Button asChild variant="unstyled" size="unstyled" className="journey-primary"><Link to="/audit">{label} <ArrowUpRight size={18} aria-hidden="true" /></Link></Button>;
 }
 
 const approach = [
@@ -39,11 +39,11 @@ export function FinalCta() {
     <img src={finalPhoto} alt="" aria-hidden="true" loading="lazy" width={1920} height={1088} className="zx-final-bg" />
     <div className="zx-final-overlay" />
     <div className="zx-final-inner">
-      <h2 id="final-title" className="zx-h2">Ready to get more patients into your calendar?</h2>
+      <h2 id="final-title" className="zx-h2">Ready to find where patients are slipping away?</h2>
       <p>We'll look at how patients reach you today, show you where they're slipping away, and tell you exactly what we'd fix first.</p>
       <div className="zx-final-actions">
         <BookButton />
-        <Button asChild variant="unstyled" size="unstyled" className="journey-text-link"><a href="#modules">See how it works <ArrowRight size={18} aria-hidden="true" /></a></Button>
+        <Button asChild variant="unstyled" size="unstyled" className="journey-text-link"><a href="/#estimator">Run the free calculator <ArrowRight size={18} aria-hidden="true" /></a></Button>
       </div>
     </div>
   </section>;
@@ -65,7 +65,7 @@ export function SiteFooter() {
         </ul>
       </div>
       <nav className="zx-fcol" aria-label="Quick links"><h3>Quick links</h3>
-        <Link to="/how-it-works">How it works</Link><Link to="/how-it-works">A real clinic week</Link><a href="/how-it-works#after-hours">After hours</a><a href="/#unibox">UniBox</a><a href="/#pricing">Plans</a><a href="/#faq">FAQ</a><Link to="/book">Book a call</Link>
+        <Link to="/how-it-works">How it works</Link><Link to="/how-it-works">A real clinic week</Link><a href="/how-it-works#after-hours">After hours</a><a href="/#unibox">UniBox</a><a href="/#pricing">Plans</a><a href="/#faq">FAQ</a><Link to="/audit">Clinic Audit</Link>
       </nav>
       <nav className="zx-fcol" aria-label="Who we help"><h3>Who we help</h3>
         {specialties.map(s => <a key={s} href="/#who">{s}</a>)}
@@ -73,8 +73,11 @@ export function SiteFooter() {
       <nav className="zx-fcol" aria-label="Plans"><h3>Plans</h3>
         <a href="/#pricing">Core systems</a><a href="/#pricing">Done for you: Accelerator</a><a href="/#pricing">Done for you: Power</a>
       </nav>
+      <nav className="zx-fcol" aria-label="Legal"><h3>Legal</h3>
+        <Link to="/privacy">Privacy</Link><Link to="/terms">Terms</Link><Link to="/sms-terms">SMS and email terms</Link><Link to="/refund-policy">Refund policy</Link><Link to="/contact">Contact</Link>
+      </nav>
       <div className="zx-fcol zx-fcta"><h3>Ready for more patients?</h3>
-        <p className="zx-fcta-intro">Book a free 15-minute call and we'll show you where patients are slipping away.</p>
+        <p className="zx-fcta-intro">Run the free calculator, then book a 30-minute Clinic Audit for $17.</p>
         <BookButton />
       </div>
     </div>

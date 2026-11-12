@@ -13,7 +13,7 @@ export function CentredHero() {
       <p className="ch-yellow">ZAAD does the opposite. It brings patients in.</p>
       <p className="ch-p">Most practices don't need more marketing. They need every enquiry answered, followed up and booked. ZAAD brings the right patients in, replies within minutes, books the appointment and makes sure they turn up.</p>
       <div className="ch-actions">
-        <Button asChild variant="unstyled" size="unstyled" className="journey-primary"><Link to="/book">Book a strategy call <ArrowUpRight size={18} /></Link></Button>
+        <Button asChild variant="unstyled" size="unstyled" className="journey-primary"><Link to="/audit">Get the Clinic Audit, $17 <ArrowUpRight size={18} /></Link></Button>
         <Button asChild variant="unstyled" size="unstyled" className="journey-text-link"><a href="#modules">See how it works <ArrowDown size={18} /></a></Button>
       </div>
       <ul className="ch-facts">{["Replies within minutes, day or night", "Reminders that cut no-shows", "30-day money-back guarantee"].map(f => <li key={f}><Check size={16} aria-hidden="true" />{f}</li>)}</ul>
@@ -142,7 +142,7 @@ export function GrowthEstimator() {
 }
 
 export function BookPrompt({ text }: { text: string }) {
-  return <div className="book-prompt"><p>{text}</p><Button asChild variant="unstyled" size="unstyled" className="journey-primary"><Link to="/book">Book a strategy call <ArrowUpRight size={18} /></Link></Button></div>;
+  return <div className="book-prompt"><p>{text}</p><Button asChild variant="unstyled" size="unstyled" className="journey-primary"><Link to="/audit">Get the Clinic Audit, $17 <ArrowUpRight size={18} /></Link></Button></div>;
 }
 
 export function Pricing() {
@@ -154,15 +154,15 @@ export function Pricing() {
   return <>
   <section id="pricing" className="sx sx-light" aria-labelledby="pr-title">
     <div className="sx-shell">
-      <div className="sx-head"><span className="sx-kicker">Plans</span><h2 id="pr-title">Three ways to <em>work with us.</em></h2><p>Every practice is different, so we'll recommend the right plan and give you exact pricing on your free strategy call.</p></div>
-      <div className="pr-grid">{plans.map(pl => <div key={pl.n} className={`pr-card ${pl.dark ? "pr-dark" : ""}`}>{pl.dark && <span className="pr-tag">Most chosen</span>}<h3>{pl.n}</h3><p className="pr-price"><span>Pricing tailored to your practice</span></p><p>{pl.d}</p><p className="pr-term">{pl.t}</p><Button asChild variant="unstyled" size="unstyled" className="journey-primary pr-cta"><Link to="/book">Get started <ArrowUpRight size={18} /></Link></Button></div>)}</div>
+      <div className="sx-head"><span className="sx-kicker">Plans</span><h2 id="pr-title">Three ways to <em>work with us.</em></h2><p>Every practice is different, so we'll recommend the right plan and give you exact pricing after your Clinic Audit.</p></div>
+      <div className="pr-grid">{plans.map(pl => <div key={pl.n} className={`pr-card ${pl.dark ? "pr-dark" : ""}`}>{pl.dark && <span className="pr-tag">Most chosen</span>}<h3>{pl.n}</h3><p className="pr-price"><span>Pricing tailored to your practice</span></p><p>{pl.d}</p><p className="pr-term">{pl.t}</p><Button asChild variant="unstyled" size="unstyled" className="journey-primary pr-cta"><Link to="/audit">Get started <ArrowUpRight size={18} /></Link></Button></div>)}</div>
     </div>
   </section>
   <section className="guarantee-band" aria-labelledby="gb-title">
     <div className="sx-shell">
       <h2 id="gb-title">30-day money-back guarantee.</h2>
       <p>If we don't deliver on the targets we agree with you, you get your money back.</p>
-      <p>Want to see the opportunity first? <Link to="/book">Book a free strategy call</Link> and we'll show you where patients are slipping away.</p>
+      <p>Want to see the opportunity first? <Link to="/audit">Get the Clinic Audit, $17</Link> and we'll show you where patients are slipping away.</p>
     </div>
   </section>
   </>;

@@ -36,7 +36,7 @@ function Index() {
     <SiteHeader />
     <CentredHero />
     <section id="estimator" className="calc-home" aria-labelledby="calc-home-title">
-      <div className="calc-shell calc-home-head"><h2 id="calc-home-title">See what your clinic's leaks cost you <em>each month.</em></h2><p>Two minutes, your own numbers. Then get a free audit of your clinic.</p></div>
+      <div className="calc-shell calc-home-head"><h2 id="calc-home-title">See what your clinic's leaks cost you <em>each month.</em></h2><p>Two minutes, your own numbers. Then book a 30-minute Clinic Audit if you want help.</p></div>
       <LeakCalculator />
     </section>
     <SpecialtyPicker /><ProblemGrid />

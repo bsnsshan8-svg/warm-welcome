@@ -80,7 +80,7 @@ function CalculatorPage() {
           <p className="calc-was">Total value <s>$197</s></p>
           <p className="calc-price">$17</p>
           <p className="calc-tag">Launch price. Goes up to $47.</p>
-          <Button asChild variant="unstyled" size="unstyled" className="journey-primary calc-btn"><Link to="/book">Book my audit <ArrowRight size={18} /></Link></Button>
+          <Button asChild variant="unstyled" size="unstyled" className="journey-primary calc-btn"><Link to="/audit">Book my audit <ArrowRight size={18} /></Link></Button>
           <p className="calc-small">One payment. Pick your time right after.</p>
           <p className="calc-small">30-day guarantee. If the call doesn't show you something useful about your clinic, reply to your receipt email within 30 days and we'll refund your $17.</p>
         </div>

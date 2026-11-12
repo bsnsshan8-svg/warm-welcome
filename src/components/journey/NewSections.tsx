@@ -38,7 +38,7 @@ export function AdvertsFirst() {
         <div className="zx-af-instead">
           <h3 className="zx-h3">What we do instead</h3>
           <span className="zx-mini-pill">Right fixes, in the right order → more booked patients</span>
-          <Button asChild variant="unstyled" size="unstyled" className="journey-primary"><Link to="/book">Book a strategy call <ArrowUpRight size={18} aria-hidden="true" /></Link></Button>
+          <Button asChild variant="unstyled" size="unstyled" className="journey-primary"><Link to="/audit">Get the Clinic Audit, $17 <ArrowUpRight size={18} aria-hidden="true" /></Link></Button>
         </div>
       </div>
       <p className="af-close">Then we add adverts, once every new enquiry has a clear path to a booking.</p>

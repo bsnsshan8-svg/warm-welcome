@@ -10,13 +10,25 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuditRouteImport } from './routes/audit'
 import { Route as BookRouteImport } from './routes/book'
 import { Route as CalculatorRouteImport } from './routes/calculator'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
+import { Route as SmsTermsRouteImport } from './routes/sms-terms'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as ThankYouRouteImport } from './routes/thank-you'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuditRoute = AuditRouteImport.update({
+  id: '/audit',
+  path: '/audit',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookRoute = BookRouteImport.update({
@@ -29,44 +41,136 @@ const CalculatorRoute = CalculatorRouteImport.update({
   path: '/calculator',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HowItWorksRoute = HowItWorksRouteImport.update({
   id: '/how-it-works',
   path: '/how-it-works',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RefundPolicyRoute = RefundPolicyRouteImport.update({
+  id: '/refund-policy',
+  path: '/refund-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SmsTermsRoute = SmsTermsRouteImport.update({
+  id: '/sms-terms',
+  path: '/sms-terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThankYouRoute = ThankYouRouteImport.update({
+  id: '/thank-you',
+  path: '/thank-you',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/audit': typeof AuditRoute
   '/book': typeof BookRoute
   '/calculator': typeof CalculatorRoute
+  '/contact': typeof ContactRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/privacy': typeof PrivacyRoute
+  '/refund-policy': typeof RefundPolicyRoute
+  '/sms-terms': typeof SmsTermsRoute
+  '/terms': typeof TermsRoute
+  '/thank-you': typeof ThankYouRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/audit': typeof AuditRoute
   '/book': typeof BookRoute
   '/calculator': typeof CalculatorRoute
+  '/contact': typeof ContactRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/privacy': typeof PrivacyRoute
+  '/refund-policy': typeof RefundPolicyRoute
+  '/sms-terms': typeof SmsTermsRoute
+  '/terms': typeof TermsRoute
+  '/thank-you': typeof ThankYouRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/audit': typeof AuditRoute
   '/book': typeof BookRoute
   '/calculator': typeof CalculatorRoute
+  '/contact': typeof ContactRoute
   '/how-it-works': typeof HowItWorksRoute
+  '/privacy': typeof PrivacyRoute
+  '/refund-policy': typeof RefundPolicyRoute
+  '/sms-terms': typeof SmsTermsRoute
+  '/terms': typeof TermsRoute
+  '/thank-you': typeof ThankYouRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/book' | '/calculator' | '/how-it-works'
+  fullPaths:
+    | '/'
+    | '/audit'
+    | '/book'
+    | '/calculator'
+    | '/contact'
+    | '/how-it-works'
+    | '/privacy'
+    | '/refund-policy'
+    | '/sms-terms'
+    | '/terms'
+    | '/thank-you'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/book' | '/calculator' | '/how-it-works'
-  id: '__root__' | '/' | '/book' | '/calculator' | '/how-it-works'
+  to:
+    | '/'
+    | '/audit'
+    | '/book'
+    | '/calculator'
+    | '/contact'
+    | '/how-it-works'
+    | '/privacy'
+    | '/refund-policy'
+    | '/sms-terms'
+    | '/terms'
+    | '/thank-you'
+  id:
+    | '__root__'
+    | '/'
+    | '/audit'
+    | '/book'
+    | '/calculator'
+    | '/contact'
+    | '/how-it-works'
+    | '/privacy'
+    | '/refund-policy'
+    | '/sms-terms'
+    | '/terms'
+    | '/thank-you'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuditRoute: typeof AuditRoute
   BookRoute: typeof BookRoute
   CalculatorRoute: typeof CalculatorRoute
+  ContactRoute: typeof ContactRoute
   HowItWorksRoute: typeof HowItWorksRoute
+  PrivacyRoute: typeof PrivacyRoute
+  RefundPolicyRoute: typeof RefundPolicyRoute
+  SmsTermsRoute: typeof SmsTermsRoute
+  TermsRoute: typeof TermsRoute
+  ThankYouRoute: typeof ThankYouRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -76,6 +180,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/audit': {
+      id: '/audit'
+      path: '/audit'
+      fullPath: '/audit'
+      preLoaderRoute: typeof AuditRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/book': {
@@ -92,6 +203,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CalculatorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/how-it-works': {
       id: '/how-it-works'
       path: '/how-it-works'
@@ -99,14 +217,56 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HowItWorksRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/refund-policy': {
+      id: '/refund-policy'
+      path: '/refund-policy'
+      fullPath: '/refund-policy'
+      preLoaderRoute: typeof RefundPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sms-terms': {
+      id: '/sms-terms'
+      path: '/sms-terms'
+      fullPath: '/sms-terms'
+      preLoaderRoute: typeof SmsTermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/thank-you': {
+      id: '/thank-you'
+      path: '/thank-you'
+      fullPath: '/thank-you'
+      preLoaderRoute: typeof ThankYouRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuditRoute: AuditRoute,
   BookRoute: BookRoute,
   CalculatorRoute: CalculatorRoute,
+  ContactRoute: ContactRoute,
   HowItWorksRoute: HowItWorksRoute,
+  PrivacyRoute: PrivacyRoute,
+  RefundPolicyRoute: RefundPolicyRoute,
+  SmsTermsRoute: SmsTermsRoute,
+  TermsRoute: TermsRoute,
+  ThankYouRoute: ThankYouRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
