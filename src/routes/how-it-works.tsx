@@ -1,16 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/journey/SiteHeader";
+import { AdToChair } from "@/components/journey/AdToChair";
 import { HomeMotion } from "@/components/journey/HomeMotion";
 import { MomentsSection } from "@/components/journey/MomentsSection";
 import { ClinicWeek } from "@/components/journey/ClinicWeek";
 import { BookPrompt, FitCheck } from "@/components/journey/MoreSections";
 import { ApproachSection, SiteFooter } from "@/components/journey/FinalSections";
-import { AdvertsFirst, GoodEnquiry } from "@/components/journey/NewSections";
+import { GoodEnquiry } from "@/components/journey/NewSections";
 
-const chips = [["A real enquiry", "moments"], ["After hours", "after-hours"], ["Why it works", "approach"], ["Good enquiries", "good-enquiry"], ["Adverts", "adverts"], ["Is it a fit?", "fit"]] as const;
+const chips = [["Ad to patient", "journey"], ["A real enquiry", "moments"], ["After hours", "after-hours"], ["Why it works", "approach"], ["Good enquiries", "good-enquiry"], ["Is it a fit?", "fit"]] as const;
 
 const title = "How ZAAD Works — ZAAD";
-const desc = "See what happens to an enquiry, from the first message to a five-star review, and how a clinic's week changes with ZAAD.";
+const desc = "See how ZAAD takes someone from a first advert to a patient in your clinic: finding, answering, following up, qualifying and booking.";
 
 export const Route = createFileRoute("/how-it-works")({
   head: () => ({
@@ -33,10 +34,10 @@ function HowItWorksPage() {
     <HomeMotion />
     <SiteHeader />
     <section id="top" className="hiw-hero" aria-labelledby="hiw-title">
-      <div className="sx-shell"><h1 id="hiw-title">How ZAAD works</h1><p>See what happens to an enquiry, from the first message to a five-star review.</p>
+      <div className="sx-shell"><h1 id="hiw-title">How ZAAD works</h1><p>From the first advert to a patient in your chair, and what happens at every step.</p>
         <nav className="hiw-subnav" aria-label="On this page">{chips.map(([label, id]) => <a key={id} href={`#${id}`}>{label}</a>)}</nav></div>
     </section>
-    <MomentsSection /><ClinicWeek /><ApproachSection /><GoodEnquiry /><AdvertsFirst /><FitCheck />
+    <AdToChair id="journey" calcHref="/#estimator" /><MomentsSection /><ClinicWeek /><ApproachSection /><GoodEnquiry /><FitCheck />
     <section className="sx sx-light book-prompt-band"><div className="sx-shell"><BookPrompt text="Want to see what this looks like for your practice?" /></div></section>
     <SiteFooter />
   </main>;

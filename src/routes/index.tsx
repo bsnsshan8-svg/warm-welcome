@@ -7,6 +7,7 @@ import { CentredHero, Pricing, SpecialtyPicker } from "@/components/journey/More
 import { Faq } from "@/components/journey/NewSections";
 import { FinalCta, SiteFooter } from "@/components/journey/FinalSections";
 import { SiteHeader } from "@/components/journey/SiteHeader";
+import { AdToChair } from "@/components/journey/AdToChair";
 import { HomeMotion } from "@/components/journey/HomeMotion";
 
 export const Route = createFileRoute("/")({
@@ -40,7 +41,8 @@ function Index() {
     </section>
     <SpecialtyPicker /><ProblemGrid />
     <StepExplorer />
-    <div className="sx sx-light hiw-link-wrap"><Link to="/how-it-works" className="hiw-link">See how it works in a real clinic week →</Link></div>
+    <AdToChair compact />
+    <div className="sx sx-light hiw-link-wrap"><Link to="/how-it-works" hash="journey" className="hiw-link">See the full journey →</Link></div>
     
     <UniBoxSection /><Pricing /><Faq /><FinalCta /><SiteFooter />
   </main>;

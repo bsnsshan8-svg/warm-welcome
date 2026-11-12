@@ -1332,3 +1332,34 @@ body:has(.journey-page){background:var(--navy);}
 .hiw-subnav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:28px;}
 .hiw-subnav a{display:inline-flex;align-items:center;min-height:44px;padding:8px 18px;border-radius:999px;border:1px solid var(--journey-border);color:#fff;font-weight:700;font-size:14px;}
 .hiw-subnav a:hover,.hiw-subnav a:focus-visible{background:var(--blue-fill);border-color:var(--blue-fill);}
+
+/* Ad-to-chair journey */
+.atc .atc-list{list-style:none;margin:32px 0 0;padding:0;display:grid;gap:14px;position:relative;}
+.atc .atc-list>li{display:flex;gap:16px;align-items:flex-start;background:var(--journey-card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;}
+.atc .atc-n{flex:none;display:inline-grid;place-items:center;width:40px;height:40px;border-radius:999px;background:var(--navy);color:var(--yellow);font-weight:800;font-size:14px;}
+.atc h3{margin:0 0 6px;font-size:18px;font-weight:800;color:var(--ink);text-transform:none;}
+.atc p{margin:0;font-size:16px;color:var(--body);line-height:1.55;}
+.atc ul{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px;}
+.atc ul li{display:flex;gap:8px;align-items:flex-start;font-size:16px;color:var(--ink);}
+.atc ul svg{flex:none;margin-top:3px;color:var(--journey-booked-on-light);}
+.atc-compact .atc-list{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));}
+.atc-compact .atc-list>li{flex-direction:column;}
+.atc-desk{display:none;}
+.atc-foot{margin-top:32px;display:grid;gap:14px;justify-items:start;}
+.atc-foot p{color:var(--ink);font-weight:600;}
+.atc-foot small{font-size:13px;color:var(--body);}
+@media(min-width:860px){
+  .atc-mobile{display:none !important;}
+  .atc-desk{display:grid;gap:24px;margin-top:32px;}
+  .atc-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+  .atc-steps button{display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:44px;padding:16px;border-radius:18px;border:1px solid var(--line);background:var(--journey-card);color:var(--ink);font-weight:700;font-size:15px;text-align:left;cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s;}
+  .atc-steps button:hover{transform:translateY(-2px);}
+  .atc-steps button[aria-selected=true]{border-color:var(--navy);box-shadow:var(--hard-y);}
+  .atc-steps button:focus-visible{outline:3px solid var(--blue);outline-offset:2px;}
+  .atc-panel{background:var(--navy);color:var(--on-navy);border-radius:22px;padding:32px;box-shadow:var(--hard);animation:atcIn .3s ease-out;}
+  .atc-panel h3{color:#fff;font-size:26px;margin-top:10px;}
+  .atc-panel p,.atc-panel ul li{color:var(--on-navy);}
+  .atc-panel ul svg{color:var(--green);}
+}
+@keyframes atcIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.atc-panel{animation:none}.atc-steps button{transition:none}}
